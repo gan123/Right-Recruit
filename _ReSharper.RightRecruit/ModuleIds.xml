@@ -1,0 +1,6 @@
+<Modules>
+  <Module PersistentId="7B4DAB57-E19D-41FC-8AA1-E6D8B1CB0546" ModuleId="RightRecruit.Domain" />
+  <Module PersistentId="67AC5CB4-B212-4FCD-BC98-E5F808C695DB" ModuleId="RightRecruit.Mvc.Infrastructure" />
+  <Module PersistentId="E30E68D0-A304-4419-B733-00846C90E0D5" ModuleId="RightRecruit" />
+  <Module PersistentId="C25DAB8E-E9B3-4F1B-A0D6-59A35EFF9472" ModuleId="RightRecruit.Data.Setup" />
+</Modules>

@@ -1,0 +1,87 @@
+﻿@using RightRecruit.Mvc.Infrastructure
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css", "~/Content/less")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <header>
+        <div id="headerContainer" class="headerContainer">
+
+            @if (HttpContext.Current.Session != null && HttpContext.Current.Session[Globals.CurrentUser] != null)
+            {
+                var currentUser = (RightRecruit.Mvc.Infrastructure.Infrastructure.CurrentUser)HttpContext.Current.Session[RightRecruit.Mvc.Infrastructure.Globals.CurrentUser];
+                <div id="topnav" class="topnav">
+                    @if (!currentUser.IsAuthenticated)
+                    {
+                        <a href="#" class="signin"><span>Sign in</span></a>
+                        <div id="signin_menu">
+                            <p>
+                                <label for="username">Username</label>
+                                <input id="username" name="username" value="" title="username" tabindex="5" type="text">
+                            </p>
+                            <p>
+                                <label for="password">Password</label>
+                                <input id="password" name="password" value="" title="password" tabindex="5" type="password">
+                            </p>
+                            <p class="remember">
+                                <div class="left-div squaredOne">
+                                    <input type="checkbox" value="None" id="remember" name="remember" />
+                                    <label class="labelForCheckbox" for="remember"></label>
+                                </div>
+                                <label for="remember">Remember me</label>
+                                <input id="signin" value="Sign in" tabindex="6" type="submit" style="float: right;">
+                            </p>
+                            <p class="forgot"><a href="#" class="forgotLink" id="signup_link">New? Lets signup</a> </p>
+                            <p class="forgot-username"><a class="forgotLink" id="forgot_username_link" title="If you remember your password, try logging in with your email" href="#">Forgot your username?</a> </p>
+                            <p class="forgot"><a href="#" class="forgotLink" id="resend_password_link">Forgot your password?</a> </p>
+                        </div>
+                    }
+                    else
+                    {
+                        <a href="#" class="signin"><span>WELCOME @currentUser.User.Name</span></a>
+                        <div id="signin_menu">
+                            <p>
+                                <img class="profilePic" src="@currentUser.PhotoString"/>
+                                <span style="float:left;">
+                                  <span class="detailsLabel">@currentUser.User.Contact.Phone.Mobile</span>
+                                    <span class="detailsLabel ellipsis">@currentUser.User.Contact.Email</span>  
+                                </span>
+                            </p>
+                            <p class="remember">
+                                <input id="account" value="Account" type="button" style="float: left;">
+                                <input id="signout" value="Sign out" tabindex="6" type="submit" style="float: right;">
+                            </p>
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+    </header>
+
+    <nav>
+        <div class="menu">
+            <ul class="menulist">
+                <li id="inbox" class="menuitem inactive"><a href="#">Inbox</a></li>
+                <li class="menuitem inactive"><a href="#">Clients</a></li>
+                <li class="menuitem inactive"><a href="#">Candidates</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        @RenderBody()
+    </div>
+
+    @Scripts.Render(
+            "~/bundles/jquery",
+            "~/bundles/jsextlibs",
+            "~/Scripts/lib/require.js",
+            "~/bundles/jsappglobals",
+            "~/Scripts/main.js")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
