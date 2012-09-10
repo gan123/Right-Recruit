@@ -62,8 +62,10 @@ namespace RightRecruit
             bundles.Add(new ScriptBundle("~/bundles/jsappglobals")
             .IncludeDirectory("~/Scripts/app/common", "*.js", searchSubdirectories: false)
                 .IncludeDirectory("~/Scripts/app/global", "*.js", searchSubdirectories: false));
-            //bundles.Add(new ScriptBundle("~/bundles/jsapplibs")
-            //    .IncludeDirectory("~/Scripts/app/", "*.js", searchSubdirectories: false));
+
+            // Inbox bundle
+            bundles.Add(new ScriptBundle("~/bundles/inbox")
+                .IncludeDirectory("~/Scripts/app/inbox", "*.js", searchSubdirectories: false));
 
             // 3rd Party CSS files
             bundles.Add(new StyleBundle("~/Content/css").Include(

@@ -5,4 +5,12 @@
     });
 
     $("#date").datepicker({ autoSize: true });
+
+    requirejs(['vm.inbox', 'binder'], load);
+
+    function load() {
+        require(['vm.inbox', 'binder'], function (vm, b) {
+            b.bind(vm, "#inbox-view");
+        });
+    }
 });

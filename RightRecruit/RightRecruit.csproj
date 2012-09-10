@@ -166,6 +166,9 @@
     <Content Include="Content\images\toggle_down_light.png" />
     <Content Include="Content\images\toggle_up_dark.png" />
     <Content Include="Content\qunit.css" />
+    <Content Include="Content\styles.css">
+      <DependentUpon>styles.less</DependentUpon>
+    </Content>
     <Content Include="Content\themes\custom\jquery-ui-1.8.23.custom.css" />
     <Content Include="Content\toastr-responsive.css" />
     <Content Include="Content\toastr.css" />
@@ -174,12 +177,17 @@
     <None Include="Scripts\lib\jquery-1.8.0.intellisense.js" />
     <Content Include="Require.JS - LICENSE.txt" />
     <None Include="Scripts\lib\amplify-vsdoc.js" />
+    <Content Include="Scripts\app\global\binder.js" />
     <Content Include="Scripts\app\global\dataservice.user.js" />
     <Content Include="Scripts\app\global\signout.js" />
     <Content Include="Scripts\app\global\singin.js" />
     <Content Include="Scripts\app\common\ko.bindingHandlers.js" />
     <Content Include="Scripts\app\common\ko.debug.helpers.js" />
     <Content Include="Scripts\app\inbox\inbox.js" />
+    <Content Include="Scripts\app\inbox\model.filter.js" />
+    <Content Include="Scripts\app\inbox\model.inboxitem.js" />
+    <Content Include="Scripts\app\inbox\model.update.js" />
+    <Content Include="Scripts\app\inbox\vm.inbox.js" />
     <Content Include="Scripts\lib\jquery-ui-1.8.23.custom.min.js" />
     <Content Include="Scripts\lib\json2.js" />
     <Content Include="Scripts\lib\knockout.validation.js" />
