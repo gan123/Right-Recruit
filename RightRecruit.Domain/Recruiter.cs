@@ -13,5 +13,6 @@ namespace RightRecruit.Domain
         public ICollection<DenormalizedReference<JobPortal>> JobPortals {get; set;}
         public int Rating { get; set; }
         public List<DenormalizedReference<Target>> Targets { get; set; }
+        public DenormalizedReference<Recruiter> ReportsTo { get; set; }
     }
 }

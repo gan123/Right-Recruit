@@ -3,6 +3,46 @@
 }
 
 <section id="inbox-view">
+    <div id="topPanel">
+        <div id="filterPanel">
+            <div class="filterContainer">
+                <div class="left-div squaredOne">
+                    <input type="checkbox" value="None" id="overdue" name="overdue" />
+                    <label class="labelForCheckbox" for="overdue"></label>
+                </div>
+                <label class="left-div defaultLabel" for="overdue">By overdue items</label>
+                <div class="filterItemContainer">
+                    <input type="text" id="company" class="search" placeholder="Company..." />
+                </div>
+                <div class="filterItemContainer">
+                    <select>
+                        <option>Interview status</option>
+                        <option>One</option>
+                        <option>Two</option>
+                        <option>Three</option>
+                    </select>
+                </div>
+                <div class="filterItemContainer">
+                    <input type="text" id="date" class="datepicker" style="float: left;" placeholder="Date..." />
+                </div>
+                <div class="filterItemContainer">
+                    <label class="defaultLabel" for="noOfRecords">No of records</label>
+                    <select id="noOfRecords">
+                        <option>20</option>
+                        <option>30</option>
+                        <option>40</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div id="updatesPanel">
+            Some updates
+        </div>
+        <div class="tab">
+            <div data-bind="command: filterToggleCommand, activity: filterToggleCommand.isExecuting" class="filter">FILTER</div>
+            <div data-bind="command: updatesToggleCommand, activity: updatesToggleCommand.isExecuting" class="updates">UPDATES</div>
+        </div>
+    </div>
     <div class="left-div">
         <div>
             <ul class="statusList">
@@ -31,7 +71,7 @@
             </ul>
         </div>
     </div>
-    <div class="right-div">
+    @*<div class="right-div">
         <div class="outerDiv">
             <div class="headerDiv blue">
                 Filters
@@ -92,11 +132,11 @@
         <div class="outerDiv" style="margin-top: 10px;">
             <div class="headerDiv yellow">
                 Updates
-            <img src="/rr/Content/images/refresh.png" height="15" width="12" style="float: right; margin-right: 4px; cursor: pointer;" title="refresh" />
+                <img src="/rr/Content/images/refresh.png" height="15" width="12" style="float: right; margin-right: 4px; cursor: pointer;" title="refresh" />
             </div>
             <div style="height: 250px;">dsfsdfsdf</div>
         </div>
-    </div>
+    </div>*@
 </section>
 @section scripts{
     @Scripts.Render("~/bundles/inbox")

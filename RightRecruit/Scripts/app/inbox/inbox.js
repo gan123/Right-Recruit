@@ -4,7 +4,12 @@
         $(this).toggleClass('selectedStatus');
     });
 
-    $("#date").datepicker({ autoSize: true });
+    $("#date").datepicker({
+        autoSize: true,
+        showOn: "button",
+        buttonImage: '/rr/Content/images/calendar_blue.png',
+        buttonImageOnly: true
+    });
 
     requirejs(['vm.inbox', 'binder'], load);
 

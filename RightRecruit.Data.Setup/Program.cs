@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Configuration;
 using System.IO;
 using System.Linq;
@@ -18,8 +19,9 @@ namespace RightRecruit.Data.Setup
         {
             //LoadPlaces();
             //CreateAgency();
-            UploadImage();
-            GetImage();
+            //UploadImage();
+            //GetImage();
+            CreateClients();
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Completed successfully");
             Console.ReadLine();
@@ -28,7 +30,7 @@ namespace RightRecruit.Data.Setup
         static void UploadImage()
         {
             const string deepikaPhoto = @"H:\Workspace\deepika-ganesh.jpg";
-            var byteArray = System.IO.File.ReadAllBytes(deepikaPhoto);
+            var byteArray = File.ReadAllBytes(deepikaPhoto);
             var store = GetStore();
 
             using(var session = store.OpenSession())
@@ -53,6 +55,79 @@ namespace RightRecruit.Data.Setup
                 stream.Seek(0, SeekOrigin.Begin);
                 stream.CopyTo(fs);
                 fs.Close();
+            }
+        }
+
+        static void CreateClients()
+        {
+            City mumbai;
+            State maharashtra;
+            Country india;
+            Recruiter deepika;
+            Agency agency;
+
+            using(var session = GetStore().OpenSession())
+            {
+                mumbai = session.Load<City>("cities/mumbai");
+                maharashtra = session.Load<State>("states/maharashtra");
+                india = session.Load<Country>("countries/india");
+                deepika = session.Query<Recruiter>().Single(u => u.Username == "deepika");
+                agency = session.Query<Agency>().Single(a => a.DatabaseName == "TalentCorner");
+            }
+
+            using (var session = GetStore().OpenSession("TalentCorner"))
+            {
+                Console.WriteLine("Creating new client");
+                var client1 = new Client
+                                  {
+                                      Address = new Address
+                                                    {
+                                                        City = mumbai,
+                                                        Country = india,
+                                                        State = maharashtra,
+                                                        Street1 = "Some address",
+                                                        Pincode = 123333
+                                                    },
+                                      Name = "Client 1",
+                                      AlternateName = "Client 1",
+                                      Contact = new SocialContact
+                                                    {
+                                                        Phone = new Phone {Office = "+917785464"},
+                                                        Email = "client1@domain.com"
+                                                    },
+                                      CreatedByUserId = deepika.Id,
+                                      CreatedDate = DateTime.Now,
+                                      LastUpdatedDate = DateTime.Now,
+                                      LastUpdatedUserId = deepika.Id,
+                                      Agency = agency
+                                  };
+                session.Store(client1);
+                session.SaveChanges();
+                Console.WriteLine("New client created");
+
+                Console.WriteLine("Client spoc creation begins");
+                var clientUser1 = new ClientUser
+                                      {
+                                          Client = client1,
+                                          Name = "Client contact 1",
+                                          Contact = new SocialContact
+                                                        {
+                                                            Email = "clientuser1@client1.com",
+                                                            Phone = new Phone {Mobile = "+91544654654"}
+                                                        },
+                                          CreatedByUserId = deepika.Id,
+                                          CreatedDate = DateTime.Now,
+                                          LastUpdatedDate = DateTime.Now,
+                                          LastUpdatedUserId = deepika.Id
+                                      };
+                session.Store(clientUser1);
+                session.SaveChanges();
+                Console.WriteLine("Client spoc create");
+
+                Console.WriteLine("Assigning spoc to client 1");
+                client1.Spocs = new Collection<DenormalizedReference<ClientUser>>{clientUser1};
+                session.SaveChanges();
+                Console.WriteLine("Client user 1 assigned as spoc to client 1");
             }
         }
 
@@ -84,15 +159,63 @@ namespace RightRecruit.Data.Setup
                                                        Phone = new Phone {Office = "+9122666666"}
                                                    },
                                      Name = "Talent corner HR services",
-                                     DatabaseName = databse
+                                     DatabaseName = databse,
+                                     LastUpdatedDate = DateTime.Now,
+                                     CreatedByUserId = "system",
+                                     LastUpdatedUserId = "system",
+                                     CreatedDate = DateTime.Now
                                  };
                 session.Store(agency);
                 session.SaveChanges();
                 Console.WriteLine("agency created with id: {0}", agency.Id);
 
-                Console.WriteLine("Creating user");
-                var password = GeneratePassword();
-                Console.WriteLine("Generated password : {0}", password.OriginalPassword);
+                Console.WriteLine("Creating users");
+                var rashishPwd = GeneratePassword();
+                Console.WriteLine("Generated password for rashish : {0}", rashishPwd.OriginalPassword);
+                var rashish = new Recruiter
+                                  {
+                                      IsAdmin = true,
+                                      IsTeamLead = true,
+                                      IsGlobalAdmin = true,
+                                      IsManager = true,
+                                      Name = "Rashish Doshi",
+                                      NameDetail =
+                                          new Name { FirstName = "Rashish", LastName = "Doshi", NickName = "Rashish" },
+                                      Rating = 5,
+                                      Salutation = Salutation.Mr,
+                                      Username = "rashish",
+                                      Password = rashishPwd.Password,
+                                      IsWorkingFromHome = false,
+                                      DateOfBirth = new DateTime(1983, 5, 22),
+                                      Agency = agency,
+                                      DateOfJoining = new DateTime(2007, 10, 5),
+                                      Age = 29,
+                                      UserStatus = UserStatus.Active,
+                                      Contact = new SocialContact
+                                                    {
+                                                        Email = "rashish.doshi@talentcorner.co.in",
+                                                        Phone =
+                                                            new Phone
+                                                                {Mobile = "+9112345678"},
+                                                        AlternateEmail = "rashish.doshi@talentcorner.co.in"
+                                                    },
+                                      LastUpdatedDate = DateTime.Now,
+                                      LastUpdatedUserId = "system",
+                                      CreatedByUserId = "system",
+                                      CreatedDate = DateTime.Now,
+                                      Address = new Address
+                                      {
+                                          City = mumbai,
+                                          Country = india,
+                                          State = maharashtra,
+                                          Pincode = 3121321
+                                      }
+                                  };
+                session.Store(rashish);
+                session.SaveChanges();
+
+                var deepikaPwd = GeneratePassword();
+                Console.WriteLine("Generated password deepika : {0}", deepikaPwd.OriginalPassword);
                 var deepika = new Recruiter
                                   {
                                       IsAdmin = true,
@@ -100,11 +223,12 @@ namespace RightRecruit.Data.Setup
                                       IsGlobalAdmin = true,
                                       IsManager = true,
                                       Name = "Deepika Ganesh",
-                                      NameDetail = new Name { FirstName = "Deepika", LastName = "Ganesh", NickName = "Deepu"},
+                                      NameDetail =
+                                          new Name {FirstName = "Deepika", LastName = "Ganesh", NickName = "Deepu"},
                                       Rating = 5,
                                       Salutation = Salutation.Mrs,
                                       Username = "deepika",
-                                      Password = password.Password,
+                                      Password = deepikaPwd.Password,
                                       IsWorkingFromHome = false,
                                       DateOfBirth = new DateTime(1984, 5, 22),
                                       Agency = agency,
@@ -114,13 +238,32 @@ namespace RightRecruit.Data.Setup
                                       Contact = new SocialContact
                                                     {
                                                         Email = "deepika.ganesh@talentcorner.co.in",
-                                                        Phone = new Phone {Mobile = "+919967659294", Residence = "+912265175313"},
+                                                        Phone =
+                                                            new Phone
+                                                                {Mobile = "+919967659294", Residence = "+912265175313"},
                                                         AlternateEmail = "deeps_1984@yahoo.com"
+                                                    },
+                                      ReportsTo = rashish,
+                                      LastUpdatedDate = DateTime.Now,
+                                      LastUpdatedUserId = "system",
+                                      CreatedByUserId = "system",
+                                      CreatedDate = DateTime.Now,
+                                      Address = new Address
+                                                    {
+                                                        City = mumbai,
+                                                        Country = india,
+                                                        State = maharashtra,
+                                                        Pincode = 3121321
                                                     }
                                   };
                 session.Store(deepika);
                 session.SaveChanges();
-                Console.WriteLine("User created");
+                Console.WriteLine("Users created");
+
+                Console.WriteLine("Adding recruiters to agency");
+                agency.Recruiters = new Collection<DenormalizedReference<Recruiter>> { rashish, deepika };
+                session.SaveChanges();
+                Console.WriteLine("added recruiters to agency");
 
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("Trying to create new database : {0}", databse);

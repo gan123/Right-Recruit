@@ -158,13 +158,19 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\boilerplate-styles.css" />
+    <Content Include="Content\bootstrap.css" />
     <Content Include="Content\images\calendar_black.png" />
     <Content Include="Content\images\calendar_blue.png" />
+    <Content Include="Content\images\facebook.png" />
+    <Content Include="Content\images\google.png" />
+    <Content Include="Content\images\home_black.png" />
     <Content Include="Content\images\refresh.png" />
     <Content Include="Content\images\search_black.png" />
     <Content Include="Content\images\search_blue.png" />
     <Content Include="Content\images\toggle_down_light.png" />
     <Content Include="Content\images\toggle_up_dark.png" />
+    <Content Include="Content\images\twitter.png" />
+    <Content Include="Content\images\user_black.png" />
     <Content Include="Content\qunit.css" />
     <Content Include="Content\styles.css">
       <DependentUpon>styles.less</DependentUpon>

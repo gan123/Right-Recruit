@@ -9,7 +9,7 @@ namespace RightRecruit.Domain
         public string ClientLogoAttachmentId { get; set; }
         public Address Address { get; set; }
         public SocialContact Contact { get; set; }
-        public DenormalizedReference<ClientUser> Spoc { get; set; }
+        public ICollection<DenormalizedReference<ClientUser>> Spocs { get; set; }
         public DenormalizedReference<Agency> Agency { get; set; }
         public ICollection<DenormalizedReference<Position>> Positions { get; set; }
         public DenormalizedReference<RevenueModel> RevenueModel { get; set; }
