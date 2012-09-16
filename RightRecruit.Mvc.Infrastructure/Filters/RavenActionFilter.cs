@@ -7,6 +7,7 @@ using Raven.Client.Indexes;
 using Raven.Client.MvcIntegration;
 using RightRecruit.Domain;
 using RightRecruit.Mvc.Infrastructure.Controllers;
+using RightRecruit.Mvc.Infrastructure.Indexes;
 using RightRecruit.Mvc.Infrastructure.Infrastructure;
 using RightRecruit.Mvc.Infrastructure.Listeners;
 
@@ -39,7 +40,7 @@ namespace RightRecruit.Mvc.Infrastructure.Filters
             DocumentStore.Initialize();
             DocumentStore.Conventions.SaveEnumsAsIntegers = true;
 
-            //IndexCreation.CreateIndexes(typeof(ClientsIndex).Assembly, DocumentStore);
+            IndexCreation.CreateIndexes(typeof(ClientSearchIndex).Assembly, DocumentStore);
             RavenProfiler.InitializeFor(DocumentStore);
         }
 

@@ -10,5 +10,6 @@ namespace RightRecruit.Domain
         public string LastUpdatedUserId {get; set;}
         public DateTime CreatedDate {get; set;}
         public string CreatedByUserId {get; set;}
+        public string Database { get; set; }
     }
 }

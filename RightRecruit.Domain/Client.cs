@@ -13,5 +13,6 @@ namespace RightRecruit.Domain
         public DenormalizedReference<Agency> Agency { get; set; }
         public ICollection<DenormalizedReference<Position>> Positions { get; set; }
         public DenormalizedReference<RevenueModel> RevenueModel { get; set; }
+        public DenormalizedReference<Industry> Industry { get; set; }
     }
 }

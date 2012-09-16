@@ -1,4 +1,0 @@
-H:\Workspace\RightRecruit\RightRecruit.Domain\bin\Debug\RightRecruit.Domain.dll
-H:\Workspace\RightRecruit\RightRecruit.Domain\bin\Debug\RightRecruit.Domain.pdb
-H:\Workspace\RightRecruit\RightRecruit.Domain\obj\Debug\RightRecruit.Domain.dll
-H:\Workspace\RightRecruit\RightRecruit.Domain\obj\Debug\RightRecruit.Domain.pdb

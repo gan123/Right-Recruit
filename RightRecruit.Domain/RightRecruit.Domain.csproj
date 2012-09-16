@@ -59,6 +59,7 @@
     <Compile Include="DenormalizedReference.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="INamedDocument.cs" />
+    <Compile Include="Industry.cs" />
     <Compile Include="InterviewStatus.cs" />
     <Compile Include="JobPortal.cs" />
     <Compile Include="LevelBasedRevenueModel.cs" />

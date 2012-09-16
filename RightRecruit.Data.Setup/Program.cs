@@ -6,22 +6,28 @@ using System.Linq;
 using System.Net;
 using Raven.Client;
 using Raven.Client.Document;
-using Raven.Client.Extensions;
+using Raven.Client.Indexes;
 using Raven.Json.Linq;
 using RightRecruit.Domain;
+using RightRecruit.Mvc.Infrastructure.Indexes;
 using RightRecruit.Mvc.Infrastructure.Security;
 
 namespace RightRecruit.Data.Setup
 {
     class Program
     {
+        private const string Database = "TalentCorner";
+        private static IDocumentStore _store;
+
         static void Main()
         {
             //LoadPlaces();
+            //LoadIndustries();
             //CreateAgency();
             //UploadImage();
             //GetImage();
             CreateClients();
+            GetStore();
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Completed successfully");
             Console.ReadLine();
@@ -58,6 +64,34 @@ namespace RightRecruit.Data.Setup
             }
         }
 
+        static void LoadIndustries()
+        {
+            using(var session = GetStore().OpenSession())
+            {
+                var tech = new Industry { Id = "industries/tech", Name = "Technology" };
+                var healthCare = new Industry { Id = "industries/health", Name = "Health Care" };
+                var banking = new Industry { Id = "industries/bank", Name = "Banking" };
+                var advertising = new Industry { Id = "industries/advert", Name = "Advertising" };
+                var chemical = new Industry { Id = "industries/chem", Name = "Chemicals" };
+                var natres = new Industry { Id = "industries/natres", Name = "Natural resources" };
+                var industrial = new Industry { Id = "industries/industrial", Name = "Industrial" };
+                var retail = new Industry { Id = "industries/retail", Name = "Retail" };
+                var communication = new Industry { Id = "industries/comm", Name = "Communications" };
+
+                session.Store(tech);
+                session.Store(healthCare);
+                session.Store(banking);
+                session.Store(advertising);
+                session.Store(chemical);
+                session.Store(natres);
+                session.Store(industrial);
+                session.Store(retail);
+                session.Store(communication);
+
+                session.SaveChanges();
+            }
+        }
+
         static void CreateClients()
         {
             City mumbai;
@@ -65,18 +99,16 @@ namespace RightRecruit.Data.Setup
             Country india;
             Recruiter deepika;
             Agency agency;
+            Industry tech;
 
-            using(var session = GetStore().OpenSession())
+            using (var session = GetStore().OpenSession())
             {
                 mumbai = session.Load<City>("cities/mumbai");
                 maharashtra = session.Load<State>("states/maharashtra");
                 india = session.Load<Country>("countries/india");
                 deepika = session.Query<Recruiter>().Single(u => u.Username == "deepika");
-                agency = session.Query<Agency>().Single(a => a.DatabaseName == "TalentCorner");
-            }
-
-            using (var session = GetStore().OpenSession("TalentCorner"))
-            {
+                agency = session.Query<Agency>().Single(a => a.Database == Database);
+                tech = session.Load<Industry>("industries/tech");
                 Console.WriteLine("Creating new client");
                 var client1 = new Client
                                   {
@@ -88,37 +120,44 @@ namespace RightRecruit.Data.Setup
                                                         Street1 = "Some address",
                                                         Pincode = 123333
                                                     },
-                                      Name = "Client 1",
-                                      AlternateName = "Client 1",
+                                      Name = "Client 2",
+                                      AlternateName = "Client 2",
                                       Contact = new SocialContact
                                                     {
                                                         Phone = new Phone {Office = "+917785464"},
-                                                        Email = "client1@domain.com"
+                                                        Email = "client2@domain.com"
                                                     },
                                       CreatedByUserId = deepika.Id,
                                       CreatedDate = DateTime.Now,
                                       LastUpdatedDate = DateTime.Now,
                                       LastUpdatedUserId = deepika.Id,
-                                      Agency = agency
+                                      Agency = agency,
+                                      Industry = tech,
+                                      Database = Database
                                   };
                 session.Store(client1);
                 session.SaveChanges();
                 Console.WriteLine("New client created");
 
                 Console.WriteLine("Client spoc creation begins");
+                var pwd = GeneratePassword("client2");
                 var clientUser1 = new ClientUser
                                       {
                                           Client = client1,
-                                          Name = "Client contact 1",
+                                          Name = "Client contact 2",
+                                          NameDetail =
+                                          new Name { FirstName = "Client", LastName = "Contact", NickName = "CC" },
                                           Contact = new SocialContact
                                                         {
-                                                            Email = "clientuser1@client1.com",
+                                                            Email = "clientuser1@client12.com",
                                                             Phone = new Phone {Mobile = "+91544654654"}
                                                         },
                                           CreatedByUserId = deepika.Id,
                                           CreatedDate = DateTime.Now,
                                           LastUpdatedDate = DateTime.Now,
-                                          LastUpdatedUserId = deepika.Id
+                                          LastUpdatedUserId = deepika.Id,
+                                          Password = pwd.Password,
+                                          Database = Database
                                       };
                 session.Store(clientUser1);
                 session.SaveChanges();
@@ -126,6 +165,65 @@ namespace RightRecruit.Data.Setup
 
                 Console.WriteLine("Assigning spoc to client 1");
                 client1.Spocs = new Collection<DenormalizedReference<ClientUser>>{clientUser1};
+                session.SaveChanges();
+                Console.WriteLine("Client user 1 assigned as spoc to client 1");
+
+                Console.WriteLine("Creating new client");
+                var client2 = new Client
+                {
+                    Address = new Address
+                    {
+                        City = mumbai,
+                        Country = india,
+                        State = maharashtra,
+                        Street1 = "Some address",
+                        Pincode = 123333
+                    },
+                    Name = "New client 2",
+                    AlternateName = "New client 2",
+                    Contact = new SocialContact
+                    {
+                        Phone = new Phone { Office = "+917785464" },
+                        Email = "client3@domain.com"
+                    },
+                    CreatedByUserId = deepika.Id,
+                    CreatedDate = DateTime.Now,
+                    LastUpdatedDate = DateTime.Now,
+                    LastUpdatedUserId = deepika.Id,
+                    Agency = agency,
+                    Industry = tech,
+                    Database = Database
+                };
+                session.Store(client2);
+                session.SaveChanges();
+                Console.WriteLine("New client created");
+
+                Console.WriteLine("Client spoc creation begins");
+                var pwd1 = GeneratePassword("client3");
+                var clientUser2 = new ClientUser
+                {
+                    Client = client1,
+                    Name = "Client contact 2",
+                    NameDetail =
+                    new Name { FirstName = "Client", LastName = "Contact", NickName = "CC" },
+                    Contact = new SocialContact
+                    {
+                        Email = "clientuser1@client12.com",
+                        Phone = new Phone { Mobile = "+91544654654" }
+                    },
+                    CreatedByUserId = deepika.Id,
+                    CreatedDate = DateTime.Now,
+                    LastUpdatedDate = DateTime.Now,
+                    LastUpdatedUserId = deepika.Id,
+                    Password = pwd1.Password,
+                    Database = Database
+                };
+                session.Store(clientUser2);
+                session.SaveChanges();
+                Console.WriteLine("Client spoc create");
+
+                Console.WriteLine("Assigning spoc to client 1");
+                client1.Spocs = new Collection<DenormalizedReference<ClientUser>> { clientUser1 };
                 session.SaveChanges();
                 Console.WriteLine("Client user 1 assigned as spoc to client 1");
             }
@@ -139,7 +237,6 @@ namespace RightRecruit.Data.Setup
                 var mumbai = session.Load<City>("cities/mumbai");
                 var maharashtra = session.Load<State>("states/maharashtra");
                 var india = session.Load<Country>("countries/india");
-                const string databse = "TalentCorner";
                 Console.WriteLine("Staring to create agency");
                 var agency = new Agency
                                  {
@@ -159,18 +256,18 @@ namespace RightRecruit.Data.Setup
                                                        Phone = new Phone {Office = "+9122666666"}
                                                    },
                                      Name = "Talent corner HR services",
-                                     DatabaseName = databse,
                                      LastUpdatedDate = DateTime.Now,
                                      CreatedByUserId = "system",
                                      LastUpdatedUserId = "system",
-                                     CreatedDate = DateTime.Now
+                                     CreatedDate = DateTime.Now,
+                                     Database = Database
                                  };
                 session.Store(agency);
                 session.SaveChanges();
                 Console.WriteLine("agency created with id: {0}", agency.Id);
 
                 Console.WriteLine("Creating users");
-                var rashishPwd = GeneratePassword();
+                var rashishPwd = GeneratePassword("rashish");
                 Console.WriteLine("Generated password for rashish : {0}", rashishPwd.OriginalPassword);
                 var rashish = new Recruiter
                                   {
@@ -209,12 +306,13 @@ namespace RightRecruit.Data.Setup
                                           Country = india,
                                           State = maharashtra,
                                           Pincode = 3121321
-                                      }
+                                      },
+                                      Database = Database
                                   };
                 session.Store(rashish);
                 session.SaveChanges();
 
-                var deepikaPwd = GeneratePassword();
+                var deepikaPwd = GeneratePassword("deepika");
                 Console.WriteLine("Generated password deepika : {0}", deepikaPwd.OriginalPassword);
                 var deepika = new Recruiter
                                   {
@@ -254,7 +352,8 @@ namespace RightRecruit.Data.Setup
                                                         Country = india,
                                                         State = maharashtra,
                                                         Pincode = 3121321
-                                                    }
+                                                    },
+                                      Database = Database
                                   };
                 session.Store(deepika);
                 session.SaveChanges();
@@ -264,11 +363,6 @@ namespace RightRecruit.Data.Setup
                 agency.Recruiters = new Collection<DenormalizedReference<Recruiter>> { rashish, deepika };
                 session.SaveChanges();
                 Console.WriteLine("added recruiters to agency");
-
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("Trying to create new database : {0}", databse);
-                store.DatabaseCommands.EnsureDatabaseExists(databse);
-                Console.WriteLine("Database {0} created", databse);
             }
         }
 
@@ -362,30 +456,35 @@ namespace RightRecruit.Data.Setup
 
         static IDocumentStore GetStore()
         {
-            var store = new DocumentStore
-                            {
-                                Url = ConfigurationManager.AppSettings["RavenServerUrl"],
-                                Credentials = new NetworkCredential(
-                                    ConfigurationManager.AppSettings["RavenUser"],
-                                    ConfigurationManager.AppSettings["RavenPassword"]),
-                                Conventions =
-                                {
-                                    FindTypeTagName = type =>
-                                    {
-                                        if (typeof(Recruiter).IsAssignableFrom(type) || typeof(ClientUser).IsAssignableFrom(type) || typeof(Candidate).IsAssignableFrom(type))
-                                            return "Users";
+            if (_store == null)
+            {
+                _store = new DocumentStore
+                {
+                    Url = ConfigurationManager.AppSettings["RavenServerUrl"],
+                    Credentials = new NetworkCredential(
+                        ConfigurationManager.AppSettings["RavenUser"],
+                        ConfigurationManager.AppSettings["RavenPassword"]),
+                    Conventions =
+                    {
+                        FindTypeTagName = type =>
+                        {
+                            if (typeof(Recruiter).IsAssignableFrom(type) || typeof(ClientUser).IsAssignableFrom(type) || typeof(Candidate).IsAssignableFrom(type))
+                                return "Users";
 
-                                        return DocumentConvention.DefaultTypeTagName(type);
-                                    }
-                                }
-                            };
-            store.Initialize();
-            return store;
+                            return DocumentConvention.DefaultTypeTagName(type);
+                        }
+                    }
+                };
+                _store.Initialize();
+                IndexCreation.CreateIndexes(typeof(ClientSearchIndex).Assembly, _store);
+            }
+            
+            return _store;
         }
 
-        public static GeneratedPassword GeneratePassword()
+        public static GeneratedPassword GeneratePassword(string passwordString = null)
         {
-            var password = RandomPasswordGenerator.Generate(8);
+            var password = !string.IsNullOrEmpty(passwordString) ? passwordString : RandomPasswordGenerator.Generate(8);
             string salt;
             string hash;
             new SaltedHash().GetHashAndSaltString(password, out hash, out salt);
