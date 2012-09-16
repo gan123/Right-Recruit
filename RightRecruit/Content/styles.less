@@ -2,6 +2,7 @@
 @metro-mild-blue: #0088cc;
 @metro-mild-grey: #515151;
 @metro-light-grey: #e7e7e7;
+@metro-cool-grey: #AAAAAA;
 
 @font-family: "Segoe UI", Arial, Helvetica, Verdana;
 * {
@@ -42,6 +43,10 @@
 
 .border-light-grey {
 	border: 1px solid @metro-light-grey;
+}
+
+.border-cool-grey {
+	border: 1px solid @metro-cool-grey;
 }
 
 .metro-blue-gradient {
@@ -125,6 +130,7 @@ header
 		color: black;
 	}
 }
+
 .active
 {
     background-color: white;
@@ -230,10 +236,12 @@ a.signin span {
     margin:0 5px 0 0;
     font-weight:bold;
 }
+
 #signin::-moz-focus-inner, #signout::-moz-focus-inner, #account::-moz-focus-inner {
 padding:0;
 border:0;
 }
+
 #signin:hover, #signin:focus, #signout:hover, #signout:focus, #account:hover, #account:focus {
     background-position:0 -5px;
     cursor:pointer;
@@ -241,29 +249,35 @@ border:0;
     color: black;
     border: 1px solid #d3d3d3;
 }
+
 #topnav a.menu-open {
     background: white!important;
     color: #666!important;
     -moz-outline: none;
     outline: none;
 }
+
 #small_signup {
     display:inline;
     float:none;
     line-height:23px;
     margin:25px 0 0;
 }
+
 a.signin.menu-open span {
     background-image:url("../Content/images/toggle_up_dark.png");
     color:#789;
 }
+
 label
 {
     font-size: 9pt;
 }
+
 a.forgotLink {
     font-size: 9pt;
 }
+
 .profilePic
 {
 	height: 50px;
@@ -274,6 +288,7 @@ a.forgotLink {
 	padding: 4px;
 	float:left;
 }
+
 .detailsLabel
 {
 	margin-left: 2%;
@@ -281,27 +296,33 @@ a.forgotLink {
 	color: black;
 	font-size: 9pt;
 }
+
 .ellipsis {
     white-space: nowrap;
     overflow: hidden;
 }
+
 .left-div, .right-div {
     float:left;
     height: 100%;
 }
+
 .left-div {
     width: 100%;
 }
+
 .right-div {
     width: 22%;
     margin-top: 5%;
 }
+
 .statusList
 {
     background-color: inherit;
     height: inherit;
     padding-left: 20px;    
 }
+
 .statusItem
 {
     display: inline-block;
@@ -314,6 +335,7 @@ a.forgotLink {
     background: white;
     .border-light-grey;
 }
+
 .selectedStatus
 {
     color: white;
@@ -456,13 +478,21 @@ input[type=checkbox] {
 select
 {
     font-size: 8pt;
-    color: #b6b6b6;
+    color: @metro-cool-grey;
     .box-shadow-inset(0,0,8px,0,0,0,0.1,0,0,16px,0,0,0,0.1);
 	.border-radius(4px,4px,4px,4px);
     overflow: hidden;
-    .border-light-grey;
+    border-color: rgba(82, 168, 236, 0.8);
     margin: 0px 0px 0px 4px;
     padding: 5px;
+
+	&:focus {
+        -moz-outline: 0;
+        outline: 0;
+        outline: thin dotted \9;
+        border-color: rgba(82, 168, 236, 0.8);
+        .box-shadow-inset(0, 0px, 1px, 0, 0, 0, 0.5, 0, 0, 8px, 82, 168, 236, 0.6);
+    }
 }
 .datepicker
 {
@@ -480,7 +510,7 @@ select
     width: 100%;
 
 	div.filter, div.updates {
-		padding: 10px;
+		padding: 5px 10px 5px 10px;
 		margin-top: -15px;
 		display: block;		
 		font-family: "Segoe UI";
@@ -488,7 +518,8 @@ select
 		font-weight: bold;
 		.border-radius(0, 0, 4px, 4px);
 		.box-shadow(0px, 2px, 2px, 0, 0, 0, 0, 0.4);
-		cursor: pointer;		
+		cursor: pointer;	
+		.text-shadow(2px, 2px, 2px, 0, 0, 0, 0.2);
 	}
 
 	div.filter {
@@ -534,7 +565,7 @@ select
 	z-index: 3;
 	display: none;
 	top: -15px;
-	.border-light-grey;
+	.border-cool-grey;
 }
 #filterPanel {
 	height: 50px;	
@@ -555,18 +586,24 @@ select
 .username{
 	padding: 5px 5px 5px 30px;
 	.blue;
-	background-image: url("../Content/images/user_black.png");
+	background-image: url("../Content/images/user_white.png");
 	.background-size(14px, 14px);
     background-repeat: no-repeat;
     background-position: 2% 50%;
 	width: 80%;
 	color: white;
+	margin: 4px 0 0 4px;
 }
 .password{
 	padding: 5px 5px 5px 30px;
 	.blue;
+	background-image: url("../Content/images/key_white.png");
+	.background-size(15px, 10px);
+    background-repeat: no-repeat;
+    background-position: 2% 50%;
 	width: 80%;
 	color: white;
+	margin: 4px 0 0 4px;
 }
 .username, .password {
 
@@ -581,4 +618,31 @@ select
 	&:-ms-input-placeholder {
 	  color: white;
 	}
+}
+.filterButton {
+	.border-light-grey;
+	padding: 5px 5px 5px 25px;
+	color: @metro-blue;
+	background-image: url("../Content/images/search_black.png");
+	.background-size(11px, 11px);
+    background-repeat: no-repeat;
+    background-position: 10% 50%;
+	.border-radius;
+	font-weight: bold;
+	background-color: white;
+	
+	&:hover {
+		color: white;
+		.blue;
+	}
+}
+.mildText{
+	color: @metro-cool-grey;
+	padding:0;
+}
+.small{
+	font-size: 8pt;
+}
+.floatRight{
+	float: right;
 }

@@ -145,6 +145,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InboxController.cs" />
     <Compile Include="Global.asax.cs">
@@ -153,6 +154,10 @@
     <Compile Include="Helpers\LessTransform.cs" />
     <Compile Include="Installers\ControllerInstaller.cs" />
     <Compile Include="Installers\MvcInstaller.cs" />
+    <Compile Include="Models\ClientQuickSearch.cs" />
+    <Compile Include="Models\ClientQuickSearchFilter.cs" />
+    <Compile Include="Models\ClientSearch.cs" />
+    <Compile Include="Models\ClientSearchFilter.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -164,6 +169,8 @@
     <Content Include="Content\images\facebook.png" />
     <Content Include="Content\images\google.png" />
     <Content Include="Content\images\home_black.png" />
+    <Content Include="Content\images\key_black.png" />
+    <Content Include="Content\images\key_white.png" />
     <Content Include="Content\images\refresh.png" />
     <Content Include="Content\images\search_black.png" />
     <Content Include="Content\images\search_blue.png" />
@@ -171,10 +178,25 @@
     <Content Include="Content\images\toggle_up_dark.png" />
     <Content Include="Content\images\twitter.png" />
     <Content Include="Content\images\user_black.png" />
+    <Content Include="Content\images\user_white.png" />
     <Content Include="Content\qunit.css" />
     <Content Include="Content\styles.css">
       <DependentUpon>styles.less</DependentUpon>
     </Content>
+    <Content Include="Content\themes\custom\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\custom\images\ui-bg_flat_100_0094cd_40x100.png" />
+    <Content Include="Content\themes\custom\images\ui-bg_flat_20_f8f8f8_40x100.png" />
+    <Content Include="Content\themes\custom\images\ui-bg_flat_75_e7e7e7_40x100.png" />
+    <Content Include="Content\themes\custom\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\custom\images\ui-bg_highlight-soft_55_fbf9ee_1x100.png" />
+    <Content Include="Content\themes\custom\images\ui-bg_highlight-soft_65_ffffff_1x100.png" />
+    <Content Include="Content\themes\custom\images\ui-bg_inset-soft_95_fef1ec_1x100.png" />
+    <Content Include="Content\themes\custom\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\custom\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\custom\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\custom\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\custom\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\custom\images\ui-icons_ffffff_256x240.png" />
     <Content Include="Content\themes\custom\jquery-ui-1.8.23.custom.css" />
     <Content Include="Content\toastr-responsive.css" />
     <Content Include="Content\toastr.css" />
@@ -183,7 +205,10 @@
     <None Include="Scripts\lib\jquery-1.8.0.intellisense.js" />
     <Content Include="Require.JS - LICENSE.txt" />
     <None Include="Scripts\lib\amplify-vsdoc.js" />
+    <Content Include="Scripts\app\clients\clients.js" />
     <Content Include="Scripts\app\global\binder.js" />
+    <Content Include="Scripts\app\home\home.js" />
+    <Content Include="Scripts\app\search\dataservice.search.js" />
     <Content Include="Scripts\app\global\dataservice.user.js" />
     <Content Include="Scripts\app\global\signout.js" />
     <Content Include="Scripts\app\global\singin.js" />
@@ -194,6 +219,8 @@
     <Content Include="Scripts\app\inbox\model.inboxitem.js" />
     <Content Include="Scripts\app\inbox\model.update.js" />
     <Content Include="Scripts\app\inbox\vm.inbox.js" />
+    <Content Include="Scripts\app\search\vm.client.quicksearch.js" />
+    <Content Include="Scripts\app\search\vm.recruiter.quicksearch.js" />
     <Content Include="Scripts\lib\jquery-ui-1.8.23.custom.min.js" />
     <Content Include="Scripts\lib\json2.js" />
     <Content Include="Scripts\lib\knockout.validation.js" />
@@ -231,6 +258,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Inbox\Inbox.cshtml" />
     <Content Include="Views\Home\Home.cshtml" />
+    <Content Include="Views\Client\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

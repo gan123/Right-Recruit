@@ -1,30 +1,31 @@
 ﻿define('vm.inbox',
-    ['ko', 'jquery'],
-    function (ko, $) {
+    ['ko', 'jquery', 'vm.client.quicksearch'],
+    function (ko, $, searchClient) {
         var open = ko.observable('Open (10)'),
             inprogress = ko.observable(),
             onhold = ko.observable(),
             closed = ko.observable(),
             cancelled = ko.observable(),
             filterToggleCommand = ko.asyncCommand({
-                execute: function (complete) {
+                execute: function(complete) {
                     $("#filterPanel").slideToggle();
                     complete();
                 },
-                canexecute : function (isExecuting) {
+                canexecute: function(isExecuting) {
                     return !isExecuting;
                 }
             }),
             updatesToggleCommand = ko.asyncCommand({
-                execute: function (complete) {
+                execute: function(complete) {
                     $("#updatesPanel").slideToggle();
                     complete();
                 },
-                canexecute: function (isExecuting) {
+                canexecute: function(isExecuting) {
                     return !isExecuting;
                 }
-            });
-
+            }),
+            clientQuickSearch = searchClient;
+        
         return {
             open: open,
             inprogress: inprogress,
@@ -32,6 +33,7 @@
             closed: closed,
             cancelled: cancelled,
             filterToggleCommand: filterToggleCommand,
-            updatesToggleCommand: updatesToggleCommand
+            updatesToggleCommand: updatesToggleCommand,
+            clientQuickSearch: clientQuickSearch
         };
     });

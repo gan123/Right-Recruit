@@ -14,7 +14,7 @@
     requirejs(['vm.inbox', 'binder'], load);
 
     function load() {
-        require(['vm.inbox', 'binder'], function (vm, b) {
+        require(['vm.inbox', 'binder', 'dataservice.search'], function (vm, b, search) {
             b.bind(vm, "#inbox-view");
         });
     }

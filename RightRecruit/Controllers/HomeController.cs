@@ -8,7 +8,6 @@ using RightRecruit.Domain;
 using RightRecruit.Models;
 using RightRecruit.Mvc.Infrastructure;
 using RightRecruit.Mvc.Infrastructure.Controllers;
-using RightRecruit.Mvc.Infrastructure.Filters;
 using RightRecruit.Mvc.Infrastructure.Infrastructure;
 using RightRecruit.Mvc.Infrastructure.Result;
 using RightRecruit.Mvc.Infrastructure.Security;
@@ -34,7 +33,6 @@ namespace RightRecruit.Controllers
         }
 
         [System.Web.Mvc.HttpPost]
-        [RavenActionFilter]
         public ActionResult Login(LoginModel loginModel)
         {
             var user = UnitOfWork.DocumentSession.Query<User>()

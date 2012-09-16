@@ -12,7 +12,7 @@
                 </div>
                 <label class="left-div defaultLabel" for="overdue">By overdue items</label>
                 <div class="filterItemContainer">
-                    <input type="text" id="company" class="search" placeholder="Company..." />
+                    <input type="text" id="company" class="search" placeholder="Company..." data-bind="value: clientQuickSearch.displayName, ko_autocomplete: { minLength: 3, source: clientQuickSearch.search, select: clientQuickSearch.select, templateFunction: clientQuickSearch.template}"/>
                 </div>
                 <div class="filterItemContainer">
                     <select>
@@ -32,6 +32,9 @@
                         <option>30</option>
                         <option>40</option>
                     </select>
+                </div>
+                <div class="filterItemContainer">
+                    <input type="button" class="filterButton" value="APPLY" />
                 </div>
             </div>
         </div>
@@ -71,72 +74,6 @@
             </ul>
         </div>
     </div>
-    @*<div class="right-div">
-        <div class="outerDiv">
-            <div class="headerDiv blue">
-                Filters
-            </div>
-            <div style="height: 250px; padding: 8px;">
-                <table>
-                    <tr>
-                        <td>
-                            <div class="left-div squaredOne">
-                                <input type="checkbox" value="None" id="overdue" name="overdue" />
-                                <label class="labelForCheckbox" for="overdue"></label>
-                            </div>
-                            <label class="left-div defaultLabel" for="overdue">By overdue items</label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="left-div">
-                                <input type="text" id="company" class="search" placeholder="Company..." />
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="left-div">
-                                <select>
-                                    <option>Interview status</option>
-                                    <option>One</option>
-                                    <option>Two</option>
-                                    <option>Three</option>
-                                </select>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="left-div">
-                                <input type="text" id="date" class="datepicker" style="float: left;" placeholder="Date..." />
-                                <img src="/rr/Content/images/calendar_blue.png" height="15" width="15" style="float: left; margin: 12px 0px 0px 4px; cursor: hand;" />
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="left-div" style="margin-top: 8px;">
-                                <label class="defaultLabel" for="noOfRecords">No of records</label>
-                                <select id="noOfRecords">
-                                    <option>20</option>
-                                    <option>30</option>
-                                    <option>40</option>
-                                </select>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        <div class="outerDiv" style="margin-top: 10px;">
-            <div class="headerDiv yellow">
-                Updates
-                <img src="/rr/Content/images/refresh.png" height="15" width="12" style="float: right; margin-right: 4px; cursor: pointer;" title="refresh" />
-            </div>
-            <div style="height: 250px;">dsfsdfsdf</div>
-        </div>
-    </div>*@
 </section>
 @section scripts{
     @Scripts.Render("~/bundles/inbox")

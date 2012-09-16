@@ -60,12 +60,21 @@ namespace RightRecruit
 
             // TODO : All application JS files (except mocks)
             bundles.Add(new ScriptBundle("~/bundles/jsappglobals")
-            .IncludeDirectory("~/Scripts/app/common", "*.js", searchSubdirectories: false)
-                .IncludeDirectory("~/Scripts/app/global", "*.js", searchSubdirectories: false));
+                            .IncludeDirectory("~/Scripts/app/common", "*.js", searchSubdirectories: false)
+                            .IncludeDirectory("~/Scripts/app/search", "*.js", searchSubdirectories: false)
+                            .IncludeDirectory("~/Scripts/app/global", "*.js", searchSubdirectories: false));
+
+            // Home bundle
+            bundles.Add(new ScriptBundle("~/bundles/home")
+                .IncludeDirectory("~/Scripts/app/home", "*.js", searchSubdirectories: false));
 
             // Inbox bundle
             bundles.Add(new ScriptBundle("~/bundles/inbox")
                 .IncludeDirectory("~/Scripts/app/inbox", "*.js", searchSubdirectories: false));
+
+            // Clients bundle
+            bundles.Add(new ScriptBundle("~/bundles/clients")
+                .IncludeDirectory("~/Scripts/app/clients", "*.js", searchSubdirectories: false));
 
             // 3rd Party CSS files
             bundles.Add(new StyleBundle("~/Content/css").Include(

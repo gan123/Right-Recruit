@@ -32,6 +32,24 @@ namespace RightRecruit
                 url: "logout",
                 defaults: new { controller = "Home", action = "Logout" }
             );
+
+            routes.MapRoute(
+                name: "ClientsQuickSearch",
+                url: "clients/quicksearch",
+                defaults: new { controller = "Clients", action = "QuickSearch" }
+            );
+
+            routes.MapRoute(
+                name: "ClientsPage",
+                url: "clients",
+                defaults: new { controller = "Clients", action = "List" }
+            );
+
+            routes.MapRoute(
+                name: "ClientsSearch",
+                url: "clients/search",
+                defaults: new { controller = "Clients", action = "Search" }
+            );
         }
     }
 }
