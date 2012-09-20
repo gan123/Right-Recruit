@@ -2,9 +2,12 @@
     ['jquery', 'ko', 'dataservice.search'],
     function ($, ko, searchService) {
         var
-            selectedClient = ko.observable(),
+            selectedClientId = ko.observable(),
+            selectedClientName = ko.observable(""),
             search = function(request, response) {
                 searchService.clientsSearch({ query: request.term }, function (data) {
+                    console.log('done');
+                    $(".search").removeAttr('disabled');
                     response($.map(data, function (item) {
                         return {
                             HighlightedName: highlight(item.Name, request.term),
@@ -22,14 +25,10 @@
                     .append("<a style='width:250px;'><span>" + item.HighlightedName + "</span><br /><span class='mildText small'>" + item.Industry + "</span><span class='mildText small floatRight'>" + item.Country + "</a>")
                     .appendTo(ul);
             },
-            displayName = ko.computed(function () {
-                var name = selectedClient() == undefined ? null : selectedClient().Name;
-                console.log(name);
-                return name;
-            }),
             select = function (event, ui) {
-                console.log('selected');
-                selectedClient(ui.item);
+                selectedClientId(ui.item.Id);
+                selectedClientName(ui.item.Name);
+                console.log(selectedClientName());
             };
         
         function highlight(s, t) {
@@ -40,8 +39,8 @@
         return {
             search: search,
             select: select,
-            displayName: displayName,
-            selectedClient: selectedClient,
+            selectedClientId: selectedClientId,
+            selectedClientName: selectedClientName,
             template: template
         };
     });

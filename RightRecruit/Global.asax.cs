@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using System;
+using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
@@ -12,12 +13,11 @@ using RightRecruit.Mvc.Infrastructure.Plumbing;
 
 namespace RightRecruit
 {
-    // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
-    // visit http://go.microsoft.com/?LinkId=9394801
-
-    public class MvcApplication : System.Web.HttpApplication
+    public class Global : System.Web.HttpApplication
     {
-        protected void Application_Start()
+        private static bool _isRegistrationsDone;
+
+        protected void Application_Start(object sender, EventArgs e)
         {
             AreaRegistration.RegisterAllAreas();
 
@@ -36,9 +36,34 @@ namespace RightRecruit
             ServiceLocator.SetLocatorProvider(() => new WindsorServiceLocator(container));
         }
 
-        protected void Session_Start()
+        protected void Session_Start(object sender, EventArgs e)
         {
             HttpContext.Current.Session[Globals.CurrentUser] = new CurrentUser(null);
+        }
+
+        protected void Application_BeginRequest(object sender, EventArgs e)
+        {
+            
+        }
+
+        protected void Application_AuthenticateRequest(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Application_Error(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Session_End(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Application_End(object sender, EventArgs e)
+        {
+
         }
     }
 }

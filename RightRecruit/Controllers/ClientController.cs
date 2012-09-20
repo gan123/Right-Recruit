@@ -14,8 +14,8 @@ namespace RightRecruit.Controllers
         public ActionResult QuickSearch(string query)
         {
             var clients = UnitOfWork.DocumentSession.Advanced.LuceneQuery<Domain.Client>("ClientSearchIndex")
-                .Where("Name:*" + query + "*")
-                .AndAlso().Where("Database:" + CurrentUserProvider.CurrentUser.User.Database)
+                .Where(string.Format("Name:*{0}*", query))
+                .AndAlso().Where(string.Format("Database:{0}", CurrentUserProvider.CurrentUser.User.Database))
                 .Select(s => new ClientQuickSearch
                                  {
                                      Id = s.Id,
@@ -34,19 +34,48 @@ namespace RightRecruit.Controllers
         {
             if (!CurrentUserProvider.CurrentUser.IsAuthenticated)
                 return RedirectToAction("Home", "Home");
-            return View("List");
+            return View();
         }
 
         // POST : /clients/search
         [HttpPost]
         public ActionResult Search(ClientSearchFilter filter)
         {
-            return View("List");
+            var clients = UnitOfWork.DocumentSession.Advanced.LuceneQuery<Domain.Summary.ClientSummary>("ClientSummaryIndex")
+                .Where("Database:" + CurrentUserProvider.CurrentUser.User.Database)
+                .Select(c => new ClientSearch
+                                 {
+                                     Id = c.Id,
+                                     Name = c.Name,
+                                     Country = c.Country,
+                                     Industry = c.Industry,
+                                     Priority = c.Priority,
+                                     Contacts = c.Contacts.Aggregate((a, b) => a + ", " + b),
+                                     NoOfPositions = c.NoOfPositions.HasValue ? c.NoOfPositions.Value : 0,
+                                     Status = c.Status,
+                                     BookedRev = 10000,
+                                     ProjectedRev = 50000
+                                 })
+                .ToList();
+
+            return new JsonNetResult {Data = clients};
         }
 
-        private List<ClientSearch> Filter(ClientSearchFilter filter = null)
+        // GET : /clients/new
+        [HttpGet]
+        public ActionResult New()
         {
-            return new List<ClientSearch>();
+            if (!CurrentUserProvider.CurrentUser.IsAuthenticated)
+                return RedirectToAction("Home", "Home");
+            return View();
+        }
+
+        // POST : clients/create
+        [HttpPost]
+        [ChildActionOnly]
+        public ActionResult Create()
+        {
+            return new JsonNetResult(new {});
         }
     }
 }

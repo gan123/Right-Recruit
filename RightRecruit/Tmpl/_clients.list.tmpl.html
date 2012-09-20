@@ -1,0 +1,31 @@
+﻿<li class="inboxItem" data-bind="css: { gold: Priority() == 'Gold', platinum: Priority() == 'Platinum', diamond: Priority() == 'Diamond'}">
+    <div>
+        <span>
+            <a class="clientLink" href="#">
+                <p data-bind="text: Name, command: clickCommand, activity: clickCommand.isExecuting"></p>
+            </a>
+        </span>
+    </div>
+    <div>
+        <label data-bind="text: TechnologyAndCountry" class="techAndCountry"></label>
+    </div>
+    <div>
+        <label data-bind="text: Priority" class="priority"></label>
+    </div>
+    <div>
+        <span class="contactsSpan">
+            <label class="boldLabel">Contacts:</label>
+            <label class="normalLabel" data-bind="text: Contacts"></label>
+        </span>
+    </div>
+    <div>
+        <span class="positionsSpan">
+            <label class="boldLabel">Positions:</label>
+            <a href="#" class="positionsCountLink" data-bind="text: NoOfPositions"></a>
+        </span>
+    </div>
+    <div>
+        <span class="revenue booked" data-bind="text: BookedRev, style: { width: BookedRevWidth}"></span>
+        <span class="revenue projected" data-bind="text: ProjectedRev, style: {width: ProjectedRevWidth}"></span>
+    </div>
+</li>

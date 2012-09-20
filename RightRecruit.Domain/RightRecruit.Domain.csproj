@@ -76,6 +76,8 @@
     <Compile Include="SocialContact.cs" />
     <Compile Include="Source.cs" />
     <Compile Include="State.cs" />
+    <Compile Include="EntityStatus.cs" />
+    <Compile Include="Summary\ClientSummary.cs" />
     <Compile Include="Target.cs" />
     <Compile Include="Theme.cs" />
     <Compile Include="User.cs" />

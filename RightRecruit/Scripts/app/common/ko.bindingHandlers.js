@@ -108,9 +108,19 @@ function ($, ko) {
         }
     };
     
-    ko.bindingHandlers.ko_autocomplete = {
+    ko.bindingHandlers.autocomplete = {
         init: function (element, params) {
-            $(element).autocomplete(params()).data("autocomplete")._renderItem = params().templateFunction;
+            $(element).autocomplete({
+                minLength: params().minLength,
+                source: params().source,
+                select: params().select,
+                search: function (event, ui) {
+                    $(element).attr('disabled', 'disabled');
+                },
+                open: function (event, ui) {
+                    $(element).removeAttr('disabled');
+                }
+            }).data("autocomplete")._renderItem = params().templateFunction;
         },
         update: function (element, params) {
             $(element).autocomplete("option", "source", params().source).data("autocomplete")._renderItem = params().templateFunction;

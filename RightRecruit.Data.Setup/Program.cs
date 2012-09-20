@@ -24,10 +24,11 @@ namespace RightRecruit.Data.Setup
             //LoadPlaces();
             //LoadIndustries();
             //CreateAgency();
-            //UploadImage();
+            UploadImage();
             //GetImage();
-            CreateClients();
-            GetStore();
+            //LoadStatus();
+            //CreateClients();
+            //GetStore();
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Completed successfully");
             Console.ReadLine();
@@ -92,6 +93,19 @@ namespace RightRecruit.Data.Setup
             }
         }
 
+        static void LoadStatus()
+        {
+            using(var session = GetStore().OpenSession())
+            {
+                var active = new EntityStatus{Id = "entitystatuses/active", Name = "Active"};
+                var inactive = new EntityStatus { Id = "entitystatuses/inactive", Name = "Inactive" };
+
+                session.Store(active);
+                session.Store(inactive);
+                session.SaveChanges();
+            }
+        }
+
         static void CreateClients()
         {
             City mumbai;
@@ -109,31 +123,36 @@ namespace RightRecruit.Data.Setup
                 deepika = session.Query<Recruiter>().Single(u => u.Username == "deepika");
                 agency = session.Query<Agency>().Single(a => a.Database == Database);
                 tech = session.Load<Industry>("industries/tech");
+                var active = session.Load<EntityStatus>("entitytstatuses/active");
+                var address = new Address
+                                  {
+                                      City = mumbai,
+                                      Country = india,
+                                      State = maharashtra,
+                                      Street1 = "Some address",
+                                      Pincode = 123333
+                                  };
+                var contact = new SocialContact
+                                  {
+                                      Phone = new Phone {Office = "+917785464"},
+                                      Email = "client2@domain.com"
+                                  };
                 Console.WriteLine("Creating new client");
                 var client1 = new Client
                                   {
-                                      Address = new Address
-                                                    {
-                                                        City = mumbai,
-                                                        Country = india,
-                                                        State = maharashtra,
-                                                        Street1 = "Some address",
-                                                        Pincode = 123333
-                                                    },
-                                      Name = "Client 2",
-                                      AlternateName = "Client 2",
-                                      Contact = new SocialContact
-                                                    {
-                                                        Phone = new Phone {Office = "+917785464"},
-                                                        Email = "client2@domain.com"
-                                                    },
+                                      Address = address,
+                                      Name = "Infosys Technologies",
+                                      AlternateName = "Infy",
+                                      Contact = contact,
                                       CreatedByUserId = deepika.Id,
                                       CreatedDate = DateTime.Now,
                                       LastUpdatedDate = DateTime.Now,
                                       LastUpdatedUserId = deepika.Id,
                                       Agency = agency,
                                       Industry = tech,
-                                      Database = Database
+                                      Database = Database,
+                                      Priority = Priority.Platinum,
+                                      Status = active
                                   };
                 session.Store(client1);
                 session.SaveChanges();
@@ -147,11 +166,7 @@ namespace RightRecruit.Data.Setup
                                           Name = "Client contact 2",
                                           NameDetail =
                                           new Name { FirstName = "Client", LastName = "Contact", NickName = "CC" },
-                                          Contact = new SocialContact
-                                                        {
-                                                            Email = "clientuser1@client12.com",
-                                                            Phone = new Phone {Mobile = "+91544654654"}
-                                                        },
+                                          Contact = contact,
                                           CreatedByUserId = deepika.Id,
                                           CreatedDate = DateTime.Now,
                                           LastUpdatedDate = DateTime.Now,
@@ -170,30 +185,21 @@ namespace RightRecruit.Data.Setup
 
                 Console.WriteLine("Creating new client");
                 var client2 = new Client
-                {
-                    Address = new Address
-                    {
-                        City = mumbai,
-                        Country = india,
-                        State = maharashtra,
-                        Street1 = "Some address",
-                        Pincode = 123333
-                    },
-                    Name = "New client 2",
-                    AlternateName = "New client 2",
-                    Contact = new SocialContact
-                    {
-                        Phone = new Phone { Office = "+917785464" },
-                        Email = "client3@domain.com"
-                    },
-                    CreatedByUserId = deepika.Id,
-                    CreatedDate = DateTime.Now,
-                    LastUpdatedDate = DateTime.Now,
-                    LastUpdatedUserId = deepika.Id,
-                    Agency = agency,
-                    Industry = tech,
-                    Database = Database
-                };
+                                  {
+                                      Address = address,
+                                      Name = "Tata Consultance Services",
+                                      AlternateName = "TCS",
+                                      Contact = contact,
+                                      CreatedByUserId = deepika.Id,
+                                      CreatedDate = DateTime.Now,
+                                      LastUpdatedDate = DateTime.Now,
+                                      LastUpdatedUserId = deepika.Id,
+                                      Agency = agency,
+                                      Industry = tech,
+                                      Database = Database,
+                                      Priority = Priority.Diamond,
+                                      Status = active
+                                  };
                 session.Store(client2);
                 session.SaveChanges();
                 Console.WriteLine("New client created");
@@ -201,29 +207,71 @@ namespace RightRecruit.Data.Setup
                 Console.WriteLine("Client spoc creation begins");
                 var pwd1 = GeneratePassword("client3");
                 var clientUser2 = new ClientUser
-                {
-                    Client = client1,
-                    Name = "Client contact 2",
-                    NameDetail =
-                    new Name { FirstName = "Client", LastName = "Contact", NickName = "CC" },
-                    Contact = new SocialContact
-                    {
-                        Email = "clientuser1@client12.com",
-                        Phone = new Phone { Mobile = "+91544654654" }
-                    },
-                    CreatedByUserId = deepika.Id,
-                    CreatedDate = DateTime.Now,
-                    LastUpdatedDate = DateTime.Now,
-                    LastUpdatedUserId = deepika.Id,
-                    Password = pwd1.Password,
-                    Database = Database
-                };
+                                      {
+                                          Client = client1,
+                                          Name = "Client contact 2",
+                                          NameDetail =
+                                              new Name {FirstName = "Client", LastName = "Contact", NickName = "CC"},
+                                          Contact = contact,
+                                          CreatedByUserId = deepika.Id,
+                                          CreatedDate = DateTime.Now,
+                                          LastUpdatedDate = DateTime.Now,
+                                          LastUpdatedUserId = deepika.Id,
+                                          Password = pwd1.Password,
+                                          Database = Database
+                                      };
                 session.Store(clientUser2);
                 session.SaveChanges();
                 Console.WriteLine("Client spoc create");
 
                 Console.WriteLine("Assigning spoc to client 1");
-                client1.Spocs = new Collection<DenormalizedReference<ClientUser>> { clientUser1 };
+                client2.Spocs = new Collection<DenormalizedReference<ClientUser>> { clientUser2 };
+                session.SaveChanges();
+                Console.WriteLine("Client user 1 assigned as spoc to client 1");
+
+                Console.WriteLine("Creating new client");
+                var accenture = new Client
+                                    {
+                                        Address = address,
+                                        Name = "Accenture",
+                                        AlternateName = "Accenture",
+                                        Contact = contact,
+                                        CreatedByUserId = deepika.Id,
+                                        CreatedDate = DateTime.Now,
+                                        LastUpdatedDate = DateTime.Now,
+                                        LastUpdatedUserId = deepika.Id,
+                                        Agency = agency,
+                                        Industry = tech,
+                                        Database = Database,
+                                        Priority = Priority.Gold,
+                                        Status = active
+                                    };
+                session.Store(accenture);
+                session.SaveChanges();
+                Console.WriteLine("New client created");
+
+                Console.WriteLine("Client spoc creation begins");
+                var pwd3 = GeneratePassword("client4");
+                var aacentureUser = new ClientUser
+                                        {
+                                            Client = client1,
+                                            Name = "Accenture contact 2",
+                                            NameDetail =
+                                                new Name {FirstName = "Client", LastName = "Contact", NickName = "CC"},
+                                            Contact = contact,
+                                            CreatedByUserId = deepika.Id,
+                                            CreatedDate = DateTime.Now,
+                                            LastUpdatedDate = DateTime.Now,
+                                            LastUpdatedUserId = deepika.Id,
+                                            Password = pwd3.Password,
+                                            Database = Database
+                                        };
+                session.Store(aacentureUser);
+                session.SaveChanges();
+                Console.WriteLine("Client spoc create");
+
+                Console.WriteLine("Assigning spoc to client 1");
+                accenture.Spocs = new Collection<DenormalizedReference<ClientUser>> { aacentureUser };
                 session.SaveChanges();
                 Console.WriteLine("Client user 1 assigned as spoc to client 1");
             }

@@ -71,6 +71,7 @@
     <Compile Include="Filters\RavenActionFilter.cs" />
     <Compile Include="Globals.cs" />
     <Compile Include="Indexes\ClientSearchIndex.cs" />
+    <Compile Include="Indexes\ClientSummaryIndex.cs" />
     <Compile Include="Indexes\RecruiterSearchIndex.cs" />
     <Compile Include="Infrastructure\CurrentUser.cs" />
     <Compile Include="Infrastructure\CurrentUserProvider.cs" />

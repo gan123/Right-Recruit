@@ -14,5 +14,15 @@ namespace RightRecruit.Domain
         public ICollection<DenormalizedReference<Position>> Positions { get; set; }
         public DenormalizedReference<RevenueModel> RevenueModel { get; set; }
         public DenormalizedReference<Industry> Industry { get; set; }
+        public Priority Priority { get; set; }
+        public EntityStatus Status { get; set; }
+    }
+
+    public enum Priority
+    {
+        Platinum,
+        Diamond,
+        Gold,
+        NoPriority
     }
 }

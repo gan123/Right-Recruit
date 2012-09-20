@@ -2,7 +2,9 @@
     ViewBag.Title = "List";
 }
 
-<h2>List</h2>
+<section id="clients-view">
+    <ul class="inbox" data-bind="template: {name: templateName, foreach: clients}"></ul>
+</section>
 @section scripts{
     @Scripts.Render("~/bundles/clients")
 }

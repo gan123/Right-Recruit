@@ -12,7 +12,7 @@
                 </div>
                 <label class="left-div defaultLabel" for="overdue">By overdue items</label>
                 <div class="filterItemContainer">
-                    <input type="text" id="company" class="search" placeholder="Company..." data-bind="value: clientQuickSearch.displayName, ko_autocomplete: { minLength: 3, source: clientQuickSearch.search, select: clientQuickSearch.select, templateFunction: clientQuickSearch.template}"/>
+                    <input type="text" id="company" class="search" placeholder="Company..." data-bind="value: clientQuickSearch.selectedClientName, autocomplete: { minLength: 3, source: clientQuickSearch.search, select: clientQuickSearch.select, templateFunction: clientQuickSearch.template}"/>
                 </div>
                 <div class="filterItemContainer">
                     <select>
