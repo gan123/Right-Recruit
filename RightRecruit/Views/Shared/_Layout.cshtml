@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css", "~/Content/less")
+    @RenderSection("styles", required:false)
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
@@ -65,9 +66,9 @@
         <div class="menu">
             <ul class="menulist">
                 <li id="home" class="menuitem"><img src="/rr/Content/images/home_black.png" class="homeIcon"/></li>
-                <li id="inbox" class="menuitem"><a class="menuLink" href="/rr/inbox">Inbox</a></li>
-                <li id="clients" class="menuitem"><a class="menuLink" href="/rr/clients">Clients</a></li>
-                <li id="candidates" class="menuitem"><a class="menuLink" href="#">Candidates</a></li>
+                <li id="inbox" class="menuitem"><a class="menuLink" href="/rr/inbox">INBOX</a></li>
+                <li id="clients" class="menuitem"><a class="menuLink" href="/rr/clients">CLIENTS</a></li>
+                <li id="candidates" class="menuitem"><a class="menuLink" href="#">CANDIDATES</a></li>
             </ul>
         </div>
     </nav>

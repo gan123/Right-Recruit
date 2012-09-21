@@ -58,10 +58,17 @@ namespace RightRecruit
                     "~/Scripts/lib/toastr.js"
                     ));
 
+            // Text editor
+            bundles.Add(new ScriptBundle("~/bundles/texteditor")
+                .Include(
+                "~/Scripts/lib/jquery.wysiwyg.js",
+                "~/Scripts/lib/wysiwyg.*"));
+
             // TODO : All application JS files (except mocks)
             bundles.Add(new ScriptBundle("~/bundles/jsappglobals")
                             .IncludeDirectory("~/Scripts/app/common", "*.js", searchSubdirectories: false)
                             .IncludeDirectory("~/Scripts/app/search", "*.js", searchSubdirectories: false)
+                            .IncludeDirectory("~/Scripts/app/lookups", "*.js", searchSubdirectories: false)
                             .IncludeDirectory("~/Scripts/app/global", "*.js", searchSubdirectories: false));
 
             // Home bundle
@@ -72,8 +79,14 @@ namespace RightRecruit
             bundles.Add(new ScriptBundle("~/bundles/inbox")
                 .IncludeDirectory("~/Scripts/app/inbox", "*.js", searchSubdirectories: false));
 
-            // Clients bundle
-            bundles.Add(new ScriptBundle("~/bundles/clients")
+            // Clients list bundle
+            bundles.Add(new ScriptBundle("~/bundles/clients-list")
+                .IncludeDirectory("~/Scripts/app/clients/list", "*.js", searchSubdirectories: false)
+                .IncludeDirectory("~/Scripts/app/clients", "*.js", searchSubdirectories: false));
+
+            // Clients create bundle
+            bundles.Add(new ScriptBundle("~/bundles/clients-create")
+                .IncludeDirectory("~/Scripts/app/clients/new", "*.js", searchSubdirectories: false)
                 .IncludeDirectory("~/Scripts/app/clients", "*.js", searchSubdirectories: false));
 
             // 3rd Party CSS files
@@ -82,6 +95,10 @@ namespace RightRecruit
                 "~/Content/boilerplate-styles.css",
                 "~/Content/toastr.css",
                 "~/Content/toastr-responsive.css"));
+
+            // Text editor
+            bundles.Add(new Bundle("~/Content/texteditorStyles", new LessTransform(), new CssMinify())
+                .Include("~/Content/jquery.wysiwyg.css"));
 
             // Custom LESS files
             bundles.Add(new Bundle("~/Content/less", new LessTransform(), new CssMinify())

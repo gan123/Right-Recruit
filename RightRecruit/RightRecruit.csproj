@@ -151,27 +151,36 @@
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InboxController.cs" />
+    <Compile Include="Controllers\LookupController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\LessTransform.cs" />
     <Compile Include="Installers\ControllerInstaller.cs" />
+    <Compile Include="Installers\InfastructureInstaller.cs" />
     <Compile Include="Installers\MvcInstaller.cs" />
+    <Compile Include="Models\City.cs" />
     <Compile Include="Models\ClientQuickSearch.cs" />
     <Compile Include="Models\ClientQuickSearchFilter.cs" />
     <Compile Include="Models\ClientSearch.cs" />
     <Compile Include="Models\ClientSearchFilter.cs" />
+    <Compile Include="Models\Country.cs" />
+    <Compile Include="Models\Industry.cs" />
     <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\State.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\boilerplate-styles.css" />
     <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\images\add_black.png" />
     <Content Include="Content\images\calendar_black.png" />
     <Content Include="Content\images\calendar_blue.png" />
+    <Content Include="Content\images\down_arrow.gif" />
     <Content Include="Content\images\facebook.png" />
     <Content Include="Content\images\google.png" />
     <Content Include="Content\images\home_black.png" />
+    <Content Include="Content\images\invalid.png" />
     <Content Include="Content\images\key_black.png" />
     <Content Include="Content\images\key_white.png" />
     <Content Include="Content\images\refresh.png" />
@@ -183,10 +192,15 @@
     <Content Include="Content\images\twitter.png" />
     <Content Include="Content\images\user_black.png" />
     <Content Include="Content\images\user_white.png" />
+    <Content Include="Content\images\valid.png" />
+    <Content Include="Content\images\val_asterisk.png" />
     <Content Include="Content\qunit.css" />
     <Content Include="Content\styles.css">
       <DependentUpon>styles.less</DependentUpon>
     </Content>
+    <Content Include="Content\images\jquery.wysiwyg.bg.png" />
+    <Content Include="Content\jquery.wysiwyg.css" />
+    <Content Include="Content\images\jquery.wysiwyg.gif" />
     <Content Include="Content\themes\custom\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\custom\images\ui-bg_flat_100_0094cd_40x100.png" />
     <Content Include="Content\themes\custom\images\ui-bg_flat_20_f8f8f8_40x100.png" />
@@ -205,15 +219,25 @@
     <Content Include="Content\toastr-responsive.css" />
     <Content Include="Content\toastr.css" />
     <None Include="Content\styles.less" />
+    <Content Include="Scripts\app\clients\new\model.client.js" />
+    <Content Include="Scripts\app\lookups\dataservice.lookups.js" />
     <None Include="Scripts\lib\jquery-1.8.0.intellisense.js" />
     <Content Include="Global.asax" />
     <Content Include="Require.JS - LICENSE.txt" />
     <None Include="Scripts\lib\amplify-vsdoc.js" />
-    <Content Include="Scripts\app\clients\clients.list.js" />
+    <Content Include="Scripts\app\clients\list\clients.list.js" />
+    <Content Include="Scripts\app\clients\new\clients.new.js" />
     <Content Include="Scripts\app\clients\dataservice.client.js" />
-    <Content Include="Scripts\app\clients\vm.clients.list.js" />
+    <Content Include="Scripts\app\clients\list\model.clientSummary.js" />
+    <Content Include="Scripts\app\clients\list\vm.clients.list.js" />
+    <Content Include="Scripts\app\clients\new\vm.clients.create.js" />
     <Content Include="Scripts\app\global\binder.js" />
     <Content Include="Scripts\app\home\home.js" />
+    <Content Include="Scripts\app\lookups\mode.country.js" />
+    <Content Include="Scripts\app\lookups\model.address.js" />
+    <Content Include="Scripts\app\lookups\model.city.js" />
+    <Content Include="Scripts\app\lookups\model.industry.js" />
+    <Content Include="Scripts\app\lookups\model.state.js" />
     <Content Include="Scripts\app\search\dataservice.search.js" />
     <Content Include="Scripts\app\global\dataservice.user.js" />
     <Content Include="Scripts\app\global\signout.js" />
@@ -227,6 +251,7 @@
     <Content Include="Scripts\app\inbox\vm.inbox.js" />
     <Content Include="Scripts\app\search\vm.client.quicksearch.js" />
     <Content Include="Scripts\app\search\vm.recruiter.quicksearch.js" />
+    <Content Include="Scripts\lib\jquery.wysiwyg.js" />
     <Content Include="Scripts\lib\jquery-ui-1.8.23.custom.min.js" />
     <Content Include="Scripts\lib\json2.js" />
     <Content Include="Scripts\lib\knockout.validation.js" />
@@ -251,6 +276,11 @@
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\lib\sammy.js" />
     <Content Include="Scripts\lib\sammy.title.js" />
+    <Content Include="Scripts\lib\wysiwyg.colorpicker.js" />
+    <Content Include="Scripts\lib\wysiwyg.cssWrap.js" />
+    <Content Include="Scripts\lib\wysiwyg.image.js" />
+    <Content Include="Scripts\lib\wysiwyg.link.js" />
+    <Content Include="Scripts\lib\wysiwyg.table.js" />
     <Content Include="Tmpl\_clients.list.tmpl.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -266,10 +296,11 @@
     <Content Include="Views\Inbox\Inbox.cshtml" />
     <Content Include="Views\Home\Home.cshtml" />
     <Content Include="Views\Client\List.cshtml" />
-    <Content Include="Views\Client\New.cshtml" />
+    <Content Include="Views\Client\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\themes\base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

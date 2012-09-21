@@ -5,12 +5,23 @@
 @metro-light-grey: #e7e7e7;
 @metro-cool-grey: #AAAAAA;
 @metro-green:#358E7A;
+@border-color-invalid: #B03535;
 
 @font-family: "Segoe UI", Arial, Helvetica, Verdana;
 * {
     margin: 0;
     font-family: @font-family;
     font-size: 10pt;
+}
+
+@validation-icon-required: url(images/val_asterisk.png);
+@validation-icon-valid: url(images/valid.png);
+@validation-icon-invalid: url(images/invalid.png);
+
+.validation-icon(@icon, @leftOffset, @topOffset) {
+	background-image: @icon;
+	background-repeat: no-repeat;
+	background-position: @leftOffset @topOffset
 }
 
 .text-shadow(@x :0, @y: 0, @blur: 0, @r: 0, @g: 0, @b: 0, @a: 0.2) {
@@ -85,7 +96,53 @@
     background-image: linear-gradient(top, @metro-mild-blue, @metro-blue);
     background-repeat: repeat-x;
 }
-input[type=text], input[type=password] {
+select
+{
+	-webkit-appearance: none;
+    font-size: 8pt;
+    color: @metro-cool-grey;
+    .box-shadow-inset(0,0,8px,0,0,0,0.1,0,0,16px,0,0,0,0.1);
+	.border-radius(4px,4px,4px,4px);
+    overflow: hidden;
+    border-color: rgba(82, 168, 236, 0.8);
+    margin: 0px 0px 0px 4px;
+    padding: 5px 20px 5px 5px;
+	background-image: url("../Content/images/down_arrow.gif");
+	.background-size(8px, 8px);
+	background-repeat: no-repeat;
+    background-position: 95% 50%;
+
+	&:focus {
+        -moz-outline: 0;
+        outline: 0;
+        outline: thin dotted \9;
+        border-color: rgba(82, 168, 236, 0.8);
+        .box-shadow-inset(0, 0px, 1px, 0, 0, 0, 0.5, 0, 0, 8px, 82, 168, 236, 0.6);
+    }
+
+	&:invalid {
+		border-width: 1px;
+		border-color: @border-color-invalid;
+		background: white;
+		background-image: url("../Content/images/down_arrow.gif");
+		.background-size(8px, 8px);
+		background-repeat: no-repeat;
+		background-position: 95% 50%;
+	}	
+
+	&:required {
+        .validation-icon(@validation-icon-required, 98%, 50%);
+    }
+
+    &:required:valid {
+        .validation-icon(@validation-icon-valid, 98%, 50%);
+    }
+
+    &:focus:invalid {
+        .validation-icon(@validation-icon-invalid, 98%, 50%);
+    }
+}
+input[type=text], input[type=password], textarea {
     display: block;
     .border-radius;
     border: 1px solid #ACE;
@@ -99,6 +156,42 @@ input[type=text], input[type=password] {
         border-color: rgba(82, 168, 236, 0.8);
         .box-shadow-inset(0, 0px, 1px, 0, 0, 0, 0.5, 0, 0, 8px, 82, 168, 236, 0.6);
     }
+
+	&:invalid {
+		border-width: 1px;
+		border-color: @border-color-invalid;
+		background: white;
+	}	
+}
+input[type=text] {
+    &:required {
+        .validation-icon(@validation-icon-required, 98%, 50%);
+    }
+
+    &:required:valid {
+        .validation-icon(@validation-icon-valid, 98%, 50%);
+    }
+
+    &:focus:invalid {
+        .validation-icon(@validation-icon-invalid, 98%, 50%);
+    }
+}
+textarea {
+    &:required {
+        .validation-icon(@validation-icon-required, 98%, 5%);
+    }
+
+    &:required:valid {
+        .validation-icon(@validation-icon-valid, 98%, 5%);
+    }
+
+    &:focus:invalid {
+        .validation-icon(@validation-icon-invalid, 98%, 5%);
+    }
+}
+
+input[type=button] {
+	font-size: 8pt;
 }
 .headerContainer
 {
@@ -157,19 +250,20 @@ header
     color: black;
 }
 .menuLink {
+	font-size: 8pt;
 	padding-right: 10px;
     padding-left: 10px;
 	padding-top: 5px;
 	padding-bottom: 5px;
-
+	
 	&:link, &:visited {
         color: inherit;
         text-decoration: none;
     }
 }
 .homeIcon {
-	width: 15px;
-	height: 15px;
+	width: 17px;
+	height: 16px;
 	padding-right: 10px;
     padding-left: 10px;
 	padding-top: 5px;
@@ -485,30 +579,7 @@ input[type=checkbox] {
 	 background-repeat: no-repeat;
     background-position: 98% 50%;
 }
-select
-{
-	-webkit-appearance: none;
-    font-size: 8pt;
-    color: @metro-cool-grey;
-    .box-shadow-inset(0,0,8px,0,0,0,0.1,0,0,16px,0,0,0,0.1);
-	.border-radius(4px,4px,4px,4px);
-    overflow: hidden;
-    border-color: rgba(82, 168, 236, 0.8);
-    margin: 0px 0px 0px 4px;
-    padding: 5px 20px 5px 5px;
-	background-image: url("../Content/images/down_arrow.gif");
-	.background-size(8px, 8px);
-	background-repeat: no-repeat;
-    background-position: 90% 50%;
 
-	&:focus {
-        -moz-outline: 0;
-        outline: 0;
-        outline: thin dotted \9;
-        border-color: rgba(82, 168, 236, 0.8);
-        .box-shadow-inset(0, 0px, 1px, 0, 0, 0, 0.5, 0, 0, 8px, 82, 168, 236, 0.6);
-    }
-}
 .datepicker
 {
     font-size: 8pt;
@@ -562,7 +633,7 @@ select
 
 #topPanel {
     position: absolute;
-    top: 0;
+    top: 5px;
 	height: 0px;
     width: 100%;
     text-align: center;
@@ -767,4 +838,96 @@ p {
 }
 .projected{
 	background: #006393;
+}
+.addButton {
+	.border-light-grey;
+	padding: 5px 5px 5px 25px;
+	color: @metro-blue;
+	background-image: url("../Content/images/add_black.png");
+	.background-size(11px, 11px);
+    background-repeat: no-repeat;
+    background-position: 5% 50%;
+	.border-radius;
+	font-weight: bold;
+	font-size: 9pt;
+	margin-right: 2%;
+	background-color: white;	
+	
+	&:hover {
+		color: white;
+		.blue;
+	}
+}
+.right {
+	float: right;
+}
+.blueLabel {
+	color: @metro-blue;
+}
+
+.formDiv {
+	-moz-box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
+	-webkit-box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
+	box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
+	margin: 8px;
+	padding: 20px;
+	height: 100%;
+}
+.titleLabel {
+	font-size: 11pt;
+	font-weight: bold;
+	margin: 10px 10px 20px 8px;
+}
+.textPadding {
+	padding: 5px;
+}
+.textBox {
+	width: 300px;
+	.textPadding;
+}
+.textArea {
+	width: 300px;
+	height: 50px;
+	.textPadding;
+}
+
+.validationMessage {
+    background: @border-color-invalid;
+    .border-radius(2px, 2px, 2px, 2px);
+    color: white;
+    margin: 12px 8px 8px 0;
+    padding: 3px;
+    z-index: 999; /* hints stay above all other elements */
+    position: relative; /* allows proper formatting if hint is two lines */
+	float: left;
+	font-size: 8pt;
+}
+
+.validationElement {
+	border: solid 1px @border-color-invalid;
+}
+
+.details-left {
+    float: left;
+    clear: both;
+	width: 94%;
+
+    label {
+        clear: both;
+        display: block;
+        float: left;
+    }
+}
+.formLabel {
+	float: left;
+	width: 120px;
+	margin: 8px;
+}
+.field {
+	float: left;
+	margin: 8px;
+}
+
+.industry {
+	width: 200px;
 }

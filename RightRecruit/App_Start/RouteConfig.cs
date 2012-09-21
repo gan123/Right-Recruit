@@ -63,6 +63,30 @@ namespace RightRecruit
                 url: "clients/create",
                 defaults: new { controller = "Client", action = "Create" }
             );
+
+            routes.MapRoute(
+               name: "IndustriesLookup",
+               url: "lookup/industries",
+               defaults: new { controller = "Lookup", action = "Industries" }
+           );
+
+            routes.MapRoute(
+              name: "CountriesLookup",
+              url: "lookup/countries",
+              defaults: new { controller = "Lookup", action = "Countries" }
+          );
+
+            routes.MapRoute(
+              name: "StatesLookup",
+              url: "lookup/states",
+              defaults: new { controller = "Lookup", action = "States" }
+          );
+
+            routes.MapRoute(
+              name: "CitiesLookup",
+              url: "lookup/cities",
+              defaults: new { controller = "Lookup", action = "Cities" }
+          );
         }
     }
 }

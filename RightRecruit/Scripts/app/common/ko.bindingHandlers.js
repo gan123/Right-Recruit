@@ -126,4 +126,13 @@ function ($, ko) {
             $(element).autocomplete("option", "source", params().source).data("autocomplete")._renderItem = params().templateFunction;
         }
     };
+    
+    ko.bindingHandlers.width = {
+        init: function (element, params) {
+            $(element).width(params().width());
+        },
+        update: function (element, params) {
+            $(element).width(params().width());
+        }
+    };
 });

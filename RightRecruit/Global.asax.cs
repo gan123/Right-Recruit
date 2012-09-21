@@ -30,7 +30,8 @@ namespace RightRecruit
             container.Kernel.Resolver.AddSubResolver(new ConventionBasedResolver(container.Kernel));
             container.Install(
                 new MvcInstaller(),
-                new ControllerInstaller());
+                new ControllerInstaller(),
+                new InfastructureInstaller());
 
             DependencyResolver.SetResolver(new WindsorDependencyResolver(container));
             ServiceLocator.SetLocatorProvider(() => new WindsorServiceLocator(container));

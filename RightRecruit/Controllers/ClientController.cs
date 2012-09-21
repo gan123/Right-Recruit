@@ -58,24 +58,23 @@ namespace RightRecruit.Controllers
                                  })
                 .ToList();
 
-            return new JsonNetResult {Data = clients};
+            return new JsonNetResult { Data = new { Clients = clients, Total = clients.Count, Showing = clients.Count } };
         }
 
         // GET : /clients/new
-        [HttpGet]
+        [HttpPost]
         public ActionResult New()
+        {
+            return new JsonNetResult();
+        }
+
+        // POST : clients/create
+        [HttpGet]
+        public ActionResult Create()
         {
             if (!CurrentUserProvider.CurrentUser.IsAuthenticated)
                 return RedirectToAction("Home", "Home");
             return View();
-        }
-
-        // POST : clients/create
-        [HttpPost]
-        [ChildActionOnly]
-        public ActionResult Create()
-        {
-            return new JsonNetResult(new {});
         }
     }
 }

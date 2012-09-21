@@ -12,7 +12,8 @@ namespace RightRecruit.Installers
             container.Register(
                 Component.For<InboxController>().ImplementedBy<InboxController>().LifeStyle.Transient,
                 Component.For<HomeController>().ImplementedBy<HomeController>().LifeStyle.Transient,
-                Component.For<ClientController>().ImplementedBy<ClientController>().LifeStyle.Transient);
+                Component.For<ClientController>().ImplementedBy<ClientController>().LifeStyle.Transient,
+                Component.For<LookupController>().ImplementedBy<LookupController>().LifeStyle.Transient);
         }
     }
 }

@@ -3,8 +3,23 @@
 }
 
 <section id="clients-view">
+    <div id="filterPanel">
+        <div class="filterContainer">
+        </div>
+    </div>
+    <div class="tab">
+        <div data-bind="command: filterToggleCommand, activity: filterToggleCommand.isExecuting" class="filter">FILTER</div>
+    </div>
+    <span>
+        <label class="boldLabel" style="margin-left: 2%;">SHOWING</label>
+        <label class="normalLabel blueLabel" data-bind="text: showing"></label>
+        <label class="boldLabel">OF</label>
+        <label class="normalLabel blueLabel" data-bind="text: total"></label>
+        <label class="boldLabel">CLIENTS</label>
+        <input type="button" class="addButton right" value="Add new client" data-bind="command: addNewClientCommand, activity: addNewClientCommand.isExecuting" />
+    </span>
     <ul class="inbox" data-bind="template: {name: templateName, foreach: clients}"></ul>
 </section>
 @section scripts{
-    @Scripts.Render("~/bundles/clients")
+    @Scripts.Render("~/bundles/clients-list")
 }

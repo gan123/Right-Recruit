@@ -67,6 +67,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CacheProvider\CacheProvider.cs" />
+    <Compile Include="CacheProvider\ICacheProvider.cs" />
     <Compile Include="Controllers\AbstractController.cs" />
     <Compile Include="Filters\RavenActionFilter.cs" />
     <Compile Include="Globals.cs" />
