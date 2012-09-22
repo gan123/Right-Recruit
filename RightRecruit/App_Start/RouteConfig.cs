@@ -87,6 +87,12 @@ namespace RightRecruit
               url: "lookup/cities",
               defaults: new { controller = "Lookup", action = "Cities" }
           );
+
+            routes.MapRoute(
+              name: "PrioritiesLookup",
+              url: "lookup/priorities",
+              defaults: new { controller = "Lookup", action = "Priorities" }
+          );
         }
     }
 }

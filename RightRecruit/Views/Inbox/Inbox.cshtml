@@ -34,7 +34,7 @@
                     </select>
                 </div>
                 <div class="filterItemContainer">
-                    <input type="button" class="filterButton" value="APPLY" />
+                    <input type="button" class="button filter" value="APPLY" />
                 </div>
             </div>
         </div>
@@ -42,7 +42,7 @@
             Some updates
         </div>
         <div class="tab">
-            <div data-bind="command: filterToggleCommand, activity: filterToggleCommand.isExecuting" class="filter">FILTER</div>
+            <div data-bind="command: filterToggleCommand, activity: filterToggleCommand.isExecuting" class="filterTab">FILTER</div>
             <div data-bind="command: updatesToggleCommand, activity: updatesToggleCommand.isExecuting" class="updates">UPDATES</div>
         </div>
     </div>
@@ -55,22 +55,22 @@
             </ul>
         </div>
         <div>
-            <ul class="inbox">
-                <li class="inboxItem">Open (7)</li>
-                <li class="inboxItem">In-Progress (5)</li>
-                <li class="inboxItem">On-Hold (5)</li>
-                <li class="inboxItem">Open (7)</li>
-                <li class="inboxItem">In-Progress (5)</li>
-                <li class="inboxItem">On-Hold (5)</li>
-                <li class="inboxItem">Open (7)</li>
-                <li class="inboxItem">In-Progress (5)</li>
-                <li class="inboxItem">On-Hold (5)</li>
-                <li class="inboxItem">Open (7)</li>
-                <li class="inboxItem">In-Progress (5)</li>
-                <li class="inboxItem">On-Hold (5)</li>
-                <li class="inboxItem">Open (7)</li>
-                <li class="inboxItem">In-Progress (5)</li>
-                <li class="inboxItem">On-Hold (5)</li>
+            <ul class="horizontalLayout">
+                <li class="resultItem inboxItem">Open (7)</li>
+                <li class="resultItem inboxItem">In-Progress (5)</li>
+                <li class="resultItem inboxItem">On-Hold (5)</li>
+                <li class="resultItem inboxItem">Open (7)</li>
+                <li class="resultItem inboxItem">In-Progress (5)</li>
+                <li class="resultItem inboxItem">On-Hold (5)</li>
+                <li class="resultItem inboxItem">Open (7)</li>
+                <li class="resultItem inboxItem">In-Progress (5)</li>
+                <li class="resultItem inboxItem">On-Hold (5)</li>
+                <li class="resultItem inboxItem">Open (7)</li>
+                <li class="resultItem inboxItem">In-Progress (5)</li>
+                <li class="resultItem inboxItem">On-Hold (5)</li>
+                <li class="resultItem inboxItem">Open (7)</li>
+                <li class="resultItem inboxItem">In-Progress (5)</li>
+                <li class="resultItem inboxItem">On-Hold (5)</li>
             </ul>
         </div>
     </div>

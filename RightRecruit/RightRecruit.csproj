@@ -174,16 +174,25 @@
     <Content Include="Content\boilerplate-styles.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\images\add_black.png" />
+    <Content Include="Content\images\attachment_black.png" />
     <Content Include="Content\images\calendar_black.png" />
     <Content Include="Content\images\calendar_blue.png" />
+    <Content Include="Content\images\conversation_black.png" />
+    <Content Include="Content\images\delete_black.png" />
     <Content Include="Content\images\down_arrow.gif" />
+    <Content Include="Content\images\edit_black.png" />
+    <Content Include="Content\images\email_black.png" />
     <Content Include="Content\images\facebook.png" />
     <Content Include="Content\images\google.png" />
     <Content Include="Content\images\home_black.png" />
     <Content Include="Content\images\invalid.png" />
     <Content Include="Content\images\key_black.png" />
     <Content Include="Content\images\key_white.png" />
+    <Content Include="Content\images\phone_black.png" />
     <Content Include="Content\images\refresh.png" />
+    <Content Include="Content\images\save_black.png" />
+    <Content Include="Content\images\save_disabled.png" />
+    <Content Include="Content\images\save_white.png" />
     <Content Include="Content\images\search_black.png" />
     <Content Include="Content\images\search_blue.png" />
     <Content Include="Content\images\spinner.gif" />
@@ -194,6 +203,8 @@
     <Content Include="Content\images\user_white.png" />
     <Content Include="Content\images\valid.png" />
     <Content Include="Content\images\val_asterisk.png" />
+    <Content Include="Content\images\watch_black.png" />
+    <Content Include="Content\jquery.qtip.css" />
     <Content Include="Content\qunit.css" />
     <Content Include="Content\styles.css">
       <DependentUpon>styles.less</DependentUpon>
@@ -220,6 +231,7 @@
     <Content Include="Content\toastr.css" />
     <None Include="Content\styles.less" />
     <Content Include="Scripts\app\clients\new\model.client.js" />
+    <Content Include="Scripts\app\common\config.js" />
     <Content Include="Scripts\app\lookups\dataservice.lookups.js" />
     <None Include="Scripts\lib\jquery-1.8.0.intellisense.js" />
     <Content Include="Global.asax" />
@@ -251,6 +263,7 @@
     <Content Include="Scripts\app\inbox\vm.inbox.js" />
     <Content Include="Scripts\app\search\vm.client.quicksearch.js" />
     <Content Include="Scripts\app\search\vm.recruiter.quicksearch.js" />
+    <Content Include="Scripts\lib\jquery.qtip.js" />
     <Content Include="Scripts\lib\jquery.wysiwyg.js" />
     <Content Include="Scripts\lib\jquery-ui-1.8.23.custom.min.js" />
     <Content Include="Scripts\lib\json2.js" />

@@ -25,6 +25,12 @@
                 dataType: 'json',
                 type: 'GET'
             });
+            
+            amplify.request.define('priorities-lookup', 'ajax', {
+                url: '/rr/lookup/priorities',
+                dataType: 'json',
+                type: 'GET'
+            });
         };
 
         var industries = function(data, callbacks) {
@@ -58,6 +64,14 @@
                 success: callbacks.success
             });
         };
+        
+        var priorities = function (data, callbacks) {
+            amplify.request({
+                resourceId: 'priorities-lookup',
+                data: data,
+                success: callbacks.success
+            });
+        };
 
         init();
 
@@ -65,6 +79,7 @@
             industries: industries,
             countries: countries,
             states: states,
-            cities: cities
+            cities: cities,
+            priorities: priorities
         };
     });

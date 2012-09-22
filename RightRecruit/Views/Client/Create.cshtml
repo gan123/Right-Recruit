@@ -3,31 +3,35 @@
 }
 
 <section id="clients-create">
+    <div class="tabHeader">
+        CREATE CLIENT
+    </div>
     <div class="formDiv details-left">
         <div>
-            <label class="titleLabel">CREATE CLIENT</label>
-        </div>
-        <div>
             <label class="boldLabel formLabel">Name</label>
-             <input type="text" class="textBox field" required data-bind="value: client().Name" placeholder="Client Name" />
+            <input type="text" class="textBox field" required data-bind="value: client().Name, valueUpdate: 'afterkeydown'" placeholder="Client Name" />
         </div>
         <div>
-            <label class="boldLabel formLabel" >Description</label>
+            <label class="emptyLabel"></label>
+            <span class="existingNames field" data-bind="value: existingClientNames"></span>
+        </div>
+        <div>
+            <label class="boldLabel formLabel">Description</label>
             <textarea class="textArea field" required data-bind="value: client().Description"></textarea>
         </div>
         <div>
             <label class="boldLabel formLabel" for="website">Website</label>
-             <input id="website" type="text" class="textBox field" required data-bind="value: client().Website" placeholder="www.somecompany@contoso.com" />
+            <input id="website" type="text" class="textBox field" required data-bind="value: client().Website" placeholder="www.somecompany@contoso.com" />
         </div>
         <div>
             <label class="boldLabel formLabel">Industry</label>
             <select class="industry field" required data-bind="options: industries, optionsText: 'Name', value: client().SelectedIndustry, optionsCaption: 'Industry'"></select>
         </div>
         <div>
-            <label class="boldLabel formLabel" >Address</label>
-            <select class="industry field" required data-bind="options: countries, optionsText: 'Name', value: client().Address().Country, optionsCaption: 'Country'"></select>
-            <select class="industry field" required data-bind="options: states, optionsText: 'Name', value: client().Address().State, optionsCaption: 'State'"></select>
-            <select class="industry field" required data-bind="options: cities, optionsText: 'Name', value: client().Address().City, optionsCaption: 'City'"></select>
+            <label class="boldLabel formLabel">Address</label>
+            <select class="country field" required data-bind="options: countries, optionsText: 'Name', value: client().Address().Country, optionsCaption: 'Country'"></select>
+            <select class="state field" required data-bind="options: states, optionsText: 'Name', value: client().Address().State, optionsCaption: 'State'"></select>
+            <select class="city field" required data-bind="options: cities, optionsText: 'Name', value: client().Address().City, optionsCaption: 'City'"></select>
         </div>
         <div>
             <label class="boldLabel formLabel"></label>
@@ -35,7 +39,20 @@
         </div>
         <div>
             <label class="boldLabel formLabel"></label>
-            <input type="button" class="field" style="float: right;" data-bind="command: createCommand, activity: createCommand.isExecuting" value="Save"/>
+            <input type="text" class="textBox field" data-bind="value: client().Address().Street2" placeholder="Street 2" />
+        </div>
+        <div>
+            <label class="boldLabel formLabel"></label>
+            <input type="text" class="textBox field" data-bind="value: client().Address().Street3" placeholder="Street 3" />
+        </div>
+        <div>
+            <label class="boldLabel formLabel">Priority</label>
+            <select class="priority field" required data-bind="options: priorities, value: client().SelectedPriority, optionsCaption: 'Priority'"></select>
+        </div>
+        <div>
+            <label class="boldLabel formLabel"></label>
+            <input id="cancel" type="button" class="button cancel field" style="float: right;" value="CANCEL" />
+            <input type="button" class="button save field" style="float: right;" data-bind="command: createCommand, activity: createCommand.isExecuting, enable: isValid" value="SAVE" />
         </div>
     </div>
 </section>

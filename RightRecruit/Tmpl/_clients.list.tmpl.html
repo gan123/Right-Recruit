@@ -1,4 +1,4 @@
-﻿<li class="inboxItem" data-bind="css: { gold: Priority() == 'Gold', platinum: Priority() == 'Platinum', diamond: Priority() == 'Diamond'}">
+﻿<li class="resultItem clientItem" data-bind="css: { gold: Priority() == 'Gold', platinum: Priority() == 'Platinum', diamond: Priority() == 'Diamond'}">
     <div>
         <span>
             <a class="clientLink" href="#">
@@ -8,9 +8,7 @@
     </div>
     <div>
         <label data-bind="text: TechnologyAndCountry" class="techAndCountry"></label>
-    </div>
-    <div>
-        <label data-bind="text: Priority" class="priority"></label>
+        <label data-bind="text: Status, css: {activeStatus: Status() == 'Active', inactiveStatus: Status() == 'Inactive'}" ></label>
     </div>
     <div>
         <span class="contactsSpan">

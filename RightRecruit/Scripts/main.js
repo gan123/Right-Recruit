@@ -21,6 +21,7 @@
         define('sammy', [], function () { return root.Sammy; });
         define('toastr', [], function () { return root.toastr; });
         define('underscore', [], function () { return root._; });
+        define('qtip', [], function () { return root.qtip; });
     }
 
     function loadPluginsAndBoot() {
@@ -29,6 +30,7 @@
         requirejs([
             'ko.bindingHandlers',
             'ko.debug.helpers',
+            'config',
             'signin',
             'signout'
         ], boot);

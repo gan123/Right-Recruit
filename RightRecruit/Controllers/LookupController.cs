@@ -14,6 +14,7 @@ namespace RightRecruit.Controllers
         private const string CountriesLookupKey = "CountriesLookup";
         private const string StatesLookupKey = "StatesLookup";
         private const string CitiesLookupKey = "CitiesLookup";
+        private const string PrioritiesLookupKey = "PrioritiesLookup";
 
         private readonly ICacheProvider _cacheProvider;
 
@@ -100,6 +101,26 @@ namespace RightRecruit.Controllers
             }
 
             return new JsonNetResult { Data = cities };
+        }
+
+        [HttpGet]
+        public ActionResult Priorities()
+        {
+            if (!CurrentUserProvider.CurrentUser.IsAuthenticated)
+                return new JsonNetResult();
+
+            return new JsonNetResult { Data = PrioritiesList };
+        }
+
+        private static IEnumerable<string> PrioritiesList
+        {
+            get
+            {
+                yield return "Platinum";
+                yield return "Diamond";
+                yield return "Gold";
+                yield return "No Priority";
+            }
         }
     }
 }

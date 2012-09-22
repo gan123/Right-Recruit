@@ -3,11 +3,14 @@
     function (ko, industryModel, addressModel) {
         var Client = function() {
             var self = this;
-            self.Name = ko.observable().extend({ required: true, minLength: 3 });
+            var address = new addressModel();
+            self.Name = ko.observable().extend({ required: true });
             self.Description = ko.observable().extend({ required: true });
             self.Website = ko.observable().extend({ required: true });
             self.SelectedIndustry = ko.observable().extend({ required: true });
-            self.Address = ko.observable(new addressModel());
+            self.Address = ko.observable(address).extend({ required: true });
+            self.SelectedPriority = ko.observable().extend({required: true});
+            self.ValidationErrors = ko.validation.group(address);
         };
 
         return Client;

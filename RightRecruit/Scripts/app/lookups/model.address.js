@@ -3,7 +3,7 @@
     function (ko, country, state, city) {
         var Address = function() {
             var self = this;
-            self.Street1 = ko.observable();
+            self.Street1 = ko.observable().extend({required: true});
             self.Street2 = ko.observable();
             self.Street3 = ko.observable();
             self.Country = ko.observable(new country()).extend({required: true});

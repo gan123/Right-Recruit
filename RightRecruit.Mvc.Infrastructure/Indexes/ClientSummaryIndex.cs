@@ -31,7 +31,7 @@ namespace RightRecruit.Mvc.Infrastructure.Indexes
                                             client.Name,
                                             Industry = client.Industry.Name,
                                             Country = client.Address.Country.Name,
-                                            Status = client.Status,
+                                            Status = client.Status.Name,
                                             client.Priority,
                                             client.Database,
                                             Contacts = client.Spocs.Where(s => !string.IsNullOrEmpty(s.Name)).Select(s => s.Name),

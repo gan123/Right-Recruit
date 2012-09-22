@@ -1,8 +1,9 @@
 ﻿define('vm.clients.create',
-    ['ko', 'dataservice.lookups', 'model.industry', 'model.client', 'model.country', 'model.state', 'model.city'],
-    function (ko, lookups, industryModel, clientModel, countryModel, stateModel, cityModel) {
+    ['ko', 'config', 'dataservice.lookups', 'dataservice.search', 'model.industry', 'model.client', 'model.country', 'model.state', 'model.city'],
+    function (ko, config, lookups, clientService, industryModel, clientModel, countryModel, stateModel, cityModel) {
         console.log('hi');
         var
+            logger = config.logger,
             client = ko.observable(new clientModel()),
             industries = ko.observableArray(),
             countries = ko.observableArray(),
@@ -10,15 +11,18 @@
             states = ko.observableArray([]),
             allCities = ko.observableArray(),
             cities = ko.observableArray([]),
+            priorities = ko.observableArray([]),
             validationErrors = ko.observableArray(),
-            isValid = ko.computed(function () {
-                return validationErrors().length === 0;
+            existingClientNames = ko.observableArray([]),
+            isValid = ko.computed(function() {
+                return validationErrors().length === 0 && client().ValidationErrors().length === 0;
             }),
             createCommand = ko.asyncCommand({
-                execute: function (complete) {
-                    console.log(client().Address().Street1);
+                execute: function(complete) {
+                    logger.success(config.toasts.savedData);
+                    complete();
                 },
-                canexecute: function (isExecuting) {
+                canexecute: function(isExecuting) {
                     console.log(isValid);
                     return !isExecuting && isValid;
                 }
@@ -40,10 +44,24 @@
             });
         });
 
-        var init = function() {
+        client().Name.subscribe(function (val) {
+            if (val.length >= 3) {
+                clientService.clientsSearch({ query: val }, function (result){
+                        $.each(result, function (i, p) {
+                            existingClientNames.push(p.Name);
+                        });
+                });
+            }
+        });
+
+        var init = function () {
             client().Name("");
             client().Description("");
             client().Website("");
+            client().Address().Street1("");
+            client().SelectedIndustry("");
+            client().SelectedPriority("");
+            validationErrors = ko.validation.group(client());
             lookups.industries(null, {
                 success: function (result) {
                     $.each(result, function (i, p) {
@@ -79,8 +97,14 @@
                     });
                 }
             });
-
-            validationErrors = ko.validation.group(client);
+            
+            lookups.priorities(null, {
+                success: function (result) {
+                    $.each(result, function (i, p) {
+                        priorities.push(p);
+                    });
+                }
+            });
         };
 
         init();
@@ -90,6 +114,9 @@
             states: states,
             cities: cities,
             client: client,
-            createCommand: createCommand
+            createCommand: createCommand,
+            isValid: isValid,
+            priorities: priorities,
+            existingClientNames: existingClientNames
         };
     });

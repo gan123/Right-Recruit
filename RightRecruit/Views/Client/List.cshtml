@@ -8,7 +8,7 @@
         </div>
     </div>
     <div class="tab">
-        <div data-bind="command: filterToggleCommand, activity: filterToggleCommand.isExecuting" class="filter">FILTER</div>
+        <div data-bind="command: filterToggleCommand, activity: filterToggleCommand.isExecuting" class="filterTab">FILTER</div>
     </div>
     <span>
         <label class="boldLabel" style="margin-left: 2%;">SHOWING</label>
@@ -18,7 +18,7 @@
         <label class="boldLabel">CLIENTS</label>
         <input type="button" class="addButton right" value="Add new client" data-bind="command: addNewClientCommand, activity: addNewClientCommand.isExecuting" />
     </span>
-    <ul class="inbox" data-bind="template: {name: templateName, foreach: clients}"></ul>
+    <ul class="horizontalLayout" data-bind="template: {name: templateName, foreach: clients}"></ul>
 </section>
 @section scripts{
     @Scripts.Render("~/bundles/clients-list")

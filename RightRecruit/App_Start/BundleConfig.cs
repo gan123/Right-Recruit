@@ -55,7 +55,8 @@ namespace RightRecruit
                     "~/Scripts/lib/moment.js",
                     "~/Scripts/lib/sammy.*",
                     "~/Scripts/lib/amplify.*",
-                    "~/Scripts/lib/toastr.js"
+                    "~/Scripts/lib/toastr.js",
+                    "~/Scripts/lib/jquery.qtip.js"
                     ));
 
             // Text editor
@@ -93,6 +94,7 @@ namespace RightRecruit
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/themes/custom/jquery-ui-1.8.23.custom.css",
                 "~/Content/boilerplate-styles.css",
+                "~/Content/jquery.qtip.css",
                 "~/Content/toastr.css",
                 "~/Content/toastr-responsive.css"));
 

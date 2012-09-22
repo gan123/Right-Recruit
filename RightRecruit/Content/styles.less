@@ -6,6 +6,7 @@
 @metro-cool-grey: #AAAAAA;
 @metro-green:#358E7A;
 @border-color-invalid: #B03535;
+@metro-bold-yellow: #eccd35;
 
 @font-family: "Segoe UI", Arial, Helvetica, Verdana;
 * {
@@ -52,6 +53,9 @@
     -o-background-size: @x @y;
     -webkit-background-size: @x @y;
     background-size: @x @y;
+}
+body{
+	cursor: default;
 }
 
 .blue
@@ -243,7 +247,6 @@ header
 		color: black;
 	}
 }
-
 .active
 {
     background-color: white;
@@ -595,7 +598,7 @@ input[type=checkbox] {
     top: 0;
     width: 100%;
 
-	div.filter, div.updates {
+	div.filterTab, div.updates {
 		padding: 5px 10px 5px 10px;
 		margin-top: -15px;
 		display: block;		
@@ -608,7 +611,7 @@ input[type=checkbox] {
 		.text-shadow(2px, 2px, 2px, 0, 0, 0, 0.2);
 	}
 
-	div.filter {
+	div.filterTab {
 		.blue;
 		float: right;
 		color: white;
@@ -705,24 +708,56 @@ input[type=checkbox] {
 	  color: white;
 	}
 }
-.filterButton {
+.button {
 	.border-light-grey;
 	padding: 5px 5px 5px 25px;
 	color: @metro-blue;
-	background-image: url("../Content/images/search_black.png");
-	.background-size(11px, 11px);
-    background-repeat: no-repeat;
+	background-repeat: no-repeat;
     background-position: 10% 50%;
 	.border-radius;
 	font-weight: bold;
 	font-size: 9pt;
 	background-color: white;	
+	cursor: pointer;
 	
 	&:hover {
 		color: white;
 		.blue;
+	}	
+}
+
+.filter {
+	background-image: url("../Content/images/search_black.png");
+	.background-size(11px, 11px);
+}
+
+.cancel {
+	padding: 5px;
+}
+
+.save {
+	background-image: url("../Content/images/save_black.png");
+	.background-size(11px, 11px);
+
+	&:hover{
+		background-image: url("../Content/images/save_white.png");
+		.background-size(11px, 11px);
+	}
+
+	&:disabled {
+		background-image: url("../Content/images/save_disabled.png");
+		.background-size(11px, 11px);
+		color: @metro-cool-grey;
+	}
+
+	&:disabled:hover {
+		background-image: url("../Content/images/save_disabled.png");
+		.background-size(11px, 11px);
+		color: @metro-cool-grey;
+		background-color: white;
 	}
 }
+
 .mildText{
 	color: @metro-cool-grey;
 	padding:0;
@@ -751,13 +786,13 @@ div.projected {
 	background: @metro-serious-blue;
 }
 
-.inbox
+.horizontalLayout
 {
     background-color: inherit;
     height: inherit;
     padding-left: 10px; 
 }
-.inboxItem
+.resultItem
 {
     display: inline-block;
 	margin: 8px 2px 8px 2px;
@@ -767,10 +802,16 @@ div.projected {
 	.border-radius;
 	color: black;
 	background: white;
-	.box-shadow(0, 0, 25px, 0, 0, 0, 0, 0.2);
-	height: 125px;
-	width: 220px;
+	.box-shadow(0, 0, 25px, 0, 0, 0, 0, 0.2);	
 	border: 1px solid #e7e7e7;
+}
+.inboxItem {
+	height: 85px;
+	width: 220px;
+}
+.clientItem {
+	height: 105px;
+	width: 220px;
 }
 .clientLink {
 	color: #0094cd;
@@ -869,7 +910,7 @@ p {
 	-moz-box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
 	-webkit-box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
 	box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
-	margin: 8px;
+	margin: 0 8px 8px 8px;
 	padding: 20px;
 	height: 100%;
 }
@@ -900,12 +941,14 @@ p {
     z-index: 999; /* hints stay above all other elements */
     position: relative; /* allows proper formatting if hint is two lines */
 	float: left;
-	font-size: 8pt;
+	font-size: 7pt;
 }
 
 .validationElement {
 	border: solid 1px @border-color-invalid;
 }
+
+input[type=text]:focus + .validationMessage, textarea:focus + .validationMessage {display: inline;}
 
 .details-left {
     float: left;
@@ -923,6 +966,11 @@ p {
 	width: 120px;
 	margin: 8px;
 }
+.emptyLabel {
+	float: left;
+	width: 120px;
+	margin: 0;
+}
 .field {
 	float: left;
 	margin: 8px;
@@ -930,4 +978,30 @@ p {
 
 .industry {
 	width: 200px;
+}
+.country, .state, .city, .priority {
+	width: 130px;
+	font-size: 8pt;
+}
+.activeStatus, .inactiveStatus {
+	font-size: 7pt;
+	float: right;
+}
+.activeStatus {
+	color: @metro-green;
+}
+.inactiveStatus {
+	color: @metro-bold-yellow;
+}
+.tabHeader {
+	.blue;
+	margin: 8px 0 0 8px;
+	padding: 4px 8px 4px 8px;
+	font-weight: bold;
+	.border-radius(4px, 4px, 0, 0);
+	color: white;
+	float: left;
+}
+.existingNames {
+	width: 100px;
 }
