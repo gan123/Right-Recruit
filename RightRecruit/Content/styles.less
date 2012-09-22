@@ -5,7 +5,7 @@
 @metro-light-grey: #e7e7e7;
 @metro-cool-grey: #AAAAAA;
 @metro-green:#358E7A;
-@border-color-invalid: #B03535;
+@border-color-invalid: #FF8080;
 @metro-bold-yellow: #eccd35;
 
 @font-family: "Segoe UI", Arial, Helvetica, Verdana;
@@ -18,6 +18,16 @@
 @validation-icon-required: url(images/val_asterisk.png);
 @validation-icon-valid: url(images/valid.png);
 @validation-icon-invalid: url(images/invalid.png);
+
+.overflow {
+	-ms-text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+}
+
+.textPadding(@v: 5px) {
+	padding: 5px;
+}
 
 .validation-icon(@icon, @leftOffset, @topOffset) {
 	background-image: @icon;
@@ -112,7 +122,6 @@ select
     margin: 0px 0px 0px 4px;
     padding: 5px 20px 5px 5px;
 	background-image: url("../Content/images/down_arrow.gif");
-	.background-size(8px, 8px);
 	background-repeat: no-repeat;
     background-position: 95% 50%;
 
@@ -129,9 +138,8 @@ select
 		border-color: @border-color-invalid;
 		background: white;
 		background-image: url("../Content/images/down_arrow.gif");
-		.background-size(8px, 8px);
 		background-repeat: no-repeat;
-		background-position: 95% 50%;
+		background-position: 95% 50%;		
 	}	
 
 	&:required {
@@ -719,6 +727,7 @@ input[type=checkbox] {
 	font-size: 9pt;
 	background-color: white;	
 	cursor: pointer;
+	margin: 4px;
 	
 	&:hover {
 		color: white;
@@ -827,7 +836,7 @@ div.projected {
 	border-left: 10px  solid #E1FAFC;
 }
 .priority {
-				font-size: 7pt;
+	font-size: 7pt;
 }
 .techAndCountry{
 	color: gray;
@@ -847,9 +856,7 @@ div.projected {
 }
 p {
     overflow: hidden;
-    -ms-text-overflow: ellipsis;
-    -o-text-overflow: ellipsis;
-    text-overflow: ellipsis;
+    .overflow;
     white-space: nowrap;
     width: 200px;
     margin: 0;
@@ -907,9 +914,7 @@ p {
 }
 
 .formDiv {
-	-moz-box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
-	-webkit-box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
-	box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
+	.box-shadow(0, 0, 15px, 0, 0, 0, 0, 0.2);
 	margin: 0 8px 8px 8px;
 	padding: 20px;
 	height: 100%;
@@ -919,36 +924,20 @@ p {
 	font-weight: bold;
 	margin: 10px 10px 20px 8px;
 }
-.textPadding {
-	padding: 5px;
-}
+
 .textBox {
-	width: 300px;
-	.textPadding;
+	width: 80%;
+	.textPadding(3px);
+	margin:0 0 0 4px;
 }
 .textArea {
-	width: 300px;
+	width: 80%;
 	height: 50px;
-	.textPadding;
+	.textPadding(3px);
+	margin:0 0 0 4px;
 }
 
-.validationMessage {
-    background: @border-color-invalid;
-    .border-radius(2px, 2px, 2px, 2px);
-    color: white;
-    margin: 12px 8px 8px 0;
-    padding: 3px;
-    z-index: 999; /* hints stay above all other elements */
-    position: relative; /* allows proper formatting if hint is two lines */
-	float: left;
-	font-size: 7pt;
-}
-
-.validationElement {
-	border: solid 1px @border-color-invalid;
-}
-
-input[type=text]:focus + .validationMessage, textarea:focus + .validationMessage {display: inline;}
+//input[type=text]:focus + .validationMessage, textarea:focus + .validationMessage {display: inline;}
 
 .details-left {
     float: left;
@@ -973,13 +962,11 @@ input[type=text]:focus + .validationMessage, textarea:focus + .validationMessage
 }
 .field {
 	float: left;
-	margin: 8px;
+	margin: 4px 8px 4px 8px;
+	width: 100%;
 }
 
-.industry {
-	width: 200px;
-}
-.country, .state, .city, .priority {
+.industry, .country, .state, .city, .priority {
 	width: 130px;
 	font-size: 8pt;
 }
@@ -994,13 +981,58 @@ input[type=text]:focus + .validationMessage, textarea:focus + .validationMessage
 	color: @metro-bold-yellow;
 }
 .tabHeader {
-	.blue;
-	margin: 8px 0 0 8px;
-	padding: 4px 8px 4px 8px;
+	margin: 8px 4px 4px 4px;
 	font-weight: bold;
-	.border-radius(4px, 4px, 0, 0);
-	color: white;
 	float: left;
+	width:100%;
+}
+.title {
+	.blue;
+	color: white;
+	font-size: 9pt;
+	float: left;
+	margin: 4px 4px 0 4px;
+	height:18px;
+	padding:2px 8px 2px 8px;
+}
+.editContainer {
+	float:left;
+	margin:4px;
+}
+.buttonPanel {
+	width:98%;
+}
+.details {
+	height:50%;
+	width:58%;
+}
+.section {
+	background: white;
+	.box-shadow(0, 0, 25px, 0, 0, 0, 0, 0.13);
+	float: left;
+	margin: 0 4px 4px 4px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+.detailsSection {
+	width: 100%;
+	height: 92%;	
+}
+.addressSection {
+	width: 100%;
+	height: 85%;	
+}
+.address {
+	height:24%;
+	width:40%;
+}
+.location {
+	height:30%;
+	width:40%;
+}
+.locationSection {
+	width: 100%;
+	height: 100%;	
 }
 .existingNames {
 	width: 100px;

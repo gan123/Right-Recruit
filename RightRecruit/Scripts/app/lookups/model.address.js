@@ -6,6 +6,7 @@
             self.Street1 = ko.observable().extend({required: true});
             self.Street2 = ko.observable();
             self.Street3 = ko.observable();
+            self.Pincode = ko.observable();
             self.Country = ko.observable(new country()).extend({required: true});
             self.State = ko.observable(new state()).extend({ required: true });
             self.City = ko.observable(new city()).extend({ required: true });

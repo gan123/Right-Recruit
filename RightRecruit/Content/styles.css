@@ -3,6 +3,11 @@
   font-family: "Segoe UI", Arial, Helvetica, Verdana;
   font-size: 10pt;
 }
+.overflow {
+  -ms-text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+}
 body {
   cursor: default;
 }
@@ -90,10 +95,6 @@ select {
   margin: 0px 0px 0px 4px;
   padding: 5px 20px 5px 5px;
   background-image: url("../Content/images/down_arrow.gif");
-  -moz-background-size: 8px 8px;
-  -o-background-size: 8px 8px;
-  -webkit-background-size: 8px 8px;
-  background-size: 8px 8px;
   background-repeat: no-repeat;
   background-position: 95% 50%;
 }
@@ -108,13 +109,9 @@ select:focus {
 }
 select:invalid {
   border-width: 1px;
-  border-color: #b03535;
+  border-color: #ff8080;
   background: white;
   background-image: url("../Content/images/down_arrow.gif");
-  -moz-background-size: 8px 8px;
-  -o-background-size: 8px 8px;
-  -webkit-background-size: 8px 8px;
-  background-size: 8px 8px;
   background-repeat: no-repeat;
   background-position: 95% 50%;
 }
@@ -159,7 +156,7 @@ input[type=text]:invalid,
 input[type=password]:invalid,
 textarea:invalid {
   border-width: 1px;
-  border-color: #b03535;
+  border-color: #ff8080;
   background: white;
 }
 input[type=text]:required {
@@ -833,6 +830,7 @@ input[type=checkbox] {
   font-size: 9pt;
   background-color: white;
   cursor: pointer;
+  margin: 4px;
 }
 .button:hover {
   color: white;
@@ -1091,41 +1089,16 @@ p {
   font-weight: bold;
   margin: 10px 10px 20px 8px;
 }
-.textPadding {
-  padding: 5px;
-}
 .textBox {
-  width: 300px;
+  width: 80%;
   padding: 5px;
+  margin: 0 0 0 4px;
 }
 .textArea {
-  width: 300px;
+  width: 80%;
   height: 50px;
   padding: 5px;
-}
-.validationMessage {
-  background: #b03535;
-  -webkit-border-radius: 2px 2px 2px 2px;
-  -moz-border-radius: 2px 2px 2px 2px;
-  border-radius: 2px 2px 2px 2px;
-  color: white;
-  margin: 12px 8px 8px 0;
-  padding: 3px;
-  z-index: 999;
-  /* hints stay above all other elements */
-
-  position: relative;
-  /* allows proper formatting if hint is two lines */
-
-  float: left;
-  font-size: 7pt;
-}
-.validationElement {
-  border: solid 1px #b03535;
-}
-input[type=text]:focus + .validationMessage,
-textarea:focus + .validationMessage {
-  display: inline;
+  margin: 0 0 0 4px;
 }
 .details-left {
   float: left;
@@ -1149,11 +1122,10 @@ textarea:focus + .validationMessage {
 }
 .field {
   float: left;
-  margin: 8px;
+  margin: 4px 8px 4px 8px;
+  width: 100%;
 }
-.industry {
-  width: 200px;
-}
+.industry,
 .country,
 .state,
 .city,
@@ -1173,6 +1145,12 @@ textarea:focus + .validationMessage {
   color: #eccd35;
 }
 .tabHeader {
+  margin: 8px 4px 4px 4px;
+  font-weight: bold;
+  float: left;
+  width: 100%;
+}
+.title {
   background-color: #2da3ea;
   /* Old browsers */
 
@@ -1198,14 +1176,53 @@ textarea:focus + .validationMessage {
   /* IE6-9 */
 
   color: white;
-  margin: 8px 0 0 8px;
-  padding: 4px 8px 4px 8px;
-  font-weight: bold;
-  -webkit-border-radius: 4px 4px 0 0;
-  -moz-border-radius: 4px 4px 0 0;
-  border-radius: 4px 4px 0 0;
   color: white;
+  font-size: 9pt;
   float: left;
+  margin: 4px 4px 0 4px;
+  height: 18px;
+  padding: 2px 8px 2px 8px;
+}
+.editContainer {
+  float: left;
+  margin: 4px;
+}
+.buttonPanel {
+  width: 98%;
+}
+.details {
+  height: 50%;
+  width: 58%;
+}
+.section {
+  background: white;
+  -moz-box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.13);
+  -webkit-box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.13);
+  box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.13);
+  float: left;
+  margin: 0 4px 4px 4px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+.detailsSection {
+  width: 100%;
+  height: 92%;
+}
+.addressSection {
+  width: 100%;
+  height: 85%;
+}
+.address {
+  height: 24%;
+  width: 40%;
+}
+.location {
+  height: 30%;
+  width: 40%;
+}
+.locationSection {
+  width: 100%;
+  height: 100%;
 }
 .existingNames {
   width: 100px;

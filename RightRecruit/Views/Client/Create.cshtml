@@ -2,11 +2,73 @@
     ViewBag.Title = "Create";
 }
 
-<section id="clients-create">
+<section id="clients-create" style="margin: 4px;">
     <div class="tabHeader">
         CREATE CLIENT
     </div>
-    <div class="formDiv details-left">
+    <div class="editContainer details">
+        <div class="title">Details</div>
+        <div class="section detailsSection">
+            <div class="field">
+                <input type="text" class="textBox" required data-bind="value: client().Name, valueUpdate: 'afterkeydown'" placeholder="Client Name" />
+            </div>
+            <div class="field">
+                <input type="text" class="textBox" data-bind="value: client().AlternativeNames, valueUpdate: 'afterkeydown'" placeholder="Alternatives Name" />
+            </div>
+            <div class="field">
+                <textarea class="textArea" placeholder="Description" required data-bind="value: client().Description, valueUpdate: 'afterkeydown'"></textarea>
+            </div>
+            <div class="field">
+                <input type="text" class="textBox" required data-bind="value: client().Website, valueUpdate: 'afterkeydown'" placeholder="www.somecompany@contoso.com" />
+            </div>
+            <div class="field">
+                <select class="industry" required data-bind="options: industries, optionsText: 'Name', value: client().SelectedIndustry, optionsCaption: 'Industry'"></select>
+            </div>
+            <div class="field">
+                <select class="priority" required data-bind="options: priorities, value: client().SelectedPriority, optionsCaption: 'Priority'"></select>
+            </div>
+            <div class="field">
+                <input type="text" class="textBox" style="width:30%;float: left;" required data-bind="value: client().Phone().Phone, valueUpdate: 'afterkeydown'" placeholder="Phone" />
+                <input type="text" class="textBox" style="width:30%;float: left;" data-bind="value: client().Phone().Fax, valueUpdate: 'afterkeydown'" placeholder="Fax" />
+            </div>
+        </div>
+    </div>
+    <div class="editContainer address">
+        <div class="title">Address</div>
+        <div class="section addressSection">
+            <div class="field">
+                <input type="text" class="textBox" required data-bind="value: client().Address().Street1" placeholder="Street 1" />
+            </div>
+            <div class="field">
+                <input type="text" class="textBox" data-bind="value: client().Address().Street2" placeholder="Street 2" />
+            </div>
+            <div class="field">
+                <input type="text" class="textBox" data-bind="value: client().Address().Street3" placeholder="Street 3" />
+            </div>
+            <div class="field">
+                <input type="text" class="textBox" data-bind="value: client().Address().Pincode" placeholder="Pincode" />
+            </div>
+        </div>
+    </div>
+    <div class="editContainer address">
+        <div class="title">Location</div>
+        <div class="section locationSection">
+            <div class="field">
+                <select class="country" style="width: 200px;" required data-bind="options: countries, optionsText: 'Name', value: client().Address().Country, optionsCaption: 'Country'"></select>
+            </div>
+            <div class="field">
+                <select class="state" style="width: 200px;" required data-bind="options: states, optionsText: 'Name', value: client().Address().State, optionsCaption: 'State'"></select>
+            </div>
+            <div class="field">
+                <select class="city" style="width: 200px;" required data-bind="options: cities, optionsText: 'Name', value: client().Address().City, optionsCaption: 'City'"></select>
+            </div>
+        </div>
+    </div>
+    <div class="editContainer buttonPanel">
+        <input id="cancel" type="button" class="button cancel" style="float: right;" value="CANCEL" />
+        <input type="button" class="button save" style="float: right;" data-bind="command: createCommand, activity: createCommand.isExecuting, enable: isValid" value="SAVE" />
+    </div>
+    @*<div class="formDiv details-left">
         <div>
             <label class="boldLabel formLabel">Name</label>
             <input type="text" class="textBox field" required data-bind="value: client().Name, valueUpdate: 'afterkeydown'" placeholder="Client Name" />
@@ -54,7 +116,7 @@
             <input id="cancel" type="button" class="button cancel field" style="float: right;" value="CANCEL" />
             <input type="button" class="button save field" style="float: right;" data-bind="command: createCommand, activity: createCommand.isExecuting, enable: isValid" value="SAVE" />
         </div>
-    </div>
+    </div>*@
 </section>
 @section scripts{
     @Scripts.Render("~/bundles/clients-create")

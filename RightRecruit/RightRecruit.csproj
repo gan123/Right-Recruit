@@ -249,6 +249,7 @@
     <Content Include="Scripts\app\lookups\model.address.js" />
     <Content Include="Scripts\app\lookups\model.city.js" />
     <Content Include="Scripts\app\lookups\model.industry.js" />
+    <Content Include="Scripts\app\lookups\model.phone.js" />
     <Content Include="Scripts\app\lookups\model.state.js" />
     <Content Include="Scripts\app\search\dataservice.search.js" />
     <Content Include="Scripts\app\global\dataservice.user.js" />

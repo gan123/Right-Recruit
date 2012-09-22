@@ -1,7 +1,6 @@
 ﻿define('vm.clients.create',
     ['ko', 'config', 'dataservice.lookups', 'dataservice.search', 'model.industry', 'model.client', 'model.country', 'model.state', 'model.city'],
     function (ko, config, lookups, clientService, industryModel, clientModel, countryModel, stateModel, cityModel) {
-        console.log('hi');
         var
             logger = config.logger,
             client = ko.observable(new clientModel()),
@@ -15,7 +14,8 @@
             validationErrors = ko.observableArray(),
             existingClientNames = ko.observableArray([]),
             isValid = ko.computed(function() {
-                return validationErrors().length === 0 && client().ValidationErrors().length === 0;
+                return validationErrors().length === 0 && client().AddressValidationErrors().length === 0
+                    && client().PhoneValidationErrors().length === 0;
             }),
             createCommand = ko.asyncCommand({
                 execute: function(complete) {
