@@ -1,16 +1,11 @@
-using System.ComponentModel;
-
 namespace RightRecruit.Domain
 {
-    public enum Theme
+    public class Theme
     {
-        [Description("Metro")]
-        Metro = 1,
-
-        [Description("Cool Blue")]
-        CoolBlue = 2,
-
-        [Description("Mild Green")]
-        MildGreen = 3
+        public string ForegroundColor { get; set; }
+        public string BasicColor { get; set; }
+        public string MidColor { get; set; }
+        public string BoldColor { get; set; }
+        public string ControlBorderColor { get; set; }
     }
 }

@@ -54,11 +54,11 @@ namespace RightRecruit.Controllers
                     HttpContext.Response.Cookies.Add(new HttpCookie("UserName", loginModel.Login));
                     HttpContext.Response.Cookies.Add(new HttpCookie("Password", loginModel.Password));
                 }
-                var photoAsString = GetAttachmentString(user.PhotoAttachment, useBase64: true);
+                //var photoAsString = GetAttachmentString(user.PhotoAttachment, useBase64: true);
                 HttpContext.Session[Globals.CurrentUser] = new CurrentUser(user)
                                                                {
                                                                    IsAuthenticated = true,
-                                                                   PhotoString = "data:image/jpeg;base64," + photoAsString
+                                                                   //PhotoString = "data:image/jpeg;base64," + photoAsString
                                                                };
                 return new JsonNetResult(new { LoggedInUserName = user.Name });
             }

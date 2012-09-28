@@ -16,7 +16,7 @@
           <SQLDebugging>False</SQLDebugging>
           <ExternalProgram>
           </ExternalProgram>
-          <StartExternalURL>http://localhost:81/rr/home</StartExternalURL>
+          <StartExternalURL>http://talentcorner.rightrecruit.com:81/rr/home</StartExternalURL>
           <StartCmdLineArguments>
           </StartCmdLineArguments>
           <StartWorkingDirectory>

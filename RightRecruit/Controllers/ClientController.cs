@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Web.Mvc;
 using RightRecruit.Models;
@@ -13,6 +14,9 @@ namespace RightRecruit.Controllers
         [HttpPost]
         public ActionResult QuickSearch(string query)
         {
+            //Contract.Requires<ArgumentException>(string.IsNullOrEmpty(query), "Cannot search without a query parameter");
+            if (!CurrentUserProvider.CurrentUser.IsAuthenticated) return new JsonNetResult();
+
             var clients = UnitOfWork.DocumentSession.Advanced.LuceneQuery<Domain.Client>("ClientSearchIndex")
                 .Where(string.Format("Name:*{0}*", query))
                 .AndAlso().Where(string.Format("Database:{0}", CurrentUserProvider.CurrentUser.User.Database))

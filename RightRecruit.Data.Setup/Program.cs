@@ -24,11 +24,12 @@ namespace RightRecruit.Data.Setup
             //LoadPlaces();
             //LoadIndustries();
             //CreateAgency();
-            UploadImage();
+            //UploadImage();
             //GetImage();
             //LoadStatus();
             //CreateClients();
             //GetStore();
+            ApplyTheme();
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Completed successfully");
             Console.ReadLine();
@@ -62,6 +63,24 @@ namespace RightRecruit.Data.Setup
                 stream.Seek(0, SeekOrigin.Begin);
                 stream.CopyTo(fs);
                 fs.Close();
+            }
+        }
+
+        static void ApplyTheme()
+        {
+            using (var session = GetStore().OpenSession())
+            {
+                var agency = session.Load<Domain.Agency>("agencies/1");
+                agency.Branding = new AgencyBranding
+                                      {
+                                          Theme = new Theme
+                                                      {
+                                                          BoldColor = "#57396B",
+                                                          MidColor = "#65447B",
+                                                          BasicColor = "#724C89"
+                                                      }
+                                      };
+                session.SaveChanges();
             }
         }
 
@@ -308,7 +327,8 @@ namespace RightRecruit.Data.Setup
                                      CreatedByUserId = "system",
                                      LastUpdatedUserId = "system",
                                      CreatedDate = DateTime.Now,
-                                     Database = Database
+                                     Database = Database,
+                                     Domain = "talentcorner.rightrecruit.com"
                                  };
                 session.Store(agency);
                 session.SaveChanges();

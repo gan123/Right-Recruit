@@ -97,14 +97,6 @@ namespace RightRecruit
                 "~/Content/jquery.qtip.css",
                 "~/Content/toastr.css",
                 "~/Content/toastr-responsive.css"));
-
-            // Text editor
-            bundles.Add(new Bundle("~/Content/texteditorStyles", new LessTransform(), new CssMinify())
-                .Include("~/Content/jquery.wysiwyg.css"));
-
-            // Custom LESS files
-            bundles.Add(new Bundle("~/Content/less", new LessTransform(), new CssMinify())
-                .Include("~/Content/styles.less"));
         }
     }
 }

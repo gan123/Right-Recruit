@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Routing;
 
 namespace RightRecruit
@@ -13,86 +12,123 @@ namespace RightRecruit
             routes.MapRoute(
                 name: "Inbox",
                 url: "inbox",
-                defaults: new { controller = "Inbox", action = "Inbox" }
-            );
+                defaults: new {controller = "Inbox", action = "Inbox"}
+                );
 
             routes.MapRoute(
                 name: "Home",
                 url: "home",
-                defaults: new { controller = "Home", action = "Home" }
-            );
+                defaults: new {controller = "Home", action = "Home"}
+                );
 
             routes.MapRoute(
                 name: "LoginVerify",
                 url: "login",
-                defaults: new { controller = "Home", action = "Login" }
-            );
+                defaults: new {controller = "Home", action = "Login"}
+                );
 
             routes.MapRoute(
                 name: "Logout",
                 url: "logout",
-                defaults: new { controller = "Home", action = "Logout" }
-            );
+                defaults: new {controller = "Home", action = "Logout"}
+                );
 
             routes.MapRoute(
                 name: "ClientsPage",
                 url: "clients",
-                defaults: new { controller = "Client", action = "List" }
-            );
+                defaults: new {controller = "Client", action = "List"}
+                );
 
             routes.MapRoute(
                 name: "ClientsQuickSearch",
                 url: "clients/quicksearch",
-                defaults: new { controller = "Client", action = "QuickSearch" }
-            );
+                defaults: new {controller = "Client", action = "QuickSearch"}
+                );
 
             routes.MapRoute(
                 name: "ClientsSearch",
                 url: "clients/search",
-                defaults: new { controller = "Client", action = "Search" }
-            );
+                defaults: new {controller = "Client", action = "Search"}
+                );
 
             routes.MapRoute(
                 name: "ClientsNew",
                 url: "clients/new",
-                defaults: new { controller = "Client", action = "New" }
-            );
+                defaults: new {controller = "Client", action = "New"}
+                );
 
             routes.MapRoute(
                 name: "ClientsCreate",
                 url: "clients/create",
-                defaults: new { controller = "Client", action = "Create" }
-            );
+                defaults: new {controller = "Client", action = "Create"}
+                );
 
             routes.MapRoute(
-               name: "IndustriesLookup",
-               url: "lookup/industries",
-               defaults: new { controller = "Lookup", action = "Industries" }
-           );
+                name: "IndustriesLookup",
+                url: "lookup/industries",
+                defaults: new {controller = "Lookup", action = "Industries"}
+                );
 
             routes.MapRoute(
-              name: "CountriesLookup",
-              url: "lookup/countries",
-              defaults: new { controller = "Lookup", action = "Countries" }
-          );
+                name: "CountriesLookup",
+                url: "lookup/countries",
+                defaults: new {controller = "Lookup", action = "Countries"}
+                );
 
             routes.MapRoute(
-              name: "StatesLookup",
-              url: "lookup/states",
-              defaults: new { controller = "Lookup", action = "States" }
-          );
+                name: "StatesLookup",
+                url: "lookup/states",
+                defaults: new {controller = "Lookup", action = "States"}
+                );
 
             routes.MapRoute(
-              name: "CitiesLookup",
-              url: "lookup/cities",
-              defaults: new { controller = "Lookup", action = "Cities" }
-          );
+                name: "CitiesLookup",
+                url: "lookup/cities",
+                defaults: new {controller = "Lookup", action = "Cities"}
+                );
 
             routes.MapRoute(
-              name: "PrioritiesLookup",
-              url: "lookup/priorities",
-              defaults: new { controller = "Lookup", action = "Priorities" }
-          );
+                name: "PrioritiesLookup",
+                url: "lookup/priorities",
+                defaults: new {controller = "Lookup", action = "Priorities"}
+                );
+
+            routes.MapRoute(
+                name: "Css",
+                url: "style/css",
+                defaults: new {controller = "Style", action = "Css"}
+                );
+
+            routes.MapRoute(
+                "RenderImage",
+                "images/{file}",
+                new {controller = "Images", action = "Render", file = ""}
+                );
+
+            routes.MapRoute(
+                "RenderImageWithResizeAndWatermark",
+                "images/{width}/{height}/w/{file}",
+                new
+                    {
+                        controller = "Images",
+                        action = "RenderWithResizeAndWatermark",
+                        width = "",
+                        height = "",
+                        file = ""
+                    }
+                );
+            routes.MapRoute(
+                "RenderImageWithResize",
+                "images/{width}/{height}/{file}",
+                new
+                    {
+                        controller = "Images",
+                        action = "RenderWithResize",
+                        width = "",
+                        height = "",
+                        file = ""
+                    }
+                );
         }
     }
 }

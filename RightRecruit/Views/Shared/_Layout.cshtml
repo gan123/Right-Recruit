@@ -5,7 +5,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
-    @Styles.Render("~/Content/css", "~/Content/less")
+    @Styles.Render("~/Content/css")
+    <link href="@Url.Action("Css", "Style")" rel="stylesheet" type="text/css" />
     @RenderSection("styles", required:false)
     @Scripts.Render("~/bundles/modernizr")
 </head>

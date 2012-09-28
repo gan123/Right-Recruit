@@ -7,5 +7,7 @@ namespace RightRecruit.Domain
         public Address Address {get; set;}
         public Contact Contact {get; set;}
         public ICollection<DenormalizedReference<Recruiter>> Recruiters {get; set;}
+        public string Domain { get; set; }
+        public AgencyBranding Branding { get; set; }
     }
 }
