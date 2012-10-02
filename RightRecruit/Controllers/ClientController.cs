@@ -1,6 +1,4 @@
-﻿using System;
-using System.Diagnostics.Contracts;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Mvc;
 using RightRecruit.Models;
 using RightRecruit.Mvc.Infrastructure.Controllers;

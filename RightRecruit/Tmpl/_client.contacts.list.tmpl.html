@@ -1,0 +1,5 @@
+﻿<li class="resultItem contactItem">
+    <label class="contactName" data-bind="text: Name()"/>
+    <img src="/rr/Content/images/cross_black.png" height="8" width="8" data-bind="command: $parent.client().RemoveContactCommand, activity: $parent.client().RemoveContactCommand.isExecuting"/>
+    <label class="contactTitle" data-bind="text: Title()"/>
+</li>

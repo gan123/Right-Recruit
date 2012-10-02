@@ -182,15 +182,18 @@
     <Content Include="Content\boilerplate-styles.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\images\add_black.png" />
+    <Content Include="Content\images\add_white.png" />
     <Content Include="Content\images\attachment_black.png" />
     <Content Include="Content\images\calendar_black.png" />
     <Content Include="Content\images\calendar_blue.png" />
     <Content Include="Content\images\conversation_black.png" />
+    <Content Include="Content\images\cross_black.png" />
     <Content Include="Content\images\delete_black.png" />
     <Content Include="Content\images\down_arrow.gif" />
     <Content Include="Content\images\edit_black.png" />
     <Content Include="Content\images\email_black.png" />
     <Content Include="Content\images\facebook.png" />
+    <Content Include="Content\images\fax_black.png" />
     <Content Include="Content\images\google.png" />
     <Content Include="Content\images\home_black.png" />
     <Content Include="Content\images\invalid.png" />
@@ -239,6 +242,7 @@
     <Content Include="Content\toastr.css" />
     <None Include="Content\styles.less" />
     <Content Include="Scripts\app\clients\new\model.client.js" />
+    <Content Include="Scripts\app\clients\new\model.contact.js" />
     <Content Include="Scripts\app\common\config.js" />
     <Content Include="Scripts\app\lookups\dataservice.lookups.js" />
     <None Include="Scripts\lib\jquery-1.8.0.intellisense.js" />
@@ -303,6 +307,7 @@
     <Content Include="Scripts\lib\wysiwyg.image.js" />
     <Content Include="Scripts\lib\wysiwyg.link.js" />
     <Content Include="Scripts\lib\wysiwyg.table.js" />
+    <Content Include="Tmpl\_client.contacts.list.tmpl.html" />
     <Content Include="Tmpl\_clients.list.tmpl.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -323,6 +328,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\themes\base\" />
+    <Folder Include="Tmpl\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

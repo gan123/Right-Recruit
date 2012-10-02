@@ -4,12 +4,6 @@
     define3rdPartyModules();
     loadPluginsAndBoot();
 
-    configureExternalTemplates = function() {
-        infuser.defaults.templatePrefix = "_";
-        infuser.defaults.templateSuffix = ".tmpl.html";
-        infuser.defaults.templateUrl = "/Tmpl";
-    };
-
     function define3rdPartyModules() {
         // These are already loaded via bundles. 
         // We define them and put them in the root object.
@@ -43,7 +37,7 @@
             
             infuser.defaults.templatePrefix = "_";
             infuser.defaults.templateSuffix = ".tmpl.html";
-            infuser.defaults.templateUrl = "Tmpl";
+            infuser.defaults.templateUrl = "../Tmpl";
         });
     }
 })();

@@ -157,7 +157,7 @@ select
         .validation-icon(@validation-icon-invalid, 98%, 50%);
     }
 }
-input[type=text], input[type=password], textarea {
+input[type=text], input[type=password], input[type=email], textarea {
     display: block;
     .border-radius;
     border: 1px solid @control-select-border-color;
@@ -916,6 +916,10 @@ p {
 	
 	&:hover {
 		color: white;
+		background-image: url("../Content/images/add_white.png");
+		.background-size(11px, 11px);
+		background-repeat: no-repeat;
+		background-position: 5% 50%;
 		.blue;
 	}
 }
@@ -940,12 +944,12 @@ p {
 
 .textBox {
 	width: 80%;
-	.textPadding(3px);
+	.textPadding(2px);
 	margin:0 0 0 4px;
 }
 .textArea {
 	width: 80%;
-	height: 50px;
+	height: 65px;
 	.textPadding(3px);
 	margin:0 0 0 4px;
 }
@@ -1026,6 +1030,7 @@ p {
 	margin: 0 4px 4px 4px;
 	padding-top: 2px;
 	padding-bottom: 2px;
+	border: 1px solid @metro-light-grey;
 }
 .detailsSection {
 	width: 100%;
@@ -1049,4 +1054,43 @@ p {
 }
 .existingNames {
 	width: 100px;
+}
+.agreement {
+	height:20%;
+	width:100%;
+}
+.agreementSection {
+	height: 100%;
+	width: 98%;
+}
+.contacts {
+	height:30%;
+	width:100%;
+}
+.contactsSection {
+	height: 100%;
+	width: 98%;
+}
+li.contactItem {
+	width: 150px;
+	padding: 4px;
+
+	img {
+		float: right;
+		cursor: pointer;
+	}
+}
+.contactName {
+	.boldLabel;
+	font-size: 9pt;
+	margin: 0;
+	float: left;
+	width:80%;
+}
+.contactTitle {
+	color: gray;
+	font-size: 7pt;
+	margin: 0;
+	float: left;
+	width:100%;
 }

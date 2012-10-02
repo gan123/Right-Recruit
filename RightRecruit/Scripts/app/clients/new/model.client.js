@@ -1,6 +1,6 @@
 ﻿define('model.client',
-    ['ko', 'model.industry', 'model.address', 'model.phone'],
-    function (ko, industryModel, addressModel, phoneModel) {
+    ['ko', 'model.industry', 'model.address', 'model.phone', 'model.contact'],
+    function (ko, industryModel, addressModel, phoneModel, contactModel) {
         var Client = function() {
             var self = this;
             var address = new addressModel();
@@ -15,6 +15,35 @@
             self.SelectedPriority = ko.observable().extend({required: true});
             self.AddressValidationErrors = ko.validation.group(address);
             self.PhoneValidationErrors = ko.validation.group(phone);
+            self.ContactName = ko.observable();
+            self.ContactTitle = ko.observable();
+            self.ContactPhone = ko.observable();
+            self.ContactEmail = ko.observable();
+            self.Contacts = ko.observableArray();
+            self.AddContactCommand = ko.asyncCommand({
+                execute: function (complete) {
+                    var newContact = new contactModel()
+                        .Name(self.ContactName)
+                        .Phone(new phoneModel().Phone(self.ContactPhone))
+                        .Email(self.ContactEmail)
+                        .Title(self.ContactTitle);
+                    self.Contacts.push(newContact);
+                    complete();
+                    console.log(self.Contacts().length);
+                },
+                canexecute: function(isExecuting) {
+                    return !isExecuting;
+                }
+            });
+            self.RemoveContactCommand = ko.asyncCommand({
+                execute: function (complete) {
+                    self.Contacts.remove(this);
+                    complete();
+                },
+                canexecute: function(isExecuting) {
+                    return true;
+                }
+            });
         };
 
         return Client;

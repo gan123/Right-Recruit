@@ -118,6 +118,7 @@ select:focus:invalid {
 }
 input[type=text],
 input[type=password],
+input[type=email],
 textarea {
   display: block;
   -webkit-border-radius: 4px 4px 4px 4px;
@@ -129,6 +130,7 @@ textarea {
 }
 input[type=text]:focus,
 input[type=password]:focus,
+input[type=email]:focus,
 textarea:focus {
   -moz-outline: 0;
   outline: 0;
@@ -140,6 +142,7 @@ textarea:focus {
 }
 input[type=text]:invalid,
 input[type=password]:invalid,
+input[type=email]:invalid,
 textarea:invalid {
   border-width: 1px;
   border-color: #ff8080;
@@ -973,6 +976,13 @@ p {
 }
 .addButton:hover {
   color: white;
+  background-image: url("../Content/images/add_white.png");
+  -moz-background-size: 11px 11px;
+  -o-background-size: 11px 11px;
+  -webkit-background-size: 11px 11px;
+  background-size: 11px 11px;
+  background-repeat: no-repeat;
+  background-position: 5% 50%;
   background: #0094cd;
   /*background: -moz-linear-gradient(top,  @metro-blue 0%, @metro-mild-blue 45%, @metro-serious-blue 100%);
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,@metro-blue), color-stop(45%,@metro-mild-blue), color-stop(100%,@metro-serious-blue));
@@ -1010,7 +1020,7 @@ p {
 }
 .textArea {
   width: 80%;
-  height: 50px;
+  height: 65px;
   padding: 5px;
   margin: 0 0 0 4px;
 }
@@ -1102,6 +1112,7 @@ p {
   margin: 0 4px 4px 4px;
   padding-top: 2px;
   padding-bottom: 2px;
+  border: 1px solid #e7e7e7;
 }
 .detailsSection {
   width: 100%;
@@ -1125,4 +1136,43 @@ p {
 }
 .existingNames {
   width: 100px;
+}
+.agreement {
+  height: 20%;
+  width: 100%;
+}
+.agreementSection {
+  height: 100%;
+  width: 98%;
+}
+.contacts {
+  height: 30%;
+  width: 100%;
+}
+.contactsSection {
+  height: 100%;
+  width: 98%;
+}
+li.contactItem {
+  width: 150px;
+  padding: 4px;
+}
+li.contactItem img {
+  float: right;
+  cursor: pointer;
+}
+.contactName {
+  font-size: 7pt;
+  font-weight: bold;
+  font-size: 9pt;
+  margin: 0;
+  float: left;
+  width: 80%;
+}
+.contactTitle {
+  color: gray;
+  font-size: 7pt;
+  margin: 0;
+  float: left;
+  width: 100%;
 }

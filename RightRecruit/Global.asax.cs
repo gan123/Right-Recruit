@@ -4,6 +4,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using System.Web.SessionState;
 using Castle.Windsor;
 using Microsoft.Practices.ServiceLocation;
 using RightRecruit.Installers;
@@ -39,6 +40,7 @@ namespace RightRecruit
 
         protected void Session_Start(object sender, EventArgs e)
         {
+            HttpContext.Current.Session.Timeout = 60;
             HttpContext.Current.Session[Globals.CurrentUser] = new CurrentUser(null);
         }
 

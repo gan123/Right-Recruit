@@ -9,12 +9,15 @@ namespace RightRecruit.Mvc.Infrastructure.Listeners
 {
     public class AuditListener : IDocumentStoreListener
     {
+        private const string System = "system";
+
         public bool BeforeStore(string key, object entityInstance, RavenJObject metadata, RavenJObject original)
         {
             var entity = entityInstance as Entity;
             if (entity == null) return false;
 
-            var currentUserId = HttpContext.Current.Session[Globals.CurrentUser] == null ? "system" : ((CurrentUser)HttpContext.Current.Session[Globals.CurrentUser]).User.Id;
+            var currentUserId = HttpContext.Current.Session[Globals.CurrentUser] == null ? System :
+                ((CurrentUser)HttpContext.Current.Session[Globals.CurrentUser]).User == null ? System : ((CurrentUser)HttpContext.Current.Session[Globals.CurrentUser]).User.Id;
             if (string.IsNullOrEmpty(entity.CreatedByUserId))
             {
                 entity.CreatedDate = DateTime.Now;

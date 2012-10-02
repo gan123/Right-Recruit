@@ -26,7 +26,8 @@
                     console.log(isValid);
                     return !isExecuting && isValid;
                 }
-            });
+            }),
+            contactsTemplate = 'client.contacts.list';
 
         client().Address().Country.subscribe(function(val) {
             states([]);
@@ -117,6 +118,7 @@
             createCommand: createCommand,
             isValid: isValid,
             priorities: priorities,
-            existingClientNames: existingClientNames
+            existingClientNames: existingClientNames,
+            contactsTemplate: contactsTemplate
         };
     });
