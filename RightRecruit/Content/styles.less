@@ -67,7 +67,7 @@
 }
 body{
 	cursor: default;
-	background: #fff;
+	background: #f8f7f7;
 }
 
 .blue
@@ -157,7 +157,7 @@ select
         .validation-icon(@validation-icon-invalid, 98%, 50%);
     }
 }
-input[type=text], input[type=password], input[type=email], textarea {
+input[type=text], input[type=password], input[type=url], input[type=email], textarea {
     display: block;
     .border-radius;
     border: 1px solid @control-select-border-color;
@@ -178,7 +178,7 @@ input[type=text], input[type=password], input[type=email], textarea {
 		background: white;
 	}	
 }
-input[type=text] {
+input[type=text], input[type=url], input[type=email] {
     &:required {
         .validation-icon(@validation-icon-required, 98%, 50%);
     }
@@ -207,6 +207,10 @@ textarea {
 
 input[type=button] {
 	font-size: 8pt;
+
+	&:hover {
+		background-color: @metro-light-grey;
+	}
 }
 .headerContainer
 {
@@ -217,7 +221,7 @@ input[type=button] {
 {
     position: absolute;
     width: 100%;
-    top: 100px;
+    top: 90px;
     bottom: 35px;
 }
 header
@@ -377,31 +381,6 @@ a {
 	p.forgot, p.complete {
 		clear:both;
 	}
-}
-
-#signin, #signout, #account {
-   .border-radius(4px, 4px, 4px, 4px);
-    background:#39d ;
-    border:1px solid #39D;
-    color:#fff;
-	.text-shadow(0, -1px, 0, 51, 153, 221, 1);
-    padding:4px 10px 5px;
-    font-size:11px;
-    margin:0 5px 0 0;
-    font-weight:bold;
-}
-
-#signin::-moz-focus-inner, #signout::-moz-focus-inner, #account::-moz-focus-inner {
-padding:0;
-border:0;
-}
-
-#signin:hover, #signin:focus, #signout:hover, #signout:focus, #account:hover, #account:focus {
-    background-position:0 -5px;
-    cursor:pointer;
-    background: @metro-light-grey;
-    color: black;
-    border: 1px solid #d3d3d3;
 }
 
 #topnav a.menu-open {
@@ -674,11 +653,17 @@ input[type=checkbox] {
 	height: 150px;
 }
 .filterContainer {
-	padding: 10px;
 	float: left;
 	display: inline-block;
-	width: 100%;
+	width: 98.3%;
+	.box-shadow(0, 2px, 4px, 0, 50, 50, 50, 0.2);	
+	background-color: white;
+	margin-bottom: 16px;
+	height: 30px;
+	border-bottom: 1px solid @metro-light-grey;
+	padding: 8px;
 }
+
 .filterItemContainer{
 	float: left;
 	margin-left: 20px;
@@ -719,9 +704,9 @@ input[type=checkbox] {
 	  color: white;
 	}
 }
-.button {
+.button, .normalButton {
 	.border-light-grey;
-	padding: 5px 5px 5px 25px;
+	padding: 5px;
 	color: @metro-blue;
 	background-repeat: no-repeat;
     background-position: 10% 50%;
@@ -731,22 +716,16 @@ input[type=checkbox] {
 	background-color: white;	
 	cursor: pointer;
 	margin: 4px;
-	
-	&:hover {
-		.blue;
-	}	
+}
+
+.button {
+	padding: 5px 5px 5px 25px;
 }
 
 .filter {
 	background-image: url("../Content/images/search_black.png");
 	background-repeat: no-repeat;
 	.background-size(11px, 11px);
-
-	&:hover {
-		color: white;
-		background-image: url("../Content/images/search_black.png");
-		.blue;
-	}	
 }
 
 .cancel {
@@ -757,12 +736,6 @@ input[type=checkbox] {
 	background-image: url("../Content/images/save_black.png");
 	background-repeat: no-repeat;
 	.background-size(11px, 11px);
-
-	&:hover{
-		background-image: url("../Content/images/save_white.png");
-		background-repeat: no-repeat;
-		.background-size(11px, 11px);
-	}
 
 	&:disabled {
 		background-image: url("../Content/images/save_disabled.png");
@@ -913,15 +886,6 @@ p {
 	font-size: 9pt;
 	margin-right: 2%;
 	background-color: white;	
-	
-	&:hover {
-		color: white;
-		background-image: url("../Content/images/add_white.png");
-		.background-size(11px, 11px);
-		background-repeat: no-repeat;
-		background-position: 5% 50%;
-		.blue;
-	}
 }
 .right {
 	float: right;

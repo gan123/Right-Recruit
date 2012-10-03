@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Raven.Client.Indexes;
@@ -11,7 +12,7 @@ namespace RightRecruit.Mvc.Infrastructure.Indexes
         {
             public string Id { get; set; }
             public string Name { get; set; }
-            public string Priority { get; set; }
+            public int Priority { get; set; }
             public string Industry { get; set; }
             public string Country { get; set; }
             public IList<string> Contacts { get; set; }

@@ -49,21 +49,29 @@ namespace RightRecruit.Controllers
 
         public static string ApplyBasicColor(this string css, string basic)
         {
+            if (string.IsNullOrEmpty(basic))
+                return css;
             return css.Replace(BasicWithColor, string.Format(BasicFormat, basic));
         }
 
         public static string ApplyMildColor(this string css, string mild)
         {
+            if (string.IsNullOrEmpty(mild))
+                return css;
             return css.Replace(MildWithColor, string.Format(MildFormat, mild));
         }
 
         public static string ApplyBoldColor(this string css, string bold)
         {
+            if (string.IsNullOrEmpty(bold))
+                return css;
             return css.Replace(BoldWithColor, string.Format(BoldFormat, bold));
         }
 
         public static string ApplyControlBorderColor(this string css, string border)
         {
+            if (string.IsNullOrEmpty(border))
+                return css;
             return css.Replace(ControlBorderWithColor, string.Format(ControlBorderFormat, border));
         }
     }

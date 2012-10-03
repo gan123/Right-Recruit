@@ -10,7 +10,7 @@
 }
 body {
   cursor: default;
-  background: #fff;
+  background: #f8f7f7;
 }
 .blue {
   background: #0094cd;
@@ -118,6 +118,7 @@ select:focus:invalid {
 }
 input[type=text],
 input[type=password],
+input[type=url],
 input[type=email],
 textarea {
   display: block;
@@ -130,6 +131,7 @@ textarea {
 }
 input[type=text]:focus,
 input[type=password]:focus,
+input[type=url]:focus,
 input[type=email]:focus,
 textarea:focus {
   -moz-outline: 0;
@@ -142,23 +144,30 @@ textarea:focus {
 }
 input[type=text]:invalid,
 input[type=password]:invalid,
+input[type=url]:invalid,
 input[type=email]:invalid,
 textarea:invalid {
   border-width: 1px;
   border-color: #ff8080;
   background: white;
 }
-input[type=text]:required {
+input[type=text]:required,
+input[type=url]:required,
+input[type=email]:required {
   background-image: url(../Content/images/val_asterisk.png);
   background-repeat: no-repeat;
   background-position: 98% 50%;
 }
-input[type=text]:required:valid {
+input[type=text]:required:valid,
+input[type=url]:required:valid,
+input[type=email]:required:valid {
   background-image: url(../Content/images/valid.png);
   background-repeat: no-repeat;
   background-position: 98% 50%;
 }
-input[type=text]:focus:invalid {
+input[type=text]:focus:invalid,
+input[type=url]:focus:invalid,
+input[type=email]:focus:invalid {
   background-image: url(../Content/images/invalid.png);
   background-repeat: no-repeat;
   background-position: 98% 50%;
@@ -181,6 +190,9 @@ textarea:focus:invalid {
 input[type=button] {
   font-size: 8pt;
 }
+input[type=button]:hover {
+  background-color: #e7e7e7;
+}
 .headerContainer {
   width: 100%;
   display: table;
@@ -188,7 +200,7 @@ input[type=button] {
 .container {
   position: absolute;
   width: 100%;
-  top: 100px;
+  top: 90px;
   bottom: 35px;
 }
 header {
@@ -348,40 +360,6 @@ a.signin span {
 #signin_menu p.forgot,
 #signin_menu p.complete {
   clear: both;
-}
-#signin,
-#signout,
-#account {
-  -webkit-border-radius: 4px 4px 4px 4px;
-  -moz-border-radius: 4px 4px 4px 4px;
-  border-radius: 4px 4px 4px 4px;
-  background: #39d ;
-  border: 1px solid #39D;
-  color: #fff;
-  -webkit-text-shadow: 0 -1px 0 #3399dd;
-  text-shadow: 0 -1px 0 #3399dd;
-  padding: 4px 10px 5px;
-  font-size: 11px;
-  margin: 0 5px 0 0;
-  font-weight: bold;
-}
-#signin::-moz-focus-inner,
-#signout::-moz-focus-inner,
-#account::-moz-focus-inner {
-  padding: 0;
-  border: 0;
-}
-#signin:hover,
-#signin:focus,
-#signout:hover,
-#signout:focus,
-#account:hover,
-#account:focus {
-  background-position: 0 -5px;
-  cursor: pointer;
-  background: #e7e7e7;
-  color: black;
-  border: 1px solid #d3d3d3;
 }
 #topnav a.menu-open {
   background: white!important;
@@ -679,10 +657,17 @@ input[type=checkbox] {
   height: 150px;
 }
 .filterContainer {
-  padding: 10px;
   float: left;
   display: inline-block;
-  width: 100%;
+  width: 98.3%;
+  -moz-box-shadow: 0 2px 4px 0 rgba(50, 50, 50, 0.2);
+  -webkit-box-shadow: 0 2px 4px 0 rgba(50, 50, 50, 0.2);
+  box-shadow: 0 2px 4px 0 rgba(50, 50, 50, 0.2);
+  background-color: white;
+  margin-bottom: 16px;
+  height: 30px;
+  border-bottom: 1px solid #e7e7e7;
+  padding: 8px;
 }
 .filterItemContainer {
   float: left;
@@ -746,9 +731,10 @@ input[type=checkbox] {
 .password:-ms-input-placeholder {
   color: white;
 }
-.button {
+.button,
+.normalButton {
   border: 1px solid #e7e7e7;
-  padding: 5px 5px 5px 25px;
+  padding: 5px;
   color: #0094cd;
   background-repeat: no-repeat;
   background-position: 10% 50%;
@@ -761,17 +747,8 @@ input[type=checkbox] {
   cursor: pointer;
   margin: 4px;
 }
-.button:hover {
-  background: #0094cd;
-  /*background: -moz-linear-gradient(top,  @metro-blue 0%, @metro-mild-blue 45%, @metro-serious-blue 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,@metro-blue), color-stop(45%,@metro-mild-blue), color-stop(100%,@metro-serious-blue));
-	background: -webkit-linear-gradient(top,  @metro-blue 0%,@metro-mild-blue 45%,@metro-serious-blue 100%);
-	background: -o-linear-gradient(top,  @metro-blue 0%,@metro-mild-blue 45%,@metro-serious-blue 100%);
-	background: -ms-linear-gradient(top,  @metro-blue 0%,@metro-mild-blue 45%,@metro-serious-blue 100%);
-	background: linear-gradient(to bottom,  @metro-blue 0%,@metro-mild-blue 45%,@metro-serious-blue 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='@metro-blue', endColorstr='@metro-serious-blue',GradientType=0 );*/
-
-  color: white;
+.button {
+  padding: 5px 5px 5px 25px;
 }
 .filter {
   background-image: url("../Content/images/search_black.png");
@@ -781,33 +758,11 @@ input[type=checkbox] {
   -webkit-background-size: 11px 11px;
   background-size: 11px 11px;
 }
-.filter:hover {
-  color: white;
-  background-image: url("../Content/images/search_black.png");
-  background: #0094cd;
-  /*background: -moz-linear-gradient(top,  @metro-blue 0%, @metro-mild-blue 45%, @metro-serious-blue 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,@metro-blue), color-stop(45%,@metro-mild-blue), color-stop(100%,@metro-serious-blue));
-	background: -webkit-linear-gradient(top,  @metro-blue 0%,@metro-mild-blue 45%,@metro-serious-blue 100%);
-	background: -o-linear-gradient(top,  @metro-blue 0%,@metro-mild-blue 45%,@metro-serious-blue 100%);
-	background: -ms-linear-gradient(top,  @metro-blue 0%,@metro-mild-blue 45%,@metro-serious-blue 100%);
-	background: linear-gradient(to bottom,  @metro-blue 0%,@metro-mild-blue 45%,@metro-serious-blue 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='@metro-blue', endColorstr='@metro-serious-blue',GradientType=0 );*/
-
-  color: white;
-}
 .cancel {
   padding: 5px;
 }
 .save {
   background-image: url("../Content/images/save_black.png");
-  background-repeat: no-repeat;
-  -moz-background-size: 11px 11px;
-  -o-background-size: 11px 11px;
-  -webkit-background-size: 11px 11px;
-  background-size: 11px 11px;
-}
-.save:hover {
-  background-image: url("../Content/images/save_white.png");
   background-repeat: no-repeat;
   -moz-background-size: 11px 11px;
   -o-background-size: 11px 11px;
@@ -973,26 +928,6 @@ p {
   font-size: 9pt;
   margin-right: 2%;
   background-color: white;
-}
-.addButton:hover {
-  color: white;
-  background-image: url("../Content/images/add_white.png");
-  -moz-background-size: 11px 11px;
-  -o-background-size: 11px 11px;
-  -webkit-background-size: 11px 11px;
-  background-size: 11px 11px;
-  background-repeat: no-repeat;
-  background-position: 5% 50%;
-  background: #0094cd;
-  /*background: -moz-linear-gradient(top,  @metro-blue 0%, @metro-mild-blue 45%, @metro-serious-blue 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,@metro-blue), color-stop(45%,@metro-mild-blue), color-stop(100%,@metro-serious-blue));
-	background: -webkit-linear-gradient(top,  @metro-blue 0%,@metro-mild-blue 45%,@metro-serious-blue 100%);
-	background: -o-linear-gradient(top,  @metro-blue 0%,@metro-mild-blue 45%,@metro-serious-blue 100%);
-	background: -ms-linear-gradient(top,  @metro-blue 0%,@metro-mild-blue 45%,@metro-serious-blue 100%);
-	background: linear-gradient(to bottom,  @metro-blue 0%,@metro-mild-blue 45%,@metro-serious-blue 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='@metro-blue', endColorstr='@metro-serious-blue',GradientType=0 );*/
-
-  color: white;
 }
 .right {
   float: right;

@@ -21,15 +21,14 @@ namespace RightRecruit.Data.Setup
 
         static void Main()
         {
-            //LoadPlaces();
-            //LoadIndustries();
-            //CreateAgency();
+            LoadPlaces();
+            LoadIndustries();
+            CreateAgency();
             //UploadImage();
             //GetImage();
-            //LoadStatus();
-            //CreateClients();
+            LoadStatus();
+            CreateClients();
             //GetStore();
-            ApplyTheme();
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Completed successfully");
             Console.ReadLine();
@@ -63,24 +62,6 @@ namespace RightRecruit.Data.Setup
                 stream.Seek(0, SeekOrigin.Begin);
                 stream.CopyTo(fs);
                 fs.Close();
-            }
-        }
-
-        static void ApplyTheme()
-        {
-            using (var session = GetStore().OpenSession())
-            {
-                var agency = session.Load<Domain.Agency>("agencies/1");
-                agency.Branding = new AgencyBranding
-                                      {
-                                          Theme = new Theme
-                                                      {
-                                                          BoldColor = "#57396B",
-                                                          MidColor = "#65447B",
-                                                          BasicColor = "#724C89"
-                                                      }
-                                      };
-                session.SaveChanges();
             }
         }
 
@@ -328,7 +309,16 @@ namespace RightRecruit.Data.Setup
                                      LastUpdatedUserId = "system",
                                      CreatedDate = DateTime.Now,
                                      Database = Database,
-                                     Domain = "talentcorner.rightrecruit.com"
+                                     Domain = "talentcorner.rightrecruit.com",
+                                     Branding = new AgencyBranding
+                                                    {
+                                                        Theme = new Theme
+                                                                    {
+                                                                        BoldColor = "#57396B",
+                                                                        MidColor = "#65447B",
+                                                                        BasicColor = "#724C89"
+                                                                    }
+                                                    }
                                  };
                 session.Store(agency);
                 session.SaveChanges();
@@ -546,7 +536,7 @@ namespace RightRecruit.Data.Setup
                 _store.Initialize();
                 IndexCreation.CreateIndexes(typeof(ClientSearchIndex).Assembly, _store);
             }
-            
+            _store.Conventions.SaveEnumsAsIntegers = true;
             return _store;
         }
 

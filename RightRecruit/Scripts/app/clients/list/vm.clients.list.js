@@ -1,19 +1,12 @@
 ﻿define('vm.clients.list',
-    ['ko', 'dataservice.client', 'model.clientSummary'],
-    function (ko, clientService, clientSummary) {
+    ['ko', 'dataservice.client', 'model.clientSummary', 'dataservice.lookups', 'model.industry'],
+    function (ko, clientService, clientSummary, lookups, industry) {
         var
             clients = ko.observableArray(),
             total = ko.observable(),
             showing = ko.observable(),
-            filterToggleCommand = ko.asyncCommand({
-                execute: function (complete) {
-                    $("#filterPanel").slideToggle();
-                    complete();
-                },
-                canexecute: function (isExecuting) {
-                    return !isExecuting;
-                }
-            }),
+            priorities = ko.observableArray(),
+            selectedPriority = ko.observable(),
             addNewClientCommand = ko.asyncCommand({
                 execute: function (complete) {
                     window.location = '/rr/clients/create';
@@ -23,6 +16,8 @@
                     return !isExecuting;
                 }
             }),
+            industries = ko.observableArray(),
+            selectedIndustry = ko.observable(),
             templateName = 'clients.list';
 
         var init = function() {
@@ -50,6 +45,22 @@
                     });
                 }
             });
+
+            lookups.priorities(null, {
+                success: function (result) {
+                    $.each(result, function (i, p) {
+                        priorities.push(p);
+                    });
+                }
+            });
+            
+            lookups.industries(null, {
+                success: function (result) {
+                    $.each(result, function (i, p) {
+                        industries.push(new industry().Id(p.Id).Name(p.Name));
+                    });
+                }
+            });
         };
 
         init();
@@ -59,7 +70,10 @@
             total: total,
             showing: showing,
             templateName: templateName,
-            filterToggleCommand: filterToggleCommand,
-            addNewClientCommand: addNewClientCommand
+            addNewClientCommand: addNewClientCommand,
+            priorities: priorities,
+            selectedPriority: selectedPriority,
+            industries: industries,
+            selectedIndustry: selectedIndustry
         };
     });

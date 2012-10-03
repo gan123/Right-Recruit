@@ -3,12 +3,16 @@
 }
 
 <section id="clients-view">
-    <div id="filterPanel">
-        <div class="filterContainer">
+    <div class="filterContainer">
+        <div class="filterItemContainer">
+            <select data-bind="options: priorities, value: selectedPriority, optionsCaption: 'Priority'"></select>
         </div>
-    </div>
-    <div class="tab">
-        <div data-bind="command: filterToggleCommand, activity: filterToggleCommand.isExecuting" class="filterTab">FILTER</div>
+        <div class="filterItemContainer">
+            <select data-bind="options: industries, optionsText: 'Name', value: selectedIndustry, optionsCaption: 'Industry'"></select>
+        </div>
+        <div class="filterItemContainer">
+            <input type="button" class="button filter" value="APPLY" />
+        </div>
     </div>
     <span>
         <label class="boldLabel" style="margin-left: 2%;">SHOWING</label>
