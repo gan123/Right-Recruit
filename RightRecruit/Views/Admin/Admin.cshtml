@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "Admin";
+}
+
+<section id="admin-view">
+    <div class="adminContainer">
+        <div class="field adminCategory">
+            Global Settings
+            <hr />
+        </div>
+        <div class="field">
+            <ul class="adminList">
+                <li>
+                    <a href="/rr/admin/facebook" class="textCenter">
+                        <div class="left" style="width: 70%;">
+                            <img src="/rr/Content/images/facebook.png" class="facebook" />
+                            <label class="boldLabel">facebook</label>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/rr/admin/twitter" class="textCenter">
+                        <div class="left" style="width: 70%;">
+                            <img src="/rr/Content/images/twitter.png" class="twitter" />
+                            <label class="boldLabel">twitter</label>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/rr/admin/personalize" class="textCenter">
+                        <div class="left" style="width: 70%;">
+                            <img src="/rr/Content/images/gear_black.png" class="personalize" />
+                            <label class="boldLabel">Personalize</label>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+@section scripts{
+    @Scripts.Render("~/bundles/admin-view")
+}

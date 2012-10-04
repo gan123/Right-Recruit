@@ -151,6 +151,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImageController.cs" />
@@ -181,11 +182,38 @@
   <ItemGroup>
     <Content Include="Content\boilerplate-styles.css" />
     <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\colorpicker.css" />
     <Content Include="Content\images\add_black.png" />
     <Content Include="Content\images\add_white.png" />
     <Content Include="Content\images\attachment_black.png" />
     <Content Include="Content\images\calendar_black.png" />
     <Content Include="Content\images\calendar_blue.png" />
+    <Content Include="Content\images\colorpicker\blank.gif" />
+    <Content Include="Content\images\colorpicker\colorpicker_background.png" />
+    <Content Include="Content\images\colorpicker\colorpicker_hex.png" />
+    <Content Include="Content\images\colorpicker\colorpicker_hsb_b.png" />
+    <Content Include="Content\images\colorpicker\colorpicker_hsb_h.png" />
+    <Content Include="Content\images\colorpicker\colorpicker_hsb_s.png" />
+    <Content Include="Content\images\colorpicker\colorpicker_indic.gif" />
+    <Content Include="Content\images\colorpicker\colorpicker_overlay.png" />
+    <Content Include="Content\images\colorpicker\colorpicker_rgb_b.png" />
+    <Content Include="Content\images\colorpicker\colorpicker_rgb_g.png" />
+    <Content Include="Content\images\colorpicker\colorpicker_rgb_r.png" />
+    <Content Include="Content\images\colorpicker\colorpicker_select.gif" />
+    <Content Include="Content\images\colorpicker\colorpicker_submit.png" />
+    <Content Include="Content\images\colorpicker\custom_background.png" />
+    <Content Include="Content\images\colorpicker\custom_hex.png" />
+    <Content Include="Content\images\colorpicker\custom_hsb_b.png" />
+    <Content Include="Content\images\colorpicker\custom_hsb_h.png" />
+    <Content Include="Content\images\colorpicker\custom_hsb_s.png" />
+    <Content Include="Content\images\colorpicker\custom_indic.gif" />
+    <Content Include="Content\images\colorpicker\custom_rgb_b.png" />
+    <Content Include="Content\images\colorpicker\custom_rgb_g.png" />
+    <Content Include="Content\images\colorpicker\custom_rgb_r.png" />
+    <Content Include="Content\images\colorpicker\custom_submit.png" />
+    <Content Include="Content\images\colorpicker\select.png" />
+    <Content Include="Content\images\colorpicker\select2.png" />
+    <Content Include="Content\images\colorpicker\slider.png" />
     <Content Include="Content\images\conversation_black.png" />
     <Content Include="Content\images\cross_black.png" />
     <Content Include="Content\images\delete_black.png" />
@@ -194,6 +222,7 @@
     <Content Include="Content\images\email_black.png" />
     <Content Include="Content\images\facebook.png" />
     <Content Include="Content\images\fax_black.png" />
+    <Content Include="Content\images\gear_black.png" />
     <Content Include="Content\images\google.png" />
     <Content Include="Content\images\home_black.png" />
     <Content Include="Content\images\invalid.png" />
@@ -241,6 +270,8 @@
     <Content Include="Content\toastr-responsive.css" />
     <Content Include="Content\toastr.css" />
     <None Include="Content\styles.less" />
+    <Content Include="Scripts\app\admin\admin.js" />
+    <Content Include="Scripts\app\admin\personalize.js" />
     <Content Include="Scripts\app\clients\new\model.client.js" />
     <Content Include="Scripts\app\clients\new\model.contact.js" />
     <Content Include="Scripts\app\common\config.js" />
@@ -276,6 +307,7 @@
     <Content Include="Scripts\app\inbox\vm.inbox.js" />
     <Content Include="Scripts\app\search\vm.client.quicksearch.js" />
     <Content Include="Scripts\app\search\vm.recruiter.quicksearch.js" />
+    <Content Include="Scripts\lib\colorpicker.js" />
     <Content Include="Scripts\lib\jquery.qtip.js" />
     <Content Include="Scripts\lib\jquery.wysiwyg.js" />
     <Content Include="Scripts\lib\jquery-ui-1.8.23.custom.min.js" />
@@ -299,6 +331,7 @@
     <Content Include="Scripts\lib\toastr.js" />
     <Content Include="Scripts\lib\underscore.js" />
     <Content Include="Scripts\lib\TrafficCop.js" />
+    <Content Include="Scripts\lib\utils.js" />
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\lib\sammy.js" />
     <Content Include="Scripts\lib\sammy.title.js" />
@@ -324,6 +357,8 @@
     <Content Include="Views\Home\Home.cshtml" />
     <Content Include="Views\Client\List.cshtml" />
     <Content Include="Views\Client\Create.cshtml" />
+    <Content Include="Views\Admin\Admin.cshtml" />
+    <Content Include="Views\Admin\Personalize.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -56,8 +56,9 @@ namespace RightRecruit
                     "~/Scripts/lib/sammy.*",
                     "~/Scripts/lib/amplify.*",
                     "~/Scripts/lib/toastr.js",
-                    "~/Scripts/lib/jquery.qtip.js"
-                    ));
+                    "~/Scripts/lib/jquery.qtip.js",
+                    "~/Scripts/lib/utils.js",
+                    "~/Scripts/lib/colorpicker.js"));
 
             // Text editor
             bundles.Add(new ScriptBundle("~/bundles/texteditor")
@@ -90,13 +91,18 @@ namespace RightRecruit
                 .IncludeDirectory("~/Scripts/app/clients/new", "*.js", searchSubdirectories: false)
                 .IncludeDirectory("~/Scripts/app/clients", "*.js", searchSubdirectories: false));
 
+            // Admin view bundle
+            bundles.Add(new ScriptBundle("~/bundles/admin-view")
+                .IncludeDirectory("~/Scripts/app/admin", "*.js", searchSubdirectories: false));
+
             // 3rd Party CSS files
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/themes/custom/jquery-ui-1.8.23.custom.css",
                 "~/Content/boilerplate-styles.css",
                 "~/Content/jquery.qtip.css",
                 "~/Content/toastr.css",
-                "~/Content/toastr-responsive.css"));
+                "~/Content/toastr-responsive.css",
+                "~/Content/colorpicker.css"));
         }
     }
 }

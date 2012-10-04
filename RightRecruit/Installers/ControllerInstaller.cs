@@ -14,7 +14,8 @@ namespace RightRecruit.Installers
                 Component.For<HomeController>().ImplementedBy<HomeController>().LifeStyle.Transient,
                 Component.For<ClientController>().ImplementedBy<ClientController>().LifeStyle.Transient,
                 Component.For<LookupController>().ImplementedBy<LookupController>().LifeStyle.Transient,
-                Component.For<StyleController>().ImplementedBy<StyleController>().LifeStyle.Transient);
+                Component.For<StyleController>().ImplementedBy<StyleController>().LifeStyle.Transient,
+                Component.For<AdminController>().ImplementedBy<AdminController>().LifeStyle.Transient);
         }
     }
 }

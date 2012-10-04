@@ -100,6 +100,18 @@ namespace RightRecruit
                 );
 
             routes.MapRoute(
+                name: "Admin",
+                url: "admin",
+                defaults: new { controller = "Admin", action = "Admin" }
+                );
+
+            routes.MapRoute(
+                name: "Admin-Theme",
+                url: "admin/personalize",
+                defaults: new { controller = "Admin", action = "Personalize" }
+                );
+
+            routes.MapRoute(
                 "RenderImage",
                 "images/{file}",
                 new {controller = "Images", action = "Render", file = ""}

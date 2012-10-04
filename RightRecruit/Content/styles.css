@@ -795,6 +795,9 @@ input[type=checkbox] {
 .small {
   font-size: 8pt;
 }
+.extraSmall {
+  font-size: 7pt;
+}
 .floatRight {
   float: right;
 }
@@ -1110,4 +1113,60 @@ li.contactItem img {
   margin: 0;
   float: left;
   width: 100%;
+}
+.adminContainer {
+  -moz-box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.13);
+  -webkit-box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.13);
+  box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.13);
+  border: 1px solid #e7e7e7;
+  margin: 8px;
+  width: 98%;
+  height: 400px;
+}
+.adminCategory {
+  font-size: 10pt;
+  font-weight: bold;
+  margin: 16px 0 0 16px;
+}
+hr {
+  background-color: #e7e7e7;
+  width: 98%;
+  margin: 2px 0 0 0;
+}
+.facebook,
+.twitter,
+.personalize {
+  width: 40px;
+  height: 40px;
+  margin: 2px;
+}
+.adminList {
+  display: inline-block;
+  padding-left: 10px;
+  margin: 2px;
+}
+.adminList li {
+  display: inline-block;
+  margin: 2px 4px 2px 4px;
+}
+.adminList li a {
+  text-decoration: none;
+  color: black;
+}
+.textCenter {
+  text-align: center;
+}
+.companyAppHeader,
+.callbackUrl {
+  padding: 5px;
+  width: 300px;
+}
+.basic {
+  padding: 2px;
+  width: 100px;
+  background-color: #0094cd;
+  color: white;
+}
+.margin {
+  margin-top: 16px;
 }
