@@ -356,6 +356,7 @@ a.signin span {
 }
 #signin_menu label {
   font-weight: normal;
+  font-size: 9pt;
 }
 #signin_menu p.remember {
   padding: 0 0 10px 0;
@@ -379,9 +380,6 @@ a.signin span {
 a.signin.menu-open span {
   background-image: url("../Content/images/toggle_up_dark.png");
   color: #789;
-}
-label {
-  font-size: 9pt;
 }
 a.forgotLink {
   font-size: 9pt;

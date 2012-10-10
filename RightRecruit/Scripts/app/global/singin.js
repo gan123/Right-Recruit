@@ -26,6 +26,7 @@
                 });
 
                 $("#signin").click(function () {
+                    $("#signin").attr('disabled', true);
                     var login = {
                         login: $("#username").val(),
                         password: $("#password").val(),
@@ -36,7 +37,7 @@
                             window.location = '/rr/inbox';
                         },
                         error: function (result) {
-                            console.log(result);
+                            $("#invalidAuth").css('display', 'inline');
                         }
                     });
                 });
