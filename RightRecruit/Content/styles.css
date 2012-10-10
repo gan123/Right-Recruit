@@ -8,6 +8,9 @@
   -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
 }
+.floatLeft {
+  float: left;
+}
 body {
   cursor: default;
   background: #f8f7f7;
@@ -95,7 +98,7 @@ select:focus {
 }
 select:invalid {
   border-width: 1px;
-  border-color: #ff8080;
+  border-color: #ff9494;
   background: white;
   background-image: url("../Content/images/down_arrow.gif");
   background-repeat: no-repeat;
@@ -148,7 +151,7 @@ input[type=url]:invalid,
 input[type=email]:invalid,
 textarea:invalid {
   border-width: 1px;
-  border-color: #ff8080;
+  border-color: #ff9494;
   background: white;
 }
 input[type=text]:required,
@@ -384,15 +387,15 @@ a.forgotLink {
   font-size: 9pt;
 }
 .profilePic {
-  height: 50px;
-  width: 50px;
-  background: rgba(255, 255, 255, 0.8);
   border: 1px solid rgba(255, 255, 255, 0.8);
-  -moz-box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.3);
-  -webkit-box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.3);
-  box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.13);
+  -webkit-box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.13);
+  box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.13);
   padding: 4px;
   float: left;
+  -webkit-border-radius: 4px 4px 4px 4px;
+  -moz-border-radius: 4px 4px 4px 4px;
+  border-radius: 4px 4px 4px 4px;
 }
 .detailsLabel {
   margin-left: 2%;
@@ -1122,6 +1125,7 @@ li.contactItem img {
   margin: 8px;
   width: 98%;
   height: 400px;
+  float: left;
 }
 .adminCategory {
   font-size: 10pt;
@@ -1161,12 +1165,88 @@ hr {
   padding: 5px;
   width: 300px;
 }
-.basic {
+.basic,
+.mid,
+.bold {
   padding: 2px;
   width: 100px;
-  background-color: #0094cd;
   color: white;
+}
+.basic {
+  background-color: #0094cd;
+}
+.mid {
+  background-color: #0088cc;
+}
+.bold {
+  background-color: #006393;
 }
 .margin {
   margin-top: 16px;
+}
+.adminSection {
+  width: 60%;
+  float: left;
+}
+.previewSection {
+  width: 40%;
+  float: left;
+}
+.previewHeaderDiv {
+  margin: 40px 50px 0px 12px;
+  font-weight: bold;
+  font-size: 8pt;
+}
+.previewAppDiv {
+  border: 1px solid #e7e7e7;
+  -moz-box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.13);
+  -webkit-box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.13);
+  box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.13);
+  margin: 10px 50px 50px 10px;
+  height: 200px;
+  width: 350px;
+}
+.previewAppDiv .header {
+  height: 30px;
+  width: 100%;
+  background-color: #515151;
+}
+.previewAppDiv .menu-mini {
+  height: 15px;
+  background-color: #0094cd;
+}
+.previewAppDiv .menu-mini-ul {
+  padding: 0;
+  margin: 0;
+  padding-left: 15px;
+}
+.previewAppDiv .menuitem-mini-li {
+  display: inline-block;
+  list-style-type: none;
+  vertical-align: middle;
+  font-weight: bold;
+  line-height: 9px;
+  height: 15px;
+  -webkit-text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+  background-color: inherit;
+  color: white;
+  font-size: 5pt;
+}
+.previewAppDiv .menuitem-mini-li:hover {
+  background-color: white;
+  color: black;
+}
+.previewAppDiv .menuLink-mini {
+  font-size: 5pt;
+  padding-right: 5px;
+  padding-left: 5px;
+  padding-top: 5px;
+  padding-bottom: 2px;
+  color: inherit;
+}
+.previewAppDiv .menuLink-mini:link,
+.previewAppDiv .menuLink-mini:visited {
+  color: black;
+  text-decoration: none;
 }

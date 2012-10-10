@@ -11,6 +11,14 @@
             <select data-bind="options: industries, optionsText: 'Name', value: selectedIndustry, optionsCaption: 'Industry'"></select>
         </div>
         <div class="filterItemContainer">
+            <label class="defaultLabel" for="noOfRecords">No of records</label>
+            <select id="noOfRecords">
+                <option>20</option>
+                <option>30</option>
+                <option>40</option>
+            </select>
+        </div>
+        <div class="filterItemContainer">
             <input type="button" class="button filter" value="APPLY" />
         </div>
     </div>

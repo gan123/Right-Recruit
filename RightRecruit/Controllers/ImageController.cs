@@ -2,11 +2,13 @@
 using System.Web.Mvc;
 using ImageResizer;
 using RightRecruit.Helpers;
+using RightRecruit.Mvc.Infrastructure.Controllers;
 
 namespace RightRecruit.Controllers
 {
-    public class ImagesController : Controller
+    public class ImageController : AbstractController
     {
+        [HttpGet]
         public ActionResult Render(string file)
         {
             var fullFilePath = GetFullFilePath(file);
@@ -15,6 +17,7 @@ namespace RightRecruit.Controllers
             return new ImageFileResult(fullFilePath);
         }
 
+        [HttpGet]
         public ActionResult RenderWithResize(int width, int height, string file)
         {
             var fullFilePath = GetFullFilePath(file);
@@ -25,6 +28,7 @@ namespace RightRecruit.Controllers
             return new DynamicImageResult(file, resizedImage.ToByteArray());
         }
 
+        [HttpGet]
         public ActionResult RenderWithResizeAndWatermark(int width, int height, string file)
         {
             var fullFilePath = GetFullFilePath(file);
@@ -40,12 +44,12 @@ namespace RightRecruit.Controllers
 
         private string GetFullFilePath(string file)
         {
-            return string.Format("{0}/{1}", Server.MapPath("~/Content/Images"), file);
+            return string.Format("{0}\\{1}\\{2}.jpg", Server.MapPath("~/Content/teams"), CurrentUserProvider.CurrentUser.User.Database, file);
         }
 
         private bool ImageFileNotAvailable(string fullFilePath)
         {
-            return System.IO.File.Exists(fullFilePath);
+            return !System.IO.File.Exists(fullFilePath);
         }
 
         private HttpNotFoundResult Instantiate404ErrorResult(string file)

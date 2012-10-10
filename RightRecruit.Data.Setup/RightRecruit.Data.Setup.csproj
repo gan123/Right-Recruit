@@ -32,6 +32,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Griffin.MvcContrib">
+      <HintPath>..\packages\griffin.mvccontrib.0.0.9\lib\net40\Griffin.MvcContrib.dll</HintPath>
+    </Reference>
+    <Reference Include="Griffin.MvcContrib.RavenDb">
+      <HintPath>..\packages\Griffin.MvcContrib.RavenDb.1.0.4\lib\net40\Griffin.MvcContrib.RavenDb.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.4.5.7\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -71,6 +77,10 @@
       <Project>{67ac5cb4-b212-4fcd-bc98-e5f808c695db}</Project>
       <Name>RightRecruit.Mvc.Infrastructure</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_ReadMe\Griffin.MvcContrib.RavenDb.txt" />
+    <Content Include="App_ReadMe\Griffin.MvcContrib.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
+using Raven.Client.Linq;
 using RightRecruit.Models;
 using RightRecruit.Mvc.Infrastructure.Controllers;
 using RightRecruit.Mvc.Infrastructure.Result;
@@ -43,7 +44,10 @@ namespace RightRecruit.Controllers
         [HttpPost]
         public ActionResult Search(ClientSearchFilter filter)
         {
+            RavenQueryStatistics stats;
+
             var clients = UnitOfWork.DocumentSession.Advanced.LuceneQuery<Domain.Summary.ClientSummary>("ClientSummaryIndex")
+                .Statistics(out stats)
                 .Where("Database:" + CurrentUserProvider.CurrentUser.User.Database)
                 .Select(c => new ClientSearch
                                  {
@@ -60,7 +64,7 @@ namespace RightRecruit.Controllers
                                  })
                 .ToList();
 
-            return new JsonNetResult { Data = new { Clients = clients, Total = clients.Count, Showing = clients.Count } };
+            return new JsonNetResult { Data = new { Clients = clients, Total = stats.TotalResults, Showing = clients.Count } };
         }
 
         // GET : /clients/new

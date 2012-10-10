@@ -5,7 +5,7 @@
 @metro-light-grey: #e7e7e7;
 @metro-cool-grey: #AAAAAA;
 @metro-green:#358E7A;
-@border-color-invalid: #FF8080;
+@border-color-invalid: #FF9494;
 @metro-bold-yellow: #eccd35;
 @control-select-border-color: #0994CD;
 
@@ -24,6 +24,10 @@
 	-ms-text-overflow: ellipsis;
     -o-text-overflow: ellipsis;
     text-overflow: ellipsis;
+}
+
+.floatLeft {
+	float: left;
 }
 
 .textPadding(@v: 5px) {
@@ -413,13 +417,11 @@ a.forgotLink {
 
 .profilePic
 {
-	height: 50px;
-	width: 50px;
-	background: rgba(255, 255, 255, .8);
 	border: 1px solid rgba(255, 255, 255, .8);
-	.box-shadow(0px, 0px, 25px, 0px, 0, 0, 0, 0.3);
+	.box-shadow(0, 0, 25px, 0, 0, 0, 0, 0.13);
 	padding: 4px;
 	float:left;
+	.border-radius;
 }
 
 .detailsLabel
@@ -1068,6 +1070,7 @@ li.contactItem {
 	margin: 8px;
 	width: 98%;
 	height: 400px;
+	.floatLeft;
 }
 
 .adminCategory {
@@ -1113,14 +1116,97 @@ hr {
 	width: 300px;
 }
 
-.basic {
+.basic, .mid, .bold {
 	padding: 2px;
 	width: 100px;
-	background-color: @metro-blue;
 	color: white;
+}
+
+.basic {
+	background-color: @metro-blue;
+}
+
+.mid {
+	background-color: @metro-mild-blue;
+}
+
+.bold {
+	background-color: @metro-serious-blue;
 }
 
 .margin {
 	margin-top: 16px;
 }
 
+.adminSection {
+	width: 60%;
+	.floatLeft;
+}
+
+.previewSection {
+	width: 40%;
+	.floatLeft;
+}
+
+.previewHeaderDiv {
+	margin: 40px 50px 0px 12px;
+	font-weight: bold;
+	font-size: 8pt;
+}
+
+.previewAppDiv {
+	.border-light-grey;
+	.box-shadow(0, 0, 25px, 0, 0, 0, 0, 0.13);
+	margin: 10px 50px 50px 10px;
+	height: 200px;
+	width: 350px;
+
+	.header {
+		height: 30px;
+		width: 100%;
+		background-color: @metro-mild-grey;
+	}
+
+	.menu-mini {
+		height: 15px;
+		background-color: @metro-blue;
+	}
+
+	.menu-mini-ul {
+		padding: 0;
+		margin:0;
+		padding-left: 15px;
+	}
+
+	.menuitem-mini-li {
+		display: inline-block;
+		list-style-type: none;
+		vertical-align: middle;
+		font-weight: bold;
+		line-height: 9px;
+		height: 15px;
+		.text-shadow(2px, 2px, 2px, 0, 0, 0, 0.2);
+		background-color: inherit;
+		color: white;
+		font-size: 5pt;
+
+		&:hover {
+			background-color: white;
+			color: black;
+		}
+	}
+
+	.menuLink-mini {
+		font-size: 5pt;
+		padding-right: 5px;
+		padding-left: 5px;
+		padding-top: 5px;
+		padding-bottom: 2px;
+		color: inherit;
+		
+		&:link, &:visited {
+			color: black;
+			text-decoration: none;
+		}
+	}
+}

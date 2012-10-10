@@ -93,6 +93,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Result\JsonNetResult.cs" />
     <Compile Include="Security\GeneratedPassword.cs" />
+    <Compile Include="Security\Hasher.cs" />
+    <Compile Include="Security\IHasher.cs" />
     <Compile Include="Security\RandomPasswordGenerator.cs" />
     <Compile Include="Security\SaltedHash.cs" />
     <Compile Include="Security\StringExtensions.cs" />

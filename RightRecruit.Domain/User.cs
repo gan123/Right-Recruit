@@ -14,7 +14,7 @@ namespace RightRecruit.Domain
         public DateTime? DateOfJoining { get; set; }
         public DateTime? DateOfBirth { get; set; }
         public Name NameDetail { get; set; }
-        public AttachmentReference PhotoAttachment { get; set; }
+        public string PhotoAttachment { get; set; }
     }
 
     public class Name

@@ -9,7 +9,13 @@ namespace RightRecruit.Controllers
         public string Css()
         {
             Response.ContentType = "text/css";
-            return dotless.Core.Less.Parse(ThemeBuilder.Apply(Request.Url.Host, UnitOfWork, Server.MapPath("/Content/styles.less")));
+            var domain = Request.Url.Host;
+            if (string.IsNullOrEmpty(domain))
+                return dotless.Core.Less.Parse(Server.MapPath("/Content/styles.less"));
+            
+            if (HttpContext.Application[domain] == null)
+                HttpContext.Application[domain] = dotless.Core.Less.Parse(ThemeBuilder.Apply(domain, UnitOfWork, Server.MapPath("/Content/styles.less")));
+            return HttpContext.Application[domain].ToString();
         }
     }
 

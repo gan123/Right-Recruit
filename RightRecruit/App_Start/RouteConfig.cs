@@ -113,16 +113,16 @@ namespace RightRecruit
 
             routes.MapRoute(
                 "RenderImage",
-                "images/{file}",
-                new {controller = "Images", action = "Render", file = ""}
+                "image/{file}",
+                new {controller = "Image", action = "Render", file = ""}
                 );
 
             routes.MapRoute(
                 "RenderImageWithResizeAndWatermark",
-                "images/{width}/{height}/w/{file}",
+                "image/{width}/{height}/w/{file}",
                 new
                     {
-                        controller = "Images",
+                        controller = "Image",
                         action = "RenderWithResizeAndWatermark",
                         width = "",
                         height = "",
@@ -131,10 +131,10 @@ namespace RightRecruit
                 );
             routes.MapRoute(
                 "RenderImageWithResize",
-                "images/{width}/{height}/{file}",
+                "image/{width}/{height}/{file}",
                 new
                     {
-                        controller = "Images",
+                        controller = "Image",
                         action = "RenderWithResize",
                         width = "",
                         height = "",

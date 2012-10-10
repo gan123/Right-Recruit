@@ -28,7 +28,7 @@
             select = function (event, ui) {
                 selectedClientId(ui.item.Id);
                 selectedClientName(ui.item.Name);
-                console.log(selectedClientName());
+                return (false);
             };
         
         function highlight(s, t) {

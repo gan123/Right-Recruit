@@ -47,7 +47,7 @@ namespace RightRecruit.Data.Setup
                                                                                                                           {
                                                                                                                               {"ContentType", "image/jpeg"}
                                                                                                                           });
-                deepika.PhotoAttachment = new AttachmentReference { AttachmentId = "photos/" + deepika.Username };
+                //deepika.PhotoAttachment = new AttachmentReference { AttachmentId = "photos/" + deepika.Username };
                 session.SaveChanges();
             }
         }
@@ -411,7 +411,8 @@ namespace RightRecruit.Data.Setup
                                                         State = maharashtra,
                                                         Pincode = 3121321
                                                     },
-                                      Database = Database
+                                      Database = Database,
+                                      PhotoAttachment = "deepika-ganesh"
                                   };
                 session.Store(deepika);
                 session.SaveChanges();
@@ -543,12 +544,11 @@ namespace RightRecruit.Data.Setup
         public static GeneratedPassword GeneratePassword(string passwordString = null)
         {
             var password = !string.IsNullOrEmpty(passwordString) ? passwordString : RandomPasswordGenerator.Generate(8);
-            string salt;
-            string hash;
-            new SaltedHash().GetHashAndSaltString(password, out hash, out salt);
+            var hash = new Hasher {SaltSize = 10 };
+
             return new GeneratedPassword
             {
-                Password = new Password(password.ToByteArray(), salt.ToByteArray(), hash.ToByteArray()),
+                Password = new Password(hash.Encrypt(password).ToByteArray()),
                 OriginalPassword = password
             };
         }

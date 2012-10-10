@@ -99,7 +99,7 @@ var infuser = {
         // infuse() specific options - NOT used for "get" or "getSync"
         target:  function(templateId) { return "#" + templateId }, // DEFAULT MAPPING
         loadingTemplate:    {
-                                content:        '<div class="infuser-loading">Loading...</div>',
+                                content:        '<div class="infuser-loading"></div>',
                                 transitionIn:   function(target, content) {
                                                     var tgt = $(target);
                                                     tgt.hide();

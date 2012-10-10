@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web;
@@ -19,14 +20,13 @@ namespace RightRecruit.Controllers
         [System.Web.Mvc.HttpGet]
         public ActionResult Home()
         {
-            if (HttpContext.Response.Cookies["UserName"] != null && HttpContext.Response.Cookies["Password"] != null)
+            if (HttpContext.Response.Cookies["userName"] != null)
             {
-                if (!string.IsNullOrEmpty(HttpContext.Response.Cookies["UserName"].Value) && !string.IsNullOrEmpty(HttpContext.Response.Cookies["Password"].Value))
+                if (!string.IsNullOrEmpty(HttpContext.Response.Cookies["userName"].Value))
                     return
                         Login(new LoginModel
                                   {
-                                      Login = HttpContext.Response.Cookies["UserName"].Value,
-                                      Password = HttpContext.Response.Cookies["Password"].Value
+                                      Login = HttpContext.Response.Cookies["userName"].Value
                                   });
             }
             return View();
@@ -41,37 +41,23 @@ namespace RightRecruit.Controllers
             if (user == null)
                 throw new HttpResponseException(new HttpResponseMessage { ReasonPhrase = "Your user name was not recognized!", StatusCode = HttpStatusCode.Unauthorized });
 
-            if (user.Password.Text.ToPlainString() != loginModel.Password)
+            var hash = new Hasher() {SaltSize = 10};
+            if (!hash.CompareStringToHash(loginModel.Password, user.Password.Value.ToPlainString()))
                 throw new HttpResponseException(new HttpResponseMessage { ReasonPhrase = "You were not authenticated!", StatusCode = HttpStatusCode.Unauthorized });
 
-            var savedSalt = user.Password.Salt.ToPlainString();
-            var savedHash = user.Password.Hash.ToPlainString();
-
-            if (new SaltedHash().VerifyHashString(loginModel.Password, savedHash, savedSalt))
+            HttpContext.Response.Cookies.Set(new HttpCookie("username", user.Username) {Expires = DateTime.Now.AddDays(1)});
+            HttpContext.Session[Globals.CurrentUser] = new CurrentUser(user)
             {
-                if (loginModel.RememberMe)
-                {
-                    HttpContext.Response.Cookies.Add(new HttpCookie("UserName", loginModel.Login));
-                    HttpContext.Response.Cookies.Add(new HttpCookie("Password", loginModel.Password));
-                }
-                //var photoAsString = GetAttachmentString(user.PhotoAttachment, useBase64: true);
-                HttpContext.Session[Globals.CurrentUser] = new CurrentUser(user)
-                                                               {
-                                                                   IsAuthenticated = true,
-                                                                   //PhotoString = "data:image/jpeg;base64," + photoAsString
-                                                               };
-                return new JsonNetResult(new { LoggedInUserName = user.Name });
-            }
-
-            return View("Home");
+                IsAuthenticated = true,
+                Photo = user.PhotoAttachment
+            };
+            return new JsonNetResult(new { LoggedInUserName = user.Name });
         }
 
         [System.Web.Mvc.HttpPost]
         public ActionResult Logout()
         {
             HttpContext.Session[Globals.CurrentUser] = new CurrentUser(null);
-            HttpContext.Response.Cookies.Remove("UserName");
-            HttpContext.Response.Cookies.Remove("Password");
             return new JsonNetResult();
         }
     }

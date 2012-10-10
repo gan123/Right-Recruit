@@ -36,7 +36,7 @@
                             window.location = '/rr/inbox';
                         },
                         error: function (result) {
-
+                            console.log(result);
                         }
                     });
                 });
