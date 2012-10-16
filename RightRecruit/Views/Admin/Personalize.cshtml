@@ -57,31 +57,51 @@
                     <label class="boldLabel" style="margin-left: 30px;">Colors</label>
                 </div>
                 <div class="left-div" style="width: 80%;">
-                    <div class="left-div" >
-                        <div class="left-div" style="width: 5%;">
+                    <div class="left-div">
+                        <div class="left-div" style="width: 20%;">
                             <label class="mildText extraSmall">Basic</label>
                         </div>
                         <div class="left-div" style="width: 20%;">
-                            <input class="basic" type="text" maxlength="6" size="6" id="basic" value="#0094cd" />
+                            <input class="basic" type="text" maxlength="6" size="6" id="basic" data-bind="value: basicColor, colorpicker: {onChange: onBasicColorChange, color: basicColor}" />
                         </div>
                     </div>
                     <div class="left-div" style="margin-top: 4px;">
-                        <div class="left-div" style="width: 5%;">
+                        <div class="left-div" style="width: 20%;">
                             <label class="mildText extraSmall">Mid</label>
                         </div>
                         <div class="left-div" style="width: 20%;">
-                            <input class="mid" type="text" maxlength="6" size="6" id="mid" value="#0094cd" />
+                            <input class="mid" type="text" maxlength="6" size="6" id="mid" data-bind="value: midColor, colorpicker: {onChange: onMidColorChange, color: midColor}" />
                         </div>
                     </div>
                     <div class="left-div" style="margin-top: 4px;">
-                        <div class="left-div" style="width: 5%;">
+                        <div class="left-div" style="width: 20%;">
                             <label class="mildText extraSmall">Bold</label>
                         </div>
                         <div class="left-div" style="width: 20%;">
-                            <input class="bold" type="text" maxlength="6" size="6" id="bold" value="#0094cd" />
+                            <input class="bold" type="text" maxlength="6" size="6" id="bold" data-bind="value: boldColor, colorpicker: {onChange: onBoldColorChange, color: boldColor}" />
+                        </div>
+                    </div>
+                    <div class="left-div" style="margin-top: 4px;">
+                        <div class="left-div" style="width: 20%;">
+                            <label class="mildText extraSmall">Control border</label>
+                        </div>
+                        <div class="left-div" style="width: 20%;">
+                            <input class="controlBorder" type="text" maxlength="6" size="6" id="controlBorder" data-bind="value: controlBorderColor, colorpicker: {onChange: onControlBorderColorChange, color: controlBorderColor}" />
+                        </div>
+                    </div>
+                    <div class="left-div" style="margin-top: 4px;">
+                        <div class="left-div" style="width: 20%;">
+                            <label class="mildText extraSmall">Menu foreground</label>
+                        </div>
+                        <div class="left-div" style="width: 20%;">
+                            <input class="foreground" type="text" maxlength="6" size="6" id="foreground" data-bind="value: foregroundColor, colorpicker: {onChange: onForegroundColorChange, color: foregroundColor}" />
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="field margin right-div">
+                <input type="button" class="button cancel" style="float: right;" data-bind="command: cancelCommand" value="CANCEL" />
+                <input type="button" class="button save" style="float: right;" data-bind="command: saveCommand" value="SAVE" />
             </div>
         </div>
         <div class="previewSection">
@@ -101,5 +121,5 @@
     </div>
 </section>
 @section scripts{
-    @Scripts.Render("~/bundles/admin-view")
+    @Scripts.Render("~/bundles/personalize")
 }

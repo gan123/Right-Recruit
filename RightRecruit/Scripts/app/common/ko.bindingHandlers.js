@@ -135,4 +135,25 @@ function ($, ko) {
             $(element).width(params().width());
         }
     };
+
+    ko.bindingHandlers.colorpicker = {
+        init: function (element, params) {
+            $(element).ColorPicker({
+                color: '#ffffff',
+                onShow: function (colpkr) {
+                    $(colpkr).fadeIn(500);
+                    return false;
+                },
+                onHide: function (colpkr) {
+                    $(colpkr).fadeOut(500);
+                    return false;
+                },
+                onChange: params().onChange
+            });
+        },
+        update: function (element, params) {
+            console.log(params().color());
+            $(element).ColorPicker("option", "color", params().color());
+        }
+    };
 });

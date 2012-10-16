@@ -35,7 +35,8 @@ namespace RightRecruit.Controllers
                         .ApplyBasicColor(theme.BasicColor)
                         .ApplyMildColor(theme.MidColor)
                         .ApplyBoldColor(theme.BoldColor)
-                        .ApplyControlBorderColor(theme.ControlBorderColor);
+                        .ApplyControlBorderColor(theme.ControlBorderColor)
+                        .ApplyForegroundColor(theme.ForegroundColor);
                 }
             }
             return css;
@@ -52,6 +53,8 @@ namespace RightRecruit.Controllers
         private const string BoldFormat = "@metro-serious-blue: {0};";
         private const string ControlBorderWithColor = "@control-select-border-color: #0994CD;";
         private const string ControlBorderFormat = "@control-select-border-color: {0};";
+        private const string MenuForegroundWithColor = "@menu-foreground: white;";
+        private const string MenuForegroundFormat = "@menu-foreground: {0};";
 
         public static string ApplyBasicColor(this string css, string basic)
         {
@@ -79,6 +82,13 @@ namespace RightRecruit.Controllers
             if (string.IsNullOrEmpty(border))
                 return css;
             return css.Replace(ControlBorderWithColor, string.Format(ControlBorderFormat, border));
+        }
+
+        public static string ApplyForegroundColor(this string css, string foreground)
+        {
+            if (string.IsNullOrEmpty(foreground))
+                return css;
+            return css.Replace(MenuForegroundWithColor, string.Format(MenuForegroundFormat, foreground));
         }
     }
 }

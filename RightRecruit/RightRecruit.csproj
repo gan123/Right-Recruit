@@ -153,6 +153,7 @@
     <Compile Include="App_Start\Bundles\ClientCreateBundle.cs" />
     <Compile Include="App_Start\Bundles\ClientsListBundle.cs" />
     <Compile Include="App_Start\Bundles\ExternalCssBundle.cs" />
+    <Compile Include="App_Start\Bundles\PersonalizeBundle.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\Bundles\GlobalScriptsBundle.cs" />
     <Compile Include="App_Start\Bundles\HomeBundle.cs" />
@@ -198,6 +199,7 @@
     <Compile Include="Models\Country.cs" />
     <Compile Include="Models\Industry.cs" />
     <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\Personalize.cs" />
     <Compile Include="Models\State.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -294,7 +296,9 @@
     <Content Include="Content\toastr.css" />
     <None Include="Content\styles.less" />
     <Content Include="Scripts\app\admin\admin.js" />
-    <Content Include="Scripts\app\admin\personalize.js" />
+    <Content Include="Scripts\app\admin\personalize\personalize.js" />
+    <Content Include="Scripts\app\admin\personalize\vm.personalize.js" />
+    <Content Include="Scripts\app\admin\services\dataservice.admin.js" />
     <Content Include="Scripts\app\clients\new\model.client.js" />
     <Content Include="Scripts\app\clients\new\model.contact.js" />
     <Content Include="Scripts\app\common\config.js" />

@@ -30,6 +30,7 @@ namespace RightRecruit.App_Start.Bundles
                 new ClientsListBundle(),
                 new ClientCreateBundle(),
                 new AdminBundle(),
+                new PersonalizeBundle(),
                 new ExternalCssBundle());
         }
     }

@@ -18,6 +18,18 @@ namespace RightRecruit.App_Start.Routes
                 url: "admin/personalize",
                 defaults: new { controller = "Admin", action = "Personalize" }
                 );
+
+            routes.MapRoute(
+                name: "Admin-Theme-Details",
+                url: "admin/personalize/get",
+                defaults: new { controller = "Admin", action = "GetPersonalizedTheme" }
+                );
+
+            routes.MapRoute(
+                name: "Admin-Theme-Save",
+                url: "admin/personalize/save",
+                defaults: new { controller = "Admin", action = "SaveTheme" }
+                );
         }
     }
 }

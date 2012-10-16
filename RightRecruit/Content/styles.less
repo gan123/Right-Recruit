@@ -9,6 +9,7 @@
 @metro-bold-yellow: #eccd35;
 @control-select-border-color: #0994CD;
 @solid-red: #cc0000;
+@menu-foreground: white;
 
 @font-family: "Segoe UI", Arial, Helvetica, Verdana;
 * {
@@ -259,7 +260,7 @@ header
     line-height: 29px;
 	.text-shadow(2px, 2px, 2px, 0, 0, 0, 0.2);
 	background-color: inherit;
-    color: white;
+    color: @menu-foreground;
 
 	&:hover {
 		background-color: white;
@@ -1114,10 +1115,19 @@ hr {
 	width: 300px;
 }
 
-.basic, .mid, .bold {
+.basic, .mid, .bold, .controlBorder, .foreground {
 	padding: 2px;
 	width: 100px;
 	color: white;
+}
+
+.controlBorder {
+	background-color: @control-select-border-color;
+}
+
+.foreground {
+	background-color: @menu-foreground;
+	color: black;
 }
 
 .basic {
