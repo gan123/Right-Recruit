@@ -147,9 +147,31 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\Bundles\AdminBundle.cs" />
+    <Compile Include="App_Start\Bundles\BundleConfig.cs" />
+    <Compile Include="App_Start\Bundles\BundleExtensions.cs" />
+    <Compile Include="App_Start\Bundles\ClientCreateBundle.cs" />
+    <Compile Include="App_Start\Bundles\ClientsListBundle.cs" />
+    <Compile Include="App_Start\Bundles\ExternalCssBundle.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Bundles\GlobalScriptsBundle.cs" />
+    <Compile Include="App_Start\Bundles\HomeBundle.cs" />
+    <Compile Include="App_Start\Bundles\IBundleConfigurator.cs" />
+    <Compile Include="App_Start\Bundles\InboxBundle.cs" />
+    <Compile Include="App_Start\Bundles\JqueryBundle.cs" />
+    <Compile Include="App_Start\Bundles\ModernizerBundle.cs" />
+    <Compile Include="App_Start\Routes\RouteConfig.cs" />
+    <Compile Include="App_Start\Bundles\TextEditorBundle.cs" />
+    <Compile Include="App_Start\Bundles\ThirdPartyJsBundle.cs" />
+    <Compile Include="App_Start\Routes\AdminRoutes.cs" />
+    <Compile Include="App_Start\Routes\ClientRoutes.cs" />
+    <Compile Include="App_Start\Routes\HomeRoutes.cs" />
+    <Compile Include="App_Start\Routes\ImageRoutes.cs" />
+    <Compile Include="App_Start\Routes\InboxRoutes.cs" />
+    <Compile Include="App_Start\Routes\IRouteConfigurator.cs" />
+    <Compile Include="App_Start\Routes\LookupRoutes.cs" />
+    <Compile Include="App_Start\Routes\RouteExtensions.cs" />
+    <Compile Include="App_Start\Routes\StyleRoutes.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ClientController.cs" />

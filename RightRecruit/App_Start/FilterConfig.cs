@@ -1,8 +1,7 @@
-﻿using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using RightRecruit.Mvc.Infrastructure.Filters;
 
-namespace RightRecruit
+namespace RightRecruit.App_Start
 {
     public class FilterConfig
     {
