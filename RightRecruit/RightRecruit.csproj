@@ -176,6 +176,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\AuthConfig.cs" />
     <Compile Include="App_Start\Bundles\AdminBundle.cs" />
     <Compile Include="App_Start\Bundles\BundleConfig.cs" />
     <Compile Include="App_Start\Bundles\BundleExtensions.cs" />
