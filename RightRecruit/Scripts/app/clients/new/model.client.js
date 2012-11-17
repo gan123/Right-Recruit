@@ -24,7 +24,7 @@
                 execute: function (complete) {
                     var newContact = new contactModel()
                         .Name(self.ContactName)
-                        .Phone(new phoneModel().Phone(self.ContactPhone))
+                        .Phone(new phoneModel().Landline(self.ContactPhone))
                         .Email(self.ContactEmail)
                         .Title(self.ContactTitle);
                     self.Contacts.push(newContact);

@@ -16,7 +16,7 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>false</UseIISExpress>
-    <IISExpressSSLPort />
+    <IISExpressSSLPort>44300</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -48,6 +48,24 @@
     <Reference Include="dotless.Core">
       <HintPath>..\packages\dotless.1.3.0.5\lib\dotless.Core.dll</HintPath>
     </Reference>
+    <Reference Include="DotNetOpenAuth.AspNet">
+      <HintPath>..\packages\DotNetOpenAuth.AspNet.4.1.3.12303\lib\net45-full\DotNetOpenAuth.AspNet.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.Core">
+      <HintPath>..\packages\DotNetOpenAuth.Core.4.1.3.12303\lib\net45-full\DotNetOpenAuth.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth">
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Core.4.1.3.12303\lib\net45-full\DotNetOpenAuth.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth.Consumer">
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Consumer.4.1.3.12303\lib\net45-full\DotNetOpenAuth.OAuth.Consumer.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId">
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.Core.4.1.3.12303\lib\net45-full\DotNetOpenAuth.OpenId.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId.RelyingParty">
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.RelyingParty.4.1.3.12303\lib\net45-full\DotNetOpenAuth.OpenId.RelyingParty.dll</HintPath>
+    </Reference>
     <Reference Include="FizzWare.NBuilder">
       <HintPath>..\packages\NBuilder.3.0.1.1\lib\FizzWare.NBuilder.dll</HintPath>
     </Reference>
@@ -57,6 +75,9 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <HintPath>..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebPages.OAuth, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.OAuth.2.0.20710.0\lib\net40\Microsoft.Web.WebPages.OAuth.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -145,6 +166,14 @@
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.1.0\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="WebMatrix.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.Data.2.0.20710.0\lib\net40\WebMatrix.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="WebMatrix.WebData, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.WebData.2.0.20710.0\lib\net40\WebMatrix.WebData.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\Bundles\AdminBundle.cs" />
@@ -191,15 +220,20 @@
     <Compile Include="Installers\ControllerInstaller.cs" />
     <Compile Include="Installers\InfastructureInstaller.cs" />
     <Compile Include="Installers\MvcInstaller.cs" />
+    <Compile Include="Models\Address.cs" />
     <Compile Include="Models\City.cs" />
+    <Compile Include="Models\Client.cs" />
     <Compile Include="Models\ClientQuickSearch.cs" />
     <Compile Include="Models\ClientQuickSearchFilter.cs" />
     <Compile Include="Models\ClientSearch.cs" />
     <Compile Include="Models\ClientSearchFilter.cs" />
+    <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\Country.cs" />
     <Compile Include="Models\Industry.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\Personalize.cs" />
+    <Compile Include="Models\Phone.cs" />
+    <Compile Include="Models\Priority.cs" />
     <Compile Include="Models\State.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

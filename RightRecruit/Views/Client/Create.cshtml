@@ -27,7 +27,7 @@
             </div>
             <div class="field">
                 <img src="~/Content/images/phone_black.png" width="12" height="17" style="float:left; margin:4px 2px 4px 2px;" />
-                <input type="text" class="textBox" style="width: 30%; float: left;" required data-bind="value: client().Phone().Phone, valueUpdate: 'afterkeydown'" placeholder="Phone" />
+                <input type="text" class="textBox" style="width: 30%; float: left;" required data-bind="value: client().Phone().Landline, valueUpdate: 'afterkeydown'" placeholder="Phone" />
                 <img src="~/Content/images/fax_black.png" width="15" height="20" style="float:left; margin:4px 2px 4px 16px;" />
                 <input type="text" class="textBox" style="width: 30%; float: left;" data-bind="value: client().Phone().Fax, valueUpdate: 'afterkeydown'" placeholder="Fax" />
             </div>
@@ -85,7 +85,7 @@
                 <input type="text" class="textBox" style="width: 15%; float: left;" data-bind="value: client().ContactPhone, valueUpdate: 'afterkeydown'" placeholder="Phone" />
                 <img src="~/Content/images/email_black.png" width="15" height="12" style="float:left; margin:4px 2px 4px 16px;" />
                 <input type="email" class="textBox" style="width: 15%; float: left;" data-bind="value: client().ContactEmail, valueUpdate: 'afterkeydown'" placeholder="Email" />
-                <input type="button" class="addButton" style="margin-left: 16px;" data-bind="command: client().AddContactCommand, activity: client().AddContactCommand.isExecuting" value="ADD" />
+                <input type="button" class="addButton" style="margin-left: 16px;" data-bind="command: client().AddContactCommand" value="ADD" />
             </div>
             <div class="field">
                 <ul class="horizontalLayout" data-bind="template: {name: contactsTemplate, foreach: client().Contacts}"></ul>
@@ -93,7 +93,7 @@
     </div>
     <div class="editContainer buttonPanel">
         <input id="cancel" type="button" class="button cancel" style="float: right;" value="CANCEL" />
-        <input type="button" class="button save" style="float: right;" data-bind="command: createCommand, activity: createCommand.isExecuting, enable: isValid" value="SAVE" />
+        <input type="button" class="button save" style="float: right;" data-bind="command: createCommand, enable: isValid" value="SAVE" />
     </div>
 </section>
 @section scripts{

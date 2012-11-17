@@ -1,6 +1,6 @@
 ﻿define('vm.clients.create',
-    ['ko', 'config', 'dataservice.lookups', 'dataservice.search', 'model.industry', 'model.client', 'model.country', 'model.state', 'model.city'],
-    function (ko, config, lookups, clientService, industryModel, clientModel, countryModel, stateModel, cityModel) {
+    ['ko', 'config', 'dataservice.lookups', 'dataservice.client', 'dataservice.search', 'model.industry', 'model.client', 'model.country', 'model.state', 'model.city'],
+    function (ko, config, lookups, clientService, clientSearchService, industryModel, clientModel, countryModel, stateModel, cityModel) {
         var
             logger = config.logger,
             client = ko.observable(new clientModel()),
@@ -18,9 +18,16 @@
                     && client().PhoneValidationErrors().length === 0;
             }),
             createCommand = ko.asyncCommand({
-                execute: function(complete) {
-                    logger.success(config.toasts.savedData);
-                    complete();
+                execute: function (complete) {
+                    clientService.create(client(), {
+                        success: function (response) {
+                            logger.success(config.toasts.savedData);
+                            complete();
+                        },
+                        error: function (response) {
+                            
+                        }
+                    });
                 },
                 canexecute: function(isExecuting) {
                     console.log(isValid);
@@ -47,7 +54,7 @@
 
         client().Name.subscribe(function (val) {
             if (val.length >= 3) {
-                clientService.clientsSearch({ query: val }, function (result){
+                clientSearchService.clientsSearch({ query: val }, function (result) {
                         $.each(result, function (i, p) {
                             existingClientNames.push(p.Name);
                         });

@@ -74,13 +74,20 @@ namespace RightRecruit.Controllers
             return new JsonNetResult();
         }
 
-        // POST : clients/create
+        // GET : clients/create
         [HttpGet]
         public ActionResult Create()
         {
             if (!CurrentUserProvider.CurrentUser.IsAuthenticated)
                 return RedirectToAction("Home", "Home");
             return View();
+        }
+
+        // POST : clients/create
+        [HttpPost]
+        public ActionResult Create(Client client)
+        {
+            return new JsonNetResult();
         }
     }
 }
