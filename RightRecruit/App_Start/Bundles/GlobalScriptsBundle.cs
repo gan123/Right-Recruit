@@ -10,7 +10,7 @@ namespace RightRecruit.App_Start.Bundles
                 .IncludeDirectory("~/Scripts/app/common", "*.js", searchSubdirectories: false)
                 .IncludeDirectory("~/Scripts/app/search", "*.js", searchSubdirectories: false)
                 .IncludeDirectory("~/Scripts/app/lookups", "*.js", searchSubdirectories: false)
-                .IncludeDirectory("~/Scripts/app/global", "*.js", searchSubdirectories: false);
+                .Include("~/Scripts/app/global/binder.js");
         }
     }
 }

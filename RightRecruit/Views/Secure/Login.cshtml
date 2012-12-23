@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "Login";
+}
+
+<section id="login-view">
+    <div class="left-div login-div">
+        <div class="appLoginDiv">
+            <div class="control-div">
+                <label class="loginLabel">Login</label>
+            </div>
+            <div class="control-div">
+                <input id="username" class="username" placeholder="Login" name="username" value="" tabindex="5" type="text" data-bind="value: user().UserName, valueUpdate: 'afterkeydown'">
+            </div>
+            <div class="control-div">
+                <input id="password" class="password" placeholder="Password" value="" tabindex="5" type="text" data-bind="value: user().Password, valueUpdate: 'afterkeydown'">
+            </div>
+            <div class="control-div remember" style="margin-top: 10px;margin-left: 25px;">
+                <div class="left-div squaredOne">
+                    <input type="checkbox" value="None" id="remember" name="remember" />
+                    <label class="labelForCheckbox" for="remember"></label>
+                </div>
+                <label for="remember" style="font-size: 9pt;">Remember me</label>
+                <input id="signin" value="Sign in" tabindex="6" type="button" class="right normalButton" style="margin-right: 60px;" data-bind="command: loginCommand, enable: isValid()" />
+            </div>
+            <div class="control-div">
+                <a href="#" class="forgotLink" id="signup_link">New? Lets signup</a>
+            </div>
+            <div class="control-div">
+                <a href="#" class="forgotLink" >Forgot password?</a>
+            </div>
+        </div>
+        <div class="dividerDiv">
+        </div>
+        <div class="otherLoginDiv">
+            <div class="control-div">
+                <label class="loginLabel">Signin using</label>
+            </div>
+        </div>
+    </div>
+</section>
+@section scripts{
+    @Scripts.Render("~/bundles/secure")
+}

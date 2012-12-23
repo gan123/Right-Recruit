@@ -17,7 +17,7 @@ namespace RightRecruit.Controllers
         public ActionResult Admin()
         {
             if (!CurrentUserProvider.CurrentUser.IsAuthenticated)
-                return RedirectToAction("Home", "Home");
+                return RedirectToAction("Login", "Secure");
             return View();
         }
 
@@ -25,7 +25,7 @@ namespace RightRecruit.Controllers
         public ActionResult Personalize()
         {
             if (!CurrentUserProvider.CurrentUser.IsAuthenticated)
-                return RedirectToAction("Home", "Home");
+                return RedirectToAction("Login", "Secure");
             return View();
         }
 

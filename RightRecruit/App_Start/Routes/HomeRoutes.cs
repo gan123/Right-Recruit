@@ -13,17 +13,7 @@ namespace RightRecruit.App_Start.Routes
                 defaults: new { controller = "Home", action = "Home" }
                 );
 
-            routes.MapRoute(
-                name: "LoginVerify",
-                url: "login",
-                defaults: new { controller = "Home", action = "Login" }
-                );
-
-            routes.MapRoute(
-                name: "Logout",
-                url: "logout",
-                defaults: new { controller = "Home", action = "Logout" }
-                );
+            
         }
     }
 }

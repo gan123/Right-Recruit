@@ -28,7 +28,7 @@
     text-overflow: ellipsis;
 }
 
-.floatLeft {
+.left {
 	float: left;
 }
 
@@ -118,6 +118,9 @@ body{
     background-image: -moz-linear-gradient(top, @metro-mild-blue, @metro-blue);
     background-image: linear-gradient(top, @metro-mild-blue, @metro-blue);
     background-repeat: repeat-x;
+}
+a {
+	color:#6AC;
 }
 select
 {
@@ -412,6 +415,8 @@ a.signin.menu-open span {
 
 a.forgotLink {
     font-size: 9pt;
+	margin: 4px 0 0 30px;
+	.left;
 }
 
 .profilePic
@@ -669,27 +674,29 @@ input[type=checkbox] {
 	float: left;
 	margin-left: 20px;
 }
-.username{
-	padding: 5px 5px 5px 30px;
-	.blue;
-	background-image: url("../Content/images/user_white.png");
-	.background-size(14px, 14px);
+.username {
+    padding: 5px 5px 5px 30px;
+    .blue;
+    background-image: url("../Content/images/user_white.png");
+    .background-size(14px, 14px);
     background-repeat: no-repeat;
     background-position: 2% 50%;
-	width: 80%;
-	color: white;
-	margin: 4px 0 0 4px;
+    color: white;
+    margin: 4px 0 0 30px;
+	width: 250px;
+	.left;
 }
 .password{
+	.left;
+	width: 250px;
 	padding: 5px 5px 5px 30px;
 	.blue;
 	background-image: url("../Content/images/key_white.png");
 	.background-size(15px, 10px);
     background-repeat: no-repeat;
     background-position: 2% 50%;
-	width: 80%;
 	color: white;
-	margin: 4px 0 0 4px;
+	margin: 4px 0 0 30px;
 }
 .username, .password {
 
@@ -717,6 +724,19 @@ input[type=checkbox] {
 	background-color: white;	
 	cursor: pointer;
 	margin: 4px;
+
+	&:disabled {
+		.background-size(11px, 11px);
+		background-repeat: no-repeat;
+		color: @metro-cool-grey;
+	}
+
+	&:disabled:hover {
+		.background-size(11px, 11px);
+		background-repeat: no-repeat;
+		color: @metro-cool-grey;
+		background-color: white;
+	}
 }
 
 .button {
@@ -1069,7 +1089,7 @@ li.contactItem {
 	margin: 8px;
 	width: 98%;
 	height: 400px;
-	.floatLeft;
+	.left;
 }
 
 .adminCategory {
@@ -1148,12 +1168,12 @@ hr {
 
 .adminSection {
 	width: 60%;
-	.floatLeft;
+	.left;
 }
 
 .previewSection {
 	width: 40%;
-	.floatLeft;
+	.left;
 }
 
 .previewHeaderDiv {
@@ -1217,4 +1237,47 @@ hr {
 			text-decoration: none;
 		}
 	}
+}
+
+.login-div {
+    width: 700px;
+    height: 270px;
+    background: white;
+    border: 1px solid #e7e7e7;
+    margin: 50px;
+    left: 15%;
+    top: 10%;
+    position: relative;
+	.box-shadow(0, 0, 15px, 0, 0, 0, 0, 0.2);
+}
+
+.appLoginDiv {
+    .left;
+    width: 50%;
+    height: 100%;
+}
+
+.loginLabel {
+    font-size: 14pt;
+    color: #0094cd;
+    margin: 20px 10px 10px 30px;
+    float: left;
+}
+
+.otherLoginDiv {
+    float: right;
+    width: 49%;
+    height: 100%;
+}
+.dividerDiv {
+    .left;
+    width: 1px;
+    height: 175px;
+    background: #e7e7e7;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.control-div {
+    .left;
+    width: 100%;
 }

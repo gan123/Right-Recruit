@@ -10,6 +10,7 @@ namespace RightRecruit.App_Start.Routes
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.Configure(
+                new SecureRoutes(),
                 new InboxRoutes(),
                 new HomeRoutes(),
                 new ClientRoutes(),

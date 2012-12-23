@@ -24,17 +24,12 @@
         requirejs([
             'ko.bindingHandlers',
             'ko.debug.helpers',
-            'config',
-            'signin',
-            'signout'
+            'config'
         ], boot);
     }
 
     function boot() {
-        require(['signin', 'signout', 'infuser'], function(si, so, infuser) {
-            si.init();
-            so.init();
-            
+        require(['infuser'], function(infuser) {
             infuser.defaults.templatePrefix = "_";
             infuser.defaults.templateSuffix = ".tmpl.html";
             infuser.defaults.templateUrl = "../Tmpl";

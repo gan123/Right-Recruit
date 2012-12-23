@@ -184,6 +184,7 @@
     <Compile Include="App_Start\Bundles\ClientsListBundle.cs" />
     <Compile Include="App_Start\Bundles\ExternalCssBundle.cs" />
     <Compile Include="App_Start\Bundles\PersonalizeBundle.cs" />
+    <Compile Include="App_Start\Bundles\SecureBundle.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\Bundles\GlobalScriptsBundle.cs" />
     <Compile Include="App_Start\Bundles\HomeBundle.cs" />
@@ -202,6 +203,7 @@
     <Compile Include="App_Start\Routes\IRouteConfigurator.cs" />
     <Compile Include="App_Start\Routes\LookupRoutes.cs" />
     <Compile Include="App_Start\Routes\RouteExtensions.cs" />
+    <Compile Include="App_Start\Routes\SecureRoutes.cs" />
     <Compile Include="App_Start\Routes\StyleRoutes.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
@@ -210,6 +212,7 @@
     <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Controllers\InboxController.cs" />
     <Compile Include="Controllers\LookupController.cs" />
+    <Compile Include="Controllers\SecureController.cs" />
     <Compile Include="Controllers\StyleController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -357,9 +360,6 @@
     <Content Include="Scripts\app\lookups\model.phone.js" />
     <Content Include="Scripts\app\lookups\model.state.js" />
     <Content Include="Scripts\app\search\dataservice.search.js" />
-    <Content Include="Scripts\app\global\dataservice.user.js" />
-    <Content Include="Scripts\app\global\signout.js" />
-    <Content Include="Scripts\app\global\singin.js" />
     <Content Include="Scripts\app\common\ko.bindingHandlers.js" />
     <Content Include="Scripts\app\common\ko.debug.helpers.js" />
     <Content Include="Scripts\app\inbox\inbox.js" />
@@ -369,6 +369,11 @@
     <Content Include="Scripts\app\inbox\vm.inbox.js" />
     <Content Include="Scripts\app\search\vm.client.quicksearch.js" />
     <Content Include="Scripts\app\search\vm.recruiter.quicksearch.js" />
+    <Content Include="Scripts\app\secure\dataservice.secure.js" />
+    <Content Include="Scripts\app\secure\model.user.js" />
+    <Content Include="Scripts\app\secure\secure.js" />
+    <Content Include="Scripts\app\secure\vm.secure.js" />
+    <Content Include="Scripts\lib\amplify.request.deferred.js" />
     <Content Include="Scripts\lib\colorpicker.js" />
     <Content Include="Scripts\lib\jquery.qtip.js" />
     <Content Include="Scripts\lib\jquery.wysiwyg.js" />
@@ -421,6 +426,7 @@
     <Content Include="Views\Client\Create.cshtml" />
     <Content Include="Views\Admin\Admin.cshtml" />
     <Content Include="Views\Admin\Personalize.cshtml" />
+    <Content Include="Views\Secure\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

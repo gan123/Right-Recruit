@@ -20,6 +20,7 @@ namespace RightRecruit.App_Start.Bundles
             bundles.IgnoreList.Ignore("*intellisense.js");
 
             bundles.BundleUp(
+                new SecureBundle(),
                 new ModernizerBundle(),
                 new JqueryBundle(),
                 new ThirdPartyJsBundle(),

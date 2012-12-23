@@ -36,7 +36,7 @@ namespace RightRecruit.Controllers
         public ActionResult List()
         {
             if (!CurrentUserProvider.CurrentUser.IsAuthenticated)
-                return RedirectToAction("Home", "Home");
+                return RedirectToAction("Login", "Secure");
             return View();
         }
 
@@ -79,7 +79,7 @@ namespace RightRecruit.Controllers
         public ActionResult Create()
         {
             if (!CurrentUserProvider.CurrentUser.IsAuthenticated)
-                return RedirectToAction("Home", "Home");
+                return RedirectToAction("Login", "Secure");
             return View();
         }
 

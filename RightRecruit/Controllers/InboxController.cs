@@ -9,7 +9,7 @@ namespace RightRecruit.Controllers
         public ActionResult Inbox()
         {
             if (!CurrentUserProvider.CurrentUser.IsAuthenticated)
-                return RedirectToAction("Home", "Home");
+                return RedirectToAction("Login", "Secure");
             return View();
         }
     }

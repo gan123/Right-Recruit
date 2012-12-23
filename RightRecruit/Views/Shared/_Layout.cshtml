@@ -18,7 +18,7 @@
             {
                 var currentUser = (RightRecruit.Mvc.Infrastructure.Infrastructure.CurrentUser)HttpContext.Current.Session[RightRecruit.Mvc.Infrastructure.Globals.CurrentUser];
                 <div id="topnav" class="topnav">
-                    @if (!currentUser.IsAuthenticated)
+                    @*@if (!currentUser.IsAuthenticated)
                     {
                         <a href="#" class="signin"><span>Sign in</span></a>
                         <div id="signin_menu">
@@ -58,7 +58,7 @@
                                 <input id="signout" value="Sign out" tabindex="6" type="button" class="normalButton" style="float: right;">
                             </p>
                         </div>
-                    }
+                    }*@
                 </div>
             }
         </div>
