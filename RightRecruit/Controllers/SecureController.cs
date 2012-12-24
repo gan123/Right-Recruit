@@ -10,6 +10,7 @@ using RightRecruit.Models;
 using RightRecruit.Mvc.Infrastructure;
 using RightRecruit.Mvc.Infrastructure.Controllers;
 using RightRecruit.Mvc.Infrastructure.Infrastructure;
+using RightRecruit.Mvc.Infrastructure.Result;
 using RightRecruit.Mvc.Infrastructure.Security;
 
 namespace RightRecruit.Controllers
@@ -42,7 +43,7 @@ namespace RightRecruit.Controllers
                                                                IsAuthenticated = true,
                                                                Photo = user.PhotoAttachment
                                                            };
-            return RedirectToAction("Home","Home");
+            return new JsonNetResult();
         }
 
         [System.Web.Mvc.HttpPost]

@@ -1,6 +1,6 @@
 ﻿define('vm.clients.create',
-    ['ko', 'config', 'dataservice.lookups', 'dataservice.client', 'dataservice.search', 'model.industry', 'model.client', 'model.country', 'model.state', 'model.city'],
-    function (ko, config, lookups, clientService, clientSearchService, industryModel, clientModel, countryModel, stateModel, cityModel) {
+    ['jquery', 'amplify', 'ko', 'config', 'dataservice.lookups', 'dataservice.client', 'dataservice.search', 'model.industry', 'model.client', 'model.country', 'model.state', 'model.city'],
+    function ($, amplify, ko, config, lookups, clientService, clientSearchService, industryModel, clientModel, countryModel, stateModel, cityModel) {
         var
             logger = config.logger,
             client = ko.observable(new clientModel()),
@@ -70,49 +70,35 @@
             client().SelectedIndustry("");
             client().SelectedPriority("");
             validationErrors = ko.validation.group(client());
-            lookups.industries(null, {
-                success: function (result) {
-                    $.each(result, function (i, p) {
+            lookups.init();
+            $.when(
+                amplify.request('industries-lookup'),
+                amplify.request('countries-lookup'),
+                amplify.request('states-lookup'),
+                amplify.request('cities-lookup'),
+                amplify.request('priorities-lookup')
+            )
+                .then(function (industriesLookup, countriesLookup, statesLookup, citiesLookup, prioritiesLookup) {
+                    $.each(industriesLookup[0], function (i, p) {
                         var industry = new industryModel().Id(p.Id).Name(p.Name);
                         industries.push(industry);
                     });
-                }
-            });
-            
-            lookups.countries(null, {
-                success: function (result) {
-                    $.each(result, function (i, p) {
+                    $.each(countriesLookup[0], function (i, p) {
                         countries.push(new countryModel().Id(p.Id).Name(p.Name));
                     });
-                }
-            });
-            
-            lookups.states(null, {
-                success: function (result) {
-                    $.each(result, function (i, p) {
+                    $.each(statesLookup[0], function (i, p) {
                         allStates.push(new stateModel()
                             .Id(p.Id)
                             .Name(p.Name)
                             .CountryId(p.CountryId));
                     });
-                }
-            });
-            
-            lookups.cities(null, {
-                success: function (result) {
-                    $.each(result, function (i, p) {
+                    $.each(citiesLookup[0], function (i, p) {
                         allCities.push(new cityModel().Id(p.Id).Name(p.Name).StateId(p.StateId));
                     });
-                }
-            });
-            
-            lookups.priorities(null, {
-                success: function (result) {
-                    $.each(result, function (i, p) {
+                    $.each(prioritiesLookup[0], function (i, p) {
                         priorities.push(p);
                     });
-                }
-            });
+                });
         };
 
         init();

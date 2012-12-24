@@ -10,31 +10,12 @@
             amplify.request.define('personalize-save', 'ajax', {
                 url: '/rr/admin/personalize/save',
                 dataType: 'json',
-                type: 'POST'
+                type: 'POST',
+                contentType: 'application/json; charset=utf-8'
             });
         };
-
-        var getPersonalization = function(callbacks) {
-            return amplify.request({
-                resourceId: 'personalize-get',
-                success: callbacks.success,
-                error: callbacks.error
-            });
-        };
-        
-        var savePersonalization = function (data, callbacks) {
-            return amplify.request({
-                resourceId: 'personalize-save',
-                data: data,
-                success: callbacks.success,
-                error: callbacks.error
-            });
-        };
-
-        init();
 
         return {
-            getPersonalization: getPersonalization,
-            savePersonalization: savePersonalization
+            init: init
         };
     });

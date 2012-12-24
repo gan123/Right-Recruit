@@ -1,6 +1,6 @@
 ﻿define('vm.clients.list',
-    ['ko', 'dataservice.client', 'model.clientSummary', 'dataservice.lookups', 'model.industry'],
-    function (ko, clientService, clientSummary, lookups, industry) {
+    ['jquery', 'amplify', 'ko', 'dataservice.client', 'model.clientSummary', 'dataservice.lookups', 'model.industry'],
+    function ($, amplify, ko, clientService, clientSummary, lookups, industry) {
         var
             clients = ko.observableArray(),
             total = ko.observable(),
@@ -20,12 +20,14 @@
             selectedIndustry = ko.observable(),
             templateName = 'clients.list';
 
-        var init = function() {
-            clientService.search(null, {
-                success: function (result) {
-                    total(result.Total);
-                    showing(result.Showing);
-                    $.each(result.Clients, function (i, p) {
+        var init = function () {
+            lookups.init();
+            clientService.init();
+            amplify.request('clients-list')
+                .done(function(data, status) {
+                    total(data.Total);
+                    showing(data.Showing);
+                    $.each(data.Clients, function (i, p) {
                         clients.push(new clientSummary()
                             .Id(p.Id)
                             .Name(p.Name)
@@ -43,24 +45,20 @@
                             .Priority(p.Priority)
                         );
                     });
-                }
-            });
+                });
 
-            lookups.priorities(null, {
-                success: function (result) {
-                    $.each(result, function (i, p) {
-                        priorities.push(p);
-                    });
-                }
-            });
-            
-            lookups.industries(null, {
-                success: function (result) {
-                    $.each(result, function (i, p) {
+            $.when(
+                amplify.request('industries-lookup'),
+                amplify.request('priorities-lookup')
+            )
+                .then(function (industriesLookup, prioritiesLookup) {
+                    $.each(industriesLookup[0], function (i, p) {
                         industries.push(new industry().Id(p.Id).Name(p.Name));
                     });
-                }
-            });
+                    $.each(prioritiesLookup[0], function (i, p) {
+                        priorities.push(p);
+                    });
+                });
         };
 
         init();

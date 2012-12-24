@@ -33,53 +33,7 @@
             });
         };
 
-        var industries = function(data, callbacks) {
-            amplify.request({
-                resourceId: 'industries-lookup',
-                data: data,
-                success: callbacks.success
-            });
-        };
-        
-        var countries = function (data, callbacks) {
-            amplify.request({
-                resourceId: 'countries-lookup',
-                data: data,
-                success: callbacks.success
-            });
-        };
-        
-        var states = function (data, callbacks) {
-            amplify.request({
-                resourceId: 'states-lookup',
-                data: data,
-                success: callbacks.success
-            });
-        };
-        
-        var cities = function (data, callbacks) {
-            amplify.request({
-                resourceId: 'cities-lookup',
-                data: data,
-                success: callbacks.success
-            });
-        };
-        
-        var priorities = function (data, callbacks) {
-            amplify.request({
-                resourceId: 'priorities-lookup',
-                data: data,
-                success: callbacks.success
-            });
-        };
-
-        init();
-
         return {
-            industries: industries,
-            countries: countries,
-            states: states,
-            cities: cities,
-            priorities: priorities
+            init: init
         };
     });

@@ -18,10 +18,10 @@
             {
                 var currentUser = (RightRecruit.Mvc.Infrastructure.Infrastructure.CurrentUser)HttpContext.Current.Session[RightRecruit.Mvc.Infrastructure.Globals.CurrentUser];
                 <div id="topnav" class="topnav">
-                    @*@if (!currentUser.IsAuthenticated)
+                    @if (!currentUser.IsAuthenticated)
                     {
-                        <a href="#" class="signin"><span>Sign in</span></a>
-                        <div id="signin_menu">
+                        <a href="/rr/login" class="signin">login</a>
+                        @*<div id="signin_menu">
                             <p>
                                 <label id="invalidAuth" style="color:#cc0000;display:none;font-size: 7pt;margin: 4px;margin-bottom:0;">Oops! Something not right here!</label>
                                 <input id="username" class="username" placeholder="Login" name="username" value="" tabindex="5" type="text">
@@ -40,7 +40,7 @@
                             <p class="forgot"><a href="#" class="forgotLink" id="signup_link">New? Lets signup</a> </p>
                             <p class="forgot-username"><a class="forgotLink" id="forgot_username_link" title="If you remember your password, try logging in with your email" href="#">Forgot your username?</a> </p>
                             <p class="forgot"><a href="#" class="forgotLink" id="resend_password_link">Forgot your password?</a> </p>
-                        </div>
+                        </div>*@
                     }
                     else
                     {
@@ -58,7 +58,7 @@
                                 <input id="signout" value="Sign out" tabindex="6" type="button" class="normalButton" style="float: right;">
                             </p>
                         </div>
-                    }*@
+                    }
                 </div>
             }
         </div>
@@ -67,7 +67,7 @@
     <nav>
         <div class="menu">
             <ul class="menulist">
-                <li id="home" class="menuitem"><img src="/rr/Content/images/home_black.png" class="homeIcon"/></li>
+                <li id="home" class="menuitem"><a class="menuLink" href="/rr/home"><img src="/rr/Content/images/home_black.png" class="homeIcon"/></a></li>
                 <li id="inbox" class="menuitem"><a class="menuLink" href="/rr/inbox">INBOX</a></li>
                 <li id="calendar" class="menuitem"><a class="menuLink" href="#">CALENDAR</a></li>
                 <li id="clients" class="menuitem"><a class="menuLink" href="/rr/clients">CLIENTS</a></li>

@@ -1,6 +1,6 @@
 ﻿define('vm.personalize',
-    ['jquery', 'ko', 'dataservice.admin'],
-    function($, ko, adminService) {
+    ['jquery', 'ko', 'dataservice.admin', 'amplify'],
+    function($, ko, adminService, amplify) {
         var logo = ko.observable(),
             appHeader = ko.observable(),
             callbackLink = ko.observable(),
@@ -33,14 +33,10 @@
             },
             saveCommand = ko.asyncCommand({
                 execute: function (complete) {
-                    adminService.savePersonalization(buildData(), {
-                       success: function (response) {
-                           location.reload();
-                       },
-                       error: function (response) {
-                           
-                       }
-                    });
+                    amplify.request('personalize-save', ko.toJSON(buildData()))
+                        .done(function (data, status) {
+                            location.reload();
+                        });
                     complete();
                 },
                 canexecute: function (isExecuting) {
@@ -57,18 +53,16 @@
                 }
             }),
             init = function () {
-                adminService.getPersonalization({
-                    success: function (response) {
-                        basicColor(response.Branding.Theme.BasicColor);
-                        midColor(response.Branding.Theme.MidColor);
-                        boldColor(response.Branding.Theme.BoldColor);
-                        controlBorderColor(response.Branding.Theme.ControlBorderColor);
-                        foregroundColor(response.Branding.Theme.ForegroundColor);
-                    },
-                    error: function (response) {
-                        
-                    }
-                });
+                adminService.init();
+                amplify.request('personalize-get')
+                    .done(function (data, status) {
+                        console.log(data);
+                        basicColor(data.Branding.Theme.BasicColor);
+                        midColor(data.Branding.Theme.MidColor);
+                        boldColor(data.Branding.Theme.BoldColor);
+                        controlBorderColor(data.Branding.Theme.ControlBorderColor);
+                        foregroundColor(data.Branding.Theme.ForegroundColor);
+                    });
             },
             buildData = function () {
                 return {

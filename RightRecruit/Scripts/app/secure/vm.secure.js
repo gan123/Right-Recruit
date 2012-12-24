@@ -11,7 +11,9 @@
                 execute: function (complete) {
                     amplify.request('login', ko.toJSON({ login: user().UserName, password: user().Password, rememberme: user().RememberMe }))
                         .done(function(data, status) {
-                            console.log(status);
+                            if (status == 'success') {
+                                window.location = '/rr/home';
+                            }
                         })
                         .fail(function (data, status) {
                             console.log(status);
