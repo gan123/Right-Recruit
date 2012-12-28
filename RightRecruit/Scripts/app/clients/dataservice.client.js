@@ -18,8 +18,8 @@
         };
 
         init();
-        
+
         return {
             init: init
-        }
+        };
     });

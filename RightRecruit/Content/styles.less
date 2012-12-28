@@ -7,7 +7,7 @@
 @metro-green:#358E7A;
 @border-color-invalid: #FF9494;
 @metro-bold-yellow: #eccd35;
-@control-select-border-color: #0994CD;
+@control-select-border-color: #E6E6E6;
 @solid-red: #cc0000;
 @menu-foreground: white;
 
@@ -127,12 +127,10 @@ select
 	-webkit-appearance: none;
     font-size: 8pt;
     color: @metro-cool-grey;
-    .box-shadow-inset(0,0,8px,0,0,0,0.1,0,0,16px,0,0,0,0.1);
+    border: 1px solid @control-select-border-color;
 	.border-radius(4px,4px,4px,4px);
     overflow: hidden;
-    border-color: @control-select-border-color;
-    margin: 0px 0px 0px 4px;
-    padding: 5px 20px 5px 5px;
+    padding: 3px 20px 3px 3px;
 	background-image: url("../Content/images/down_arrow.gif");
 	background-repeat: no-repeat;
     background-position: 95% 50%;
@@ -142,7 +140,7 @@ select
         outline: 0;
         outline: thin dotted \9;
         border-color: @control-select-border-color;
-        .box-shadow-inset(0, 0px, 1px, 0, 0, 0, 0.5, 0, 0, 8px, 82, 168, 236, 0.6);
+        .box-shadow-inset(0, 0px, 1px, 0, 0, 0, 0.5, 0, 0, 8px, 230, 230, 230, 0.6);
     }
 
 	&:invalid {
@@ -155,15 +153,15 @@ select
 	}	
 
 	&:required {
-        .validation-icon(@validation-icon-required, 98%, 50%);
+        /*.validation-icon(@validation-icon-required, 98%, 50%);*/
     }
 
     &:required:valid {
-        .validation-icon(@validation-icon-valid, 98%, 50%);
+		/*background-image: none;*/
     }
 
     &:focus:invalid {
-        .validation-icon(@validation-icon-invalid, 98%, 50%);
+        /*.validation-icon(@validation-icon-invalid, 98%, 50%);*/
     }
 }
 input[type=text], input[type=password], input[type=url], input[type=email], textarea {
@@ -179,7 +177,7 @@ input[type=text], input[type=password], input[type=url], input[type=email], text
         outline: 0;
         outline: thin dotted \9;
         border-color: @control-select-border-color;
-        .box-shadow-inset(0, 0px, 1px, 0, 0, 0, 0.5, 0, 0, 8px, 82, 168, 236, 0.6);
+        .box-shadow-inset(0, 0px, 1px, 0, 0, 0, 0.5, 0, 0, 8px, 230, 230, 230, 0.6);
     }
 
 	&:invalid {
@@ -188,33 +186,32 @@ input[type=text], input[type=password], input[type=url], input[type=email], text
 		background: white;
 	}	
 }
-input[type=text], input[type=url], input[type=email] {
+/*input[type=text], input[type=url], input[type=email] {
     &:required {
         .validation-icon(@validation-icon-required, 98%, 50%);
     }
 
     &:required:valid {
-        /*.validation-icon(@validation-icon-valid, 98%, 50%);*/
-		background-image: none;
+        .validation-icon(@validation-icon-valid, 98%, 50%);
     }
 
     &:focus:invalid {
         .validation-icon(@validation-icon-invalid, 98%, 50%);
     }
-}
-textarea {
+}*/
+/*textarea {
     &:required {
         .validation-icon(@validation-icon-required, 98%, 5%);
     }
 
     &:required:valid {
-        /*.validation-icon(@validation-icon-valid, 98%, 5%);*/
+        .validation-icon(@validation-icon-valid, 98%, 5%);
     }
 
     &:focus:invalid {
         .validation-icon(@validation-icon-invalid, 98%, 5%);
     }
-}
+}*/
 
 input[type=button] {
 	font-size: 8pt;
@@ -1339,9 +1336,9 @@ hr {
     height: 100%;
 } 
 .detailsViewSection {
-    width: 64%;
+    width: 62%;
     height: 100%;
-    padding: 4px;
+    padding: 30px 8px 10px 30px;
 }
 .detailsDidYouMeanSection {
     width: 18%;
@@ -1350,4 +1347,24 @@ hr {
 }
 .detailsViewDivider {
 	height: 80%;
+}
+.defaultFormMargin {
+	margin: 4px;
+}
+.phone {
+	background-image: url("../Content/images/phone_black.png");
+    .background-size(12px, 14px);
+    background-repeat: no-repeat;
+    background-position: 2% 50%;
+}
+.fax {
+	background-image: url("../Content/images/fax_black.png");
+    .background-size(12px, 14px);
+    background-repeat: no-repeat;
+    background-position: 2% 50%;
+}
+.addressViewSection {
+    width: 70%;
+    height: 90%;
+    padding: 30px 8px 10px 30px;
 }

@@ -1,23 +1,23 @@
 ﻿define('vm.client.quicksearch',
-    ['jquery', 'ko', 'dataservice.search'],
-    function ($, ko, searchService) {
+    ['jquery', 'ko', 'dataservice.search', 'amplify'],
+    function ($, ko, searchService, amplify) {
         var
             selectedClientId = ko.observable(),
             selectedClientName = ko.observable(""),
-            search = function(request, response) {
-                searchService.clientsSearch({ query: request.term }, function (data) {
-                    console.log('done');
-                    $(".search").removeAttr('disabled');
-                    response($.map(data, function (item) {
-                        return {
-                            HighlightedName: highlight(item.Name, request.term),
-                            Id: item.Id,
-                            Name: item.Name,
-                            Industry: item.Industry,
-                            Country: item.Country
-                        };
-                    }));
-                });
+            search = function (request, response) {
+                amplify.request('client-quicksearch', { query: request.term })
+                    .done(function(data, status) {
+                        $(".search").removeAttr('disabled');
+                        response($.map(data, function (item) {
+                            return {
+                                HighlightedName: highlight(item.Name, request.term),
+                                Id: item.Id,
+                                Name: item.Name,
+                                Industry: item.Industry,
+                                Country: item.Country
+                            };
+                        }));
+                    });
             },
             template = function (ul, item) {
                 return $("<li></li>")
@@ -30,7 +30,8 @@
                 selectedClientName(ui.item.Name);
                 return (false);
             };
-        
+
+        searchService.init();
         function highlight(s, t) {
             var matcher = new RegExp("(" + $.ui.autocomplete.escapeRegex(t) + ")", "ig");
             return s.replace(matcher, "<span style='color:#0094cd;'>$1</span>");

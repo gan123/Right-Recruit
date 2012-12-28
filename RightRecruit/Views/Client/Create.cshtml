@@ -7,53 +7,50 @@
         <label class="titleLabel left">CREATE CLIENT</label>
     </div>
     <div class="control-div">
-		<div class="wizardContainer left">
+        <div class="wizardContainer left">
             <div class="wizardStepsContainer left">
                 <ul class="wizardStepsList left" style="padding: 0;">
                     <li id="step1" class="step left">
-                        <img src="../../Content/images/details_white.png" class="stepImage left" width="15" height="15"/>
+                        <img src="../../Content/images/details_white.png" class="stepImage left" width="15" height="15" />
                         <label class="stepLabel left">DETAILS</label>
                     </li>
                     <li id="step2" class="step left">
-                        <img src="../../Content/images/address_white.png" class="stepImage left" width="15" height="15"/>
+                        <img src="../../Content/images/address_white.png" class="stepImage left" width="15" height="15" />
                         <label class="stepLabel left">ADDRESS</label>
                     </li>
                     <li id="step3" class="step left">
-                        <img src="../../Content/images/contacts_white.png" class="stepImage left" width="15" height="15"/>
+                        <img src="../../Content/images/contacts_white.png" class="stepImage left" width="15" height="15" />
                         <label class="stepLabel left">CONTACTS</label>
                     </li>
                     <li id="step4" class="step left">
-                        <img src="../../Content/images/money_white.png" class="stepImage left" width="15" height="15"/>
+                        <img src="../../Content/images/money_white.png" class="stepImage left" width="15" height="15" />
                         <label class="stepLabel left">REVENUE</label>
                     </li>
                     <li id="step5" class="step left">
-                        <img src="../../Content/images/document_white.png" class="stepImage left" width="15" height="15"/>
+                        <img src="../../Content/images/document_white.png" class="stepImage left" width="15" height="15" />
                         <label class="stepLabel left">DOCUMENTS</label>
                     </li>
                 </ul>
             </div>
             <div class="wizardStepViewContainer">
                 <div class="wizardStepViewSection">
-                    <div id="view1" class="view">
-                        <div class="detailsViewSection left">asds</div>
-                        <div class="dividerDiv detailsViewDivider left"></div>
-                        <div class="detailsDidYouMeanSection left">asds</div>
-                    </div>
-                    <div id="view2" class="view">Address</div>
-                    <div id="view3" class="view">Contacts</div>
+                    <div id="view1" class="view" data-bind="template : {name : details.templateName, data: details}"></div>
+                    <div id="view2" class="view" data-bind="template : {name : address.templateName, data: address}"></div>
+                    <div id="view3" class="view" data-bind="template : {name : contacts.templateName, data: contacts}"></div>
                     <div id="view4" class="view">Revenue</div>
                     <div id="view5" class="view">Documents</div>
                     <div id="complete" class="view">Complete</div>
-                </div>
-                <div class="wizardButtonsContainer">
-                    <input id="create" type="button" class="normalButton right wizardButton" value="CREATE"/>
-                    <input id="recreate" type="button" class="normalButton right wizardButton" value="CREATE ANOTHER"/>
-                    <input id="next" type="button" class="normalButton right wizardButton" value="NEXT"/>
-                    <input id="previous" type="button" class="normalButton right wizardButton" value="PREVIOUS"/>
+
+                    <div class="wizardButtonsContainer">
+                        <input id="create" type="button" class="normalButton right wizardButton" value="CREATE" data-bind="enable: isSubmitEnabled()"/>
+                        <input id="recreate" type="button" class="normalButton right wizardButton" value="CREATE ANOTHER" />
+                        <input id="next" type="button" class="normalButton right wizardButton" value="NEXT" data-bind="enable: isNextEnabled()"/>
+                        <input id="previous" type="button" class="normalButton right wizardButton" value="PREVIOUS" />
+                    </div>
                 </div>
             </div>
-        </div>        
-    </div>   
+        </div>
+    </div>
 </section>
 @section scripts{
     @Scripts.Render("~/bundles/clients-create")

@@ -1,6 +1,6 @@
 ﻿define('vm.inbox',
-    ['ko', 'jquery', 'vm.client.quicksearch', 'dataservice.lookups', 'model.industry'],
-    function (ko, $, searchClient, lookups, industry) {
+    ['ko', 'jquery', 'vm.client.quicksearch'],
+    function (ko, $, searchClient) {
         var open = ko.observable('Open (10)'),
             inprogress = ko.observable(),
             onhold = ko.observable(),

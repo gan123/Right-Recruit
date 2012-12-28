@@ -8,7 +8,8 @@ namespace RightRecruit.App_Start.Bundles
         {
             return new ScriptBundle("~/bundles/clients-create")
                 .IncludeDirectory("~/Scripts/app/clients/new", "*.js", searchSubdirectories: false)
-                .IncludeDirectory("~/Scripts/app/clients", "*.js", searchSubdirectories: false);
+                .IncludeDirectory("~/Scripts/app/clients", "*.js", searchSubdirectories: false)
+                .IncludeDirectory("~/Scripts/app/lookups", "*.js", searchSubdirectories: false);
         }
     }
 }

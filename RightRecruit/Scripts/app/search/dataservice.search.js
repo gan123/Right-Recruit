@@ -15,26 +15,7 @@
             });
         };
 
-        var clientsSearch = function(data, success) {
-            return amplify.request({
-                resourceId: 'client-quicksearch',
-                data: data,
-                success: success
-            });
-        };
-        
-        var recruitersSearch = function (data, success) {
-            return amplify.request({
-                resourceId: 'recruiter-quicksearch',
-                data: data,
-                success: success
-            });
-        };
-
-        init();
-        
         return {
-            clientsSearch: clientsSearch,
-            recruitersSearch: recruitersSearch
+            init: init
         };
     });
