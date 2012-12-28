@@ -8,7 +8,7 @@
             b.bind(vm, "#clients-create");
             
             var currentStepIndex = 1;
-            var totalSteps = 5;
+            var totalSteps = 4;
 
             initialize();
 

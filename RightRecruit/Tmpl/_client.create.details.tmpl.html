@@ -1,6 +1,6 @@
-﻿<fieldset>
-    <legend>Details</legend>
-    <div class="detailsViewSection left">
+﻿<div class="detailsViewSection left">
+    <fieldset>
+        <legend>Details</legend>
         <div class="control-div left defaultFormMargin">
             <input type="text" placeholder="Client name" required style="width: 500px;" data-bind="value: details().Name, valueUpdate: 'afterkeydown'" />
         </div>
@@ -24,15 +24,37 @@
             <input type="text" placeholder="Phone" class="phone left" style="padding-left: 30px;" required data-bind="value: details().Phone().Landline, valueUpdate: 'afterkeydown'" />
             <input type="text" placeholder="Fax" class="fax left" style="padding-left: 30px; margin-left: 10px;" />
         </div>
-        <div class="control-div left defaultFormMargin" style="margin-left: 0; margin-top: 60px;">
-            <div class="left-div squaredOne">
-                <input type="checkbox" value="None" id="remember" name="notDuplicate" data-bind="checked: isNotDuplicateClient" />
-                <label class="labelForCheckbox" for="remember"></label>
-            </div>
-            <label for="remember" style="font-size: 7pt; color: #666">I'm sure this is not a duplicate client</label>
+    </fieldset>
+    <fieldset style="margin-top: 30px;">
+        <legend>Address</legend>
+        <div class="control-div left defaultFormMargin">
+            <input type="text" placeholder="Street 1" required style="width: 500px;" data-bind="value: details().Address().Street1, valueUpdate: 'afterkeydown'" />
         </div>
+        <div class="control-div left defaultFormMargin">
+            <input type="text" placeholder="Street 2" style="width: 500px;" data-bind="value: details().Address().Street2, valueUpdate: 'afterkeydown'" />
+        </div>
+        <div class="control-div left defaultFormMargin">
+            <input type="text" placeholder="Street 3" style="width: 500px;" data-bind="value: details().Address().Street3, valueUpdate: 'afterkeydown'" />
+        </div>
+        <div class="control-div left defaultFormMargin">
+            <select required data-bind="options: countries, optionsText: 'Name', value: details().Address().Country, optionsCaption: 'Country'"></select>
+        </div>
+        <div class="control-div left defaultFormMargin">
+            <select required data-bind="options: states, optionsText: 'Name', value: details().Address().State, optionsCaption: 'State'"></select>
+        </div>
+        <div class="control-div left defaultFormMargin">
+            <select required data-bind="options: cities, optionsText: 'Name', value: details().Address().City, optionsCaption: 'City'"></select>
+        </div>
+    </fieldset>
+    <div class="control-div left defaultFormMargin" style="margin-left: 0; margin-top: 60px;">
+        <div class="left-div squaredOne">
+            <input type="checkbox" value="None" id="remember" name="notDuplicate" data-bind="checked: isNotDuplicateClient" />
+            <label class="labelForCheckbox" for="remember"></label>
+        </div>
+        <label for="remember" style="font-size: 7pt; color: #666">I'm sure this is not a duplicate client</label>
     </div>
-</fieldset>
+</div>
+
 <div class="dividerDiv detailsViewDivider left"></div>
 <div class="detailsDidYouMeanSection left" data-bind="visible: showRelatedClients">
     <div class="control-div left">

@@ -1,10 +1,9 @@
 ﻿define('vm.clients.create',
-    ['jquery', 'amplify', 'ko', 'binder', 'config', 'dataservice.lookups', 'dataservice.client', 'dataservice.search', 'model.industry', 'vm.client.details', 'vm.client.address', 'vm.client.contacts'],
-    function ($, amplify, ko, binder, config, lookups, clientService, clientSearchService, industryModel, detailsViewModel, addressViewModel, contactsViewModel) {
+    ['jquery', 'amplify', 'ko', 'binder', 'config', 'dataservice.lookups', 'dataservice.client', 'dataservice.search', 'model.industry', 'vm.client.details', 'vm.client.contacts'],
+    function ($, amplify, ko, binder, config, lookups, clientService, clientSearchService, industryModel, detailsViewModel, contactsViewModel) {
         var
             logger = config.logger,
             details = detailsViewModel,
-            address = addressViewModel,
             contacts = contactsViewModel,
             createCommand = ko.asyncCommand({
                 execute: function (complete) {
@@ -32,25 +31,19 @@
         details.isValid.subscribe(function(val) {
             isNextEnabled(val);
         });
-        
-        address.isValid.subscribe(function (val) {
-            isNextEnabled(val);
-        });
 
         var init = function () {
             clientService.init();
             clientSearchService.init();
             details.init();
-            address.init();
 
             binder.bind(details, "#view1");
-            binder.bind(address, "#view2");
+            binder.bind(contacts, "#view2");
         };
 
         init();
         return {
             details: details,
-            address: address,
             contacts: contacts,
             createCommand: createCommand,
             isNextEnabled: isNextEnabled,

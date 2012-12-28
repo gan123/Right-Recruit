@@ -72,6 +72,14 @@ body {
 a {
   color: #6AC;
 }
+fieldset {
+  border: 1px solid #e6e6e6;
+  padding: 4px;
+}
+legend {
+  font-size: 9pt;
+  font-weight: bold;
+}
 select {
   -webkit-appearance: none;
   font-size: 8pt;
@@ -1354,6 +1362,7 @@ hr {
 .wizardStepViewContainer {
   background: #fff;
   height: 100%;
+  width: 86%;
 }
 .wizardStepViewSection {
   height: 90%;
@@ -1368,14 +1377,15 @@ hr {
   display: none;
   width: 100%;
   height: 100%;
+  overflow: auto;
 }
 .detailsViewSection {
-  width: 62%;
+  width: 66%;
   height: 100%;
   padding: 30px 8px 10px 30px;
 }
 .detailsDidYouMeanSection {
-  width: 18%;
+  width: 14%;
   height: 100%;
   padding: 4px;
 }

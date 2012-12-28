@@ -358,7 +358,6 @@
     <Content Include="Scripts\app\clients\new\model.client.details.js" />
     <Content Include="Scripts\app\clients\new\model.client.js" />
     <Content Include="Scripts\app\clients\new\model.contact.js" />
-    <Content Include="Scripts\app\clients\new\vm.client.address.js" />
     <Content Include="Scripts\app\clients\new\vm.client.contacts.js" />
     <Content Include="Scripts\app\clients\new\vm.client.create.js" />
     <Content Include="Scripts\app\clients\new\vm.client.details.js" />
@@ -429,7 +428,6 @@
     <Content Include="Scripts\lib\wysiwyg.link.js" />
     <Content Include="Scripts\lib\wysiwyg.table.js" />
     <Content Include="Tmpl\_client.contacts.list.tmpl.html" />
-    <Content Include="Tmpl\_client.create.address.tmpl.html" />
     <Content Include="Tmpl\_client.create.contacts.tmpl.html" />
     <Content Include="Tmpl\_client.create.details.tmpl.html" />
     <Content Include="Tmpl\_clients.list.tmpl.html" />
