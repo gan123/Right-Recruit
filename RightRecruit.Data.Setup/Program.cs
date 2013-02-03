@@ -520,6 +520,7 @@ namespace RightRecruit.Data.Setup
                 _store = new DocumentStore
                 {
                     Url = ConfigurationManager.AppSettings["RavenServerUrl"],
+                    DefaultDatabase = ConfigurationManager.AppSettings["RavenDatabase"],
                     Credentials = new NetworkCredential(
                         ConfigurationManager.AppSettings["RavenUser"],
                         ConfigurationManager.AppSettings["RavenPassword"]),

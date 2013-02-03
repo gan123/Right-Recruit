@@ -20,7 +20,7 @@ namespace RightRecruit.Mvc.Infrastructure.Controllers
 
         protected string GetAttachmentString(AttachmentReference attachmentReference, bool useBase64 = false)
         {
-            var attachment = UnitOfWork.DocumentSession.Advanced.DatabaseCommands.GetAttachment(attachmentReference.AttachmentId);
+            var attachment = UnitOfWork.DocumentSession.Advanced.DocumentStore.DatabaseCommands.GetAttachment(attachmentReference.AttachmentId);
             if (attachment != null && attachment.Data != null)
             {
                 if (useBase64)

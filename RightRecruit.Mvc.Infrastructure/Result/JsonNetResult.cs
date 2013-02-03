@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Text;
 using System.Web.Mvc;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
+using Raven.Imports.Newtonsoft.Json;
+using Raven.Imports.Newtonsoft.Json.Converters;
 
 namespace RightRecruit.Mvc.Infrastructure.Result
 {
